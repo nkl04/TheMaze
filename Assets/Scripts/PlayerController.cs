@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundCheckLayer;
+
+    [Header("Fire")]
+    [SerializeField] private GameObject bulletPrefabs;
+    [SerializeField] private Transform gunHandler;
     
     
 
@@ -35,11 +39,15 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
 
+    private StateMachine stateMachine;
+
 
     
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        stateMachine = new StateMachine(this);
+        stateMachine.Initialize(stateMachine.IdleState);
     }
 
     private void Update()
@@ -104,6 +112,11 @@ public class PlayerController : MonoBehaviour
         rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
     }
 
+    private void Fire()
+    {
+        GameObject bullet = Instantiate(bulletPrefabs,gunHandler.position,gunHandler.rotation);
+    }
+
     
 
     public bool IsGrounded()
@@ -136,6 +149,15 @@ public class PlayerController : MonoBehaviour
                 //on the air
                 jumpBufferTimeCounter = jumpBufferTime;
             }
+        }
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            //Fire
+            Fire();
         }
     }
 
