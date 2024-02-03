@@ -10,8 +10,11 @@ public class PlayerController : MonoBehaviour
 {
 
     [Header("Movement")]
+    [SerializeField] private float airMoveSpeed = 5;
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float jumpForce = 10;
+    [SerializeField] private float dashingPower = 10f;
+    [SerializeField] TrailRenderer trailRenderer;
 
     [Header("Improvement")]
     [SerializeField] private float coyoteTime = 0.2f;
@@ -38,20 +41,24 @@ public class PlayerController : MonoBehaviour
     private bool canJump;
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
+    private bool canDash = true;
+    private bool isDashing = false;
+    private float dashTime = 0.2f;
+    private float dashingCooldown = 1f;
 
-    private StateMachine stateMachine;
 
 
     
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        stateMachine = new StateMachine(this);
-        stateMachine.Initialize(stateMachine.IdleState);
     }
 
     private void Update()
     {   
+        //if player dashing, stop all other control
+        if(isDashing) return;
+
         //horizontal movement
         HorizontalMovement();
 
@@ -102,6 +109,11 @@ public class PlayerController : MonoBehaviour
 
     private void HorizontalMovement()
     {
+        if(!isGrounded) 
+        {
+            rb2d.velocity = new Vector2(airMoveSpeed * direction.x, rb2d.velocity.y);
+        }
+        else
         //change the velocity of the player
         rb2d.velocity = new Vector2(moveSpeed * direction.x, rb2d.velocity.y);
     }
@@ -115,6 +127,23 @@ public class PlayerController : MonoBehaviour
     private void Fire()
     {
         GameObject bullet = Instantiate(bulletPrefabs,gunHandler.position,gunHandler.rotation);
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb2d.gravityScale;
+        rb2d.gravityScale = 0f;
+        rb2d.velocity = new Vector2(transform.right.x * dashingPower, 0f);
+        trailRenderer.emitting = true;
+        yield return new WaitForSeconds(dashTime);
+        trailRenderer.emitting = false;
+        rb2d.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+
     }
 
     
@@ -161,6 +190,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+    }
     //=================================================================================================================
 
 
