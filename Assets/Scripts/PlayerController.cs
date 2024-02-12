@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundCheckLayer;
-
     
     private Rigidbody2D rb2d;
     private Vector2 direction;
@@ -91,7 +90,7 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-        
+
     }
 
     public void HorizontalMovement()
