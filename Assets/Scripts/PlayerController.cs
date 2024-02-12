@@ -13,41 +13,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float airMoveSpeed = 5;
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float jumpForce = 10;
-    [SerializeField] private float dashingPower = 10f;
-    [SerializeField] TrailRenderer trailRenderer;
 
     [Header("Improvement")]
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private float jumpBufferTime = 0.2f;
     
-
     [Space(5)]
 
     [Header("Ground Check")]
-    [SerializeField] private bool isGrounded; 
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundCheckLayer;
 
-    [Header("Fire")]
-    [SerializeField] private GameObject bulletPrefabs;
-    [SerializeField] private Transform gunHandler;
     
-    
-
     private Rigidbody2D rb2d;
     private Vector2 direction;
     private bool isFacingRight = true;
     private bool canJump;
+    private bool isJumping;
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
-    private bool canDash = true;
-    private bool isDashing = false;
-    private float dashTime = 0.2f;
-    private float dashingCooldown = 1f;
-
-
-
     
     private void Start()
     {
@@ -56,12 +41,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
-        //if player dashing, stop all other control
-        if(isDashing) return;
 
-        //horizontal movement
-        HorizontalMovement();
-
+        // //horizontal movement
+         HorizontalMovement();
 
         //flip player when change direction
         if((isFacingRight && direction.x < 0) || (!isFacingRight && direction.x > 0))
@@ -70,83 +52,65 @@ public class PlayerController : MonoBehaviour
             Flip();
         } 
 
-        //check if player is grounded
-        isGrounded = IsGrounded();
-
-
         // Experience Improvement
         #region  Coyote Time & Jump Buffer 
-        if (isGrounded)
+        if(IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-
-        if (coyoteTimeCounter > 0)
-        {
             canJump = true;
+            isJumping = false;  
         }
-        else
+        else 
         {
-            canJump = false;
+            // player on the air
+            if (isJumping)
+            {
+                // player jump
+                canJump = false;
+                jumpBufferTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                // not jump but leave the ground
+                coyoteTimeCounter -= Time.deltaTime;
+                if (coyoteTimeCounter <= 0)
+                {
+                    canJump = false;  
+                } 
+            }
         }
 
-        jumpBufferTimeCounter -= Time.deltaTime;
+        
 
-        if(jumpBufferTimeCounter > 0 && canJump)
+        Debug.Log(canJump + " " + isJumping);
+
+        if(jumpBufferTimeCounter > 0 && IsGrounded())
         {
             VerticalMovement();
+            canJump = false;
+            isJumping = true;
+            Debug.Log("Buffer jump");
         }
-
         #endregion
 
-
-    
     }
 
-    private void HorizontalMovement()
+    public void HorizontalMovement()
     {
-        if(!isGrounded) 
+        //change the velocity of the player
+        if(!IsGrounded())
         {
             rb2d.velocity = new Vector2(airMoveSpeed * direction.x, rb2d.velocity.y);
+
         }
-        else
-        //change the velocity of the player
-        rb2d.velocity = new Vector2(moveSpeed * direction.x, rb2d.velocity.y);
+        else rb2d.velocity = new Vector2(moveSpeed * direction.x, rb2d.velocity.y);
     }
 
-    private void VerticalMovement()
+    public void VerticalMovement()
     {
         //change the vetical position of player (Jump) 
         rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
     }
-
-    private void Fire()
-    {
-        GameObject bullet = Instantiate(bulletPrefabs,gunHandler.position,gunHandler.rotation);
-    }
-
-    private IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        float originalGravity = rb2d.gravityScale;
-        rb2d.gravityScale = 0f;
-        rb2d.velocity = new Vector2(transform.right.x * dashingPower, 0f);
-        trailRenderer.emitting = true;
-        yield return new WaitForSeconds(dashTime);
-        trailRenderer.emitting = false;
-        rb2d.gravityScale = originalGravity;
-        isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
-
-    }
-
-    
 
     public bool IsGrounded()
     {
@@ -160,51 +124,37 @@ public class PlayerController : MonoBehaviour
 
 
     //============================================ PLAYER INPUT SYSTEM ================================================
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputValue value)
     {
-        direction = context.ReadValue<Vector2>();
+        direction = value.Get<Vector2>();
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputValue value)
     {
-        if (context.performed)
+        if (value.isPressed)
         {   
-            if(canJump)
+            if(rb2d.velocity.y > 0)
+            {
+                return;
+            }
+            if (canJump && !isJumping)
             {
                 VerticalMovement();
+                canJump = false;
+                isJumping = true;
             }
-            else 
+            else
             {
-                //on the air
+                // player on the air
                 jumpBufferTimeCounter = jumpBufferTime;
             }
         }
     }
-
-    public void OnFire(InputAction.CallbackContext context)
-    {
-        if(context.performed)
-        {
-            //Fire
-            Fire();
-        }
-    }
-
-    public void OnDash(InputAction.CallbackContext context)
-    {
-        if (context.performed && canDash)
-        {
-            StartCoroutine(Dash());
-        }
-    }
     //=================================================================================================================
-
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(groundCheckPoint.position,groundCheckSize);
     }
-
-    
 }
