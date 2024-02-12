@@ -42,8 +42,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {   
 
+        #region movement && flip
         // //horizontal movement
-         HorizontalMovement();
+        HorizontalMovement();
 
         //flip player when change direction
         if((isFacingRight && direction.x < 0) || (!isFacingRight && direction.x > 0))
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour
             isFacingRight = !isFacingRight;
             Flip();
         } 
+
+        #endregion
 
         // Experience Improvement
         #region  Coyote Time & Jump Buffer 
@@ -80,19 +83,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        
-
-        Debug.Log(canJump + " " + isJumping);
-
         if(jumpBufferTimeCounter > 0 && IsGrounded())
         {
             VerticalMovement();
             canJump = false;
             isJumping = true;
-            Debug.Log("Buffer jump");
         }
         #endregion
 
+        
     }
 
     public void HorizontalMovement()
