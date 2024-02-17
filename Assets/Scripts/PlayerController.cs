@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
+
     
     private void Start()
     {
@@ -90,7 +91,6 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-
     }
 
     public void HorizontalMovement()
@@ -137,9 +137,10 @@ public class PlayerController : MonoBehaviour
             }
             if (canJump && !isJumping)
             {
-                VerticalMovement();
                 canJump = false;
                 isJumping = true;
+                VerticalMovement();
+
             }
             else
             {
