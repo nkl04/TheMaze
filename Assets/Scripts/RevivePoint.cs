@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class RevivePoint : MonoBehaviour
 {
-    [SerializeField] private GameObject playerPrefab;
-
     
     public void RevivePlayer(GameObject player)
     {

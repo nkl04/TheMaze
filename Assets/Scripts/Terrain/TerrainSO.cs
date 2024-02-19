@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="New Terain")]
 public class TerrainSO : ScriptableObject
 {
-   public String name;
+   public String terrainName;
    public Player player;
 }
 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bff625fb454e3a428eb26c36c512c3f, type: 3}
-  m_Name: Larva Terrain
+  m_Name: Toxic Terrain
   m_EditorClassIdentifier: 
-  name: Larva
-  player: 1
+  name: Toxic
+  player: 0
