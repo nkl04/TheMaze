@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrainSO: {fileID: 0}
+  revivePoint: {fileID: 7348119729932120386, guid: 47564f802682a43478993a5383345bf9, type: 3}
 --- !u!61 &-7343093488686355633
 BoxCollider2D:
   m_ObjectHideFlags: 0
