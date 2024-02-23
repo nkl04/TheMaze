@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
     private const string IS_RUNNING = "isRunning";
+    private const string IS_JUMPING = "isJumping";
     [SerializeField] private float speed = 10f; 
     [SerializeField] private Animator animator;
     [SerializeField] private float height;
-    private Rigidbody2D rb2D;
+    public Rigidbody2D rb2D;
 
     public void Start ()
     {
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
     }
+     
     private void Movement(){
         direction = Input.GetAxisRaw("Horizontal");
 
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.UpArrow) == true)
         {
             rb2D.velocity = Vector2.up * height;
+            animator.SetBool(IS_JUMPING, true);
         }
         
     }
@@ -50,8 +54,12 @@ public class PlayerController : MonoBehaviour
     {
         transform.Rotate(0f, 180f, 0f);
     }
-
-
+    
+    public void onLand()
+    {
+        animator.SetBool(IS_JUMPING, false);
+    }
+    
 
 
 
