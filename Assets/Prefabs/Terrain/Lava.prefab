@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 9f928fd8cbc4ff0408943ed43bf8f0ad, type: 2}
     - target: {fileID: 1679964395074821344, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
       propertyPath: m_Name
-      value: Larva Variant
+      value: Lava
       objectReference: {fileID: 0}
     - target: {fileID: 5082756753201607648, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
       propertyPath: m_LocalScale.x
@@ -75,6 +75,14 @@ PrefabInstance:
     - target: {fileID: 8538064894562665723, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538064894562665723, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538064894562665723, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 827473779
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
