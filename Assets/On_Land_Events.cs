@@ -9,7 +9,7 @@ public class On_Land_Events : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;							
 	[SerializeField] private Transform m_GroundCheck;
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;    
+	private bool m_Grounded; 
 	private Rigidbody2D m_Rigidbody2D;
     private void Awake()
 	{

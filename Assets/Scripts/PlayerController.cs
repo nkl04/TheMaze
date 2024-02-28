@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     private const string IS_RUNNING = "isRunning";
     private const string IS_JUMPING = "isJumping";
-    [SerializeField] private float speed = 10f; 
+    [SerializeField] private float speed; 
     [SerializeField] private Animator animator;
     [SerializeField] private float height;
     public Rigidbody2D rb2D;
