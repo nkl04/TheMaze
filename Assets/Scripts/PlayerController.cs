@@ -9,29 +9,39 @@ public class PlayerController : MonoBehaviour
 {
     private const string IS_RUNNING = "isRunning";
     private const string IS_JUMPING = "isJumping";
-    [SerializeField] private float speed; 
+    private const string IS_TOUCHING_GROUND = "isTouchingGround";
+    private const string IS_TOUCHING_WALL = "isTouchingWall";
+    [SerializeField] private float speed = 5f; 
     [SerializeField] private Animator animator;
-    [SerializeField] private float height;
+    [SerializeField] private float jumpSpeed = 5f;
+    public Transform groundCheck;
+    public float groundCheckRadius;
+    public LayerMask groundLayer;
+    public bool isTouchingGround;
+    public Transform wallCheck;
+    public float wallCheckRadius;
+    public LayerMask wallLayer;    
+    public bool isTouchingWall = false;
     public Rigidbody2D rb2D;
+
 
     public void Start ()
     {
         rb2D = GetComponent<Rigidbody2D>();
     }
     private float direction;
-    
-    private float up_down;
     private bool isFacingRight = true;
     
     public void Update() 
     {
+        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, wallLayer);
         Movement();
     }
      
-    private void Movement(){
+    private void Movement()
+    {
         direction = Input.GetAxisRaw("Horizontal");
-
-        up_down = Input.GetAxisRaw("Vertical");
         
         rb2D.velocity = new Vector2(speed*direction, rb2D.velocity.y);
 
@@ -43,11 +53,28 @@ public class PlayerController : MonoBehaviour
         }
         animator.SetBool(IS_RUNNING, direction != 0);
 
-        if(Input.GetKeyDown(KeyCode.UpArrow) == true)
-        {
-            rb2D.velocity = Vector2.up * height;
-            animator.SetBool(IS_JUMPING, true);
+        
+            
+        if(Input.GetButtonDown("Jump") && isTouchingGround)
+        {                
+            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);  
+            animator.SetBool(IS_TOUCHING_GROUND, false);
+            animator.SetBool(IS_JUMPING, true);       
         }
+        animator.SetBool(IS_JUMPING, false);
+        animator.SetBool(IS_TOUCHING_GROUND, true);
+        animator.SetBool(IS_TOUCHING_WALL, false);
+
+        if (isTouchingWall == true)
+        {
+            animator.SetBool(IS_TOUCHING_WALL, true);
+            if (isTouchingGround) 
+            {
+                animator.SetBool(IS_TOUCHING_GROUND, true);
+            }
+        }
+        
+       
         
     }
     private void Flip() 
@@ -55,10 +82,6 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
     
-    public void onLand()
-    {
-        animator.SetBool(IS_JUMPING, false);
-    }
     
 
 
