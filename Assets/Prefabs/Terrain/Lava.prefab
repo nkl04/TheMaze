@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 9f928fd8cbc4ff0408943ed43bf8f0ad, type: 2}
     - target: {fileID: 1679964395074821344, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
       propertyPath: m_Name
-      value: Larva Variant
+      value: Lava
       objectReference: {fileID: 0}
     - target: {fileID: 5082756753201607648, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
       propertyPath: m_LocalScale.x
@@ -76,8 +76,30 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7702349890584461024, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1679964395074821344, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1224543932294772791}
   m_SourcePrefab: {fileID: 100100000, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
+--- !u!1 &4429851903656334339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1679964395074821344, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
+  m_PrefabInstance: {fileID: 3038118171782088931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1224543932294772791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4429851903656334339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ed4699d1a386a429d30b492f6dbec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainSO: {fileID: 11400000, guid: 9f928fd8cbc4ff0408943ed43bf8f0ad, type: 2}

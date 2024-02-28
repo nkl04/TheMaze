@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float airMoveSpeed = 5;
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float jumpForce = 10;
+    [SerializeField] private bool canMove = true;
 
     [Header("Improvement")]
     [SerializeField] private float coyoteTime = 0.2f;
@@ -41,7 +42,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
-
         #region movement && flip
         // //horizontal movement
         HorizontalMovement();
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         if((isFacingRight && direction.x < 0) || (!isFacingRight && direction.x > 0))
         {
             isFacingRight = !isFacingRight;
-            Flip();
+            VerticalFlip();
         } 
 
         #endregion
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
     public void VerticalMovement()
     {
         //change the vetical position of player (Jump) 
-        rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+        rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce * transform.up.y);
     }
 
     public bool IsGrounded()
@@ -115,21 +115,29 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,groundCheckLayer);
     }
 
-    public void Flip()
+    public void VerticalFlip()
     {
         transform.Rotate(0f,180f,0f);
+    }
+
+    public void HorizontalFlip()
+    {
+        transform.Rotate(180f,0f,0f);
     }
 
 
     //============================================ PLAYER INPUT SYSTEM ================================================
     public void OnMove(InputValue value)
     {
-        direction = value.Get<Vector2>();
+        if (canMove)
+        {
+            direction = value.Get<Vector2>();
+        }
     }
 
     public void OnJump(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && canMove)
         {   
             if(rb2d.velocity.y > 0)
             {
