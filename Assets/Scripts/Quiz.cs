@@ -19,7 +19,11 @@ public class Quiz : MonoBehaviour
     [SerializeField] Image timerImage;
     Timer timer;
     void Start(){
+        timer = FindObjectOfType<Timer>();
         DisplayQuestion();
+    }
+    void Update(){
+        timerImage.fillAmount = timer.fillFraction;
     }
     void DisplayQuestion()
     {
