@@ -33,6 +33,7 @@ public class Quiz : MonoBehaviour
         Image buttonImage;
         if (index == currentQuestion.GetCorrectAnswerIndex()){
             questionText.text = "That's Good!";
+            
             buttonImage = answerButtons[index].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
         }else {
