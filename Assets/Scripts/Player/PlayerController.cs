@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -38,6 +39,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        transform.GetComponent<PlayerHealth>().OnPlayerDie += Health_OnPlayerDie;
+        
+    }
+
+    private void Health_OnPlayerDie(object sender, EventArgs e)
+    {
+        rb2d.velocity = new Vector2(0f,0f);
     }
 
     private void Update()

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bff625fb454e3a428eb26c36c512c3f, type: 3}
   m_Name: Toxic
   m_EditorClassIdentifier: 
-  name: Toxic
+  terrainName: toxic
   player: 0

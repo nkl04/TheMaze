@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bff625fb454e3a428eb26c36c512c3f, type: 3}
   m_Name: Lava
   m_EditorClassIdentifier: 
-  name: Larva
+  terrainName: lava
   player: 1

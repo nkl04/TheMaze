@@ -9,7 +9,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
     [SerializeField] private Transform revivePoint;
-    [SerializeField] private bool isReverseGravity = false;
+    [SerializeField] private bool reverseGravity = false;
 
     private bool canReverseGravity;
     // Start is called before the first frame update
@@ -25,17 +25,36 @@ public class MapManager : MonoBehaviour
         RevivePlayer();
     }
 
-    private void ReverseGravity()
-    {
-        Rigidbody2D[] gameObjectRb2dArray = GameObject.FindObjectsOfType<Rigidbody2D>();
-        foreach (Rigidbody2D gameobjectRb2d in gameObjectRb2dArray)
+    private void Update() {
+        if (reverseGravity)
         {
-            gameobjectRb2d.gravityScale = -gameobjectRb2d.gravityScale;
-            if (gameobjectRb2d.gameObject.GetComponent<PlayerController>())
+            if (canReverseGravity)
             {
-                gameobjectRb2d.gameObject.GetComponent<PlayerController>().VerticalFlip();
+                ReverseGravity(player1);
+                ReverseGravity(player2);
+                canReverseGravity = false;
             }
         }
+        else
+        {
+            canReverseGravity = true;
+            ResetGravity(player1);
+            ResetGravity(player2);
+        }
+    }
+
+    private void ReverseGravity(GameObject gameObject)
+    {
+        float gravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = -gravity;
+        gameObject.transform.GetComponent<PlayerController>().HorizontalFlip();
+    }
+
+    private void ResetGravity(GameObject gameObject)
+    {
+        float gravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = Mathf.Abs(gravity);
+        gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
 
