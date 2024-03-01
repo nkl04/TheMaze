@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         transform.GetComponent<PlayerHealth>().OnPlayerDie += Health_OnPlayerDie;
-        
     }
 
     private void Health_OnPlayerDie(object sender, EventArgs e)
@@ -171,6 +170,11 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(groundCheckPoint.position,groundCheckSize);
+    }
+
+    public Vector2 GetDirectionVector()
+    {
+        return direction;
     }
     
 }

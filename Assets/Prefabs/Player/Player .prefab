@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3185872595315018304}
   - component: {fileID: 8303566046017809963}
   - component: {fileID: 160621227621407594}
+  - component: {fileID: 4926765075257201085}
   m_Layer: 6
   m_Name: 'Player '
   m_TagString: Player
@@ -286,13 +287,27 @@ MonoBehaviour:
   airMoveSpeed: 7
   moveSpeed: 10
   jumpForce: 10
+  canMove: 1
   coyoteTime: 0.2
   jumpBufferTime: 0.2
   groundCheckPoint: {fileID: 50522685351132394}
   groundCheckSize: {x: 0.9, y: 0.01}
   groundCheckLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4224
+--- !u!114 &4926765075257201085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533162545353097756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68489a15595e3545a45204551985c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider2D: {fileID: 3185872595315018304}
 --- !u!1 &6766338930385089353
 GameObject:
   m_ObjectHideFlags: 0
