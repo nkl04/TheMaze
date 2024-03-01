@@ -58,8 +58,6 @@ public class MapManager : MonoBehaviour
     }
 
 
-
-
     private void RevivePlayer()
     {
         Debug.Log("Die!");
