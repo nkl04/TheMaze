@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    [SerializeField] private Elevator elevator;
+    [SerializeField] private Elevator[] elevatorArray;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        elevator.IsTurnOn = true;  
+        foreach (Elevator elevator in elevatorArray)
+        {
+            elevator.IsTurnOn = true; 
+        }
+         
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        elevator.IsTurnOn = false;
+        foreach (Elevator elevator in elevatorArray)
+        {
+            elevator.IsTurnOn = false; 
+        }
     }
     
 }
