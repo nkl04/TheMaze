@@ -156,7 +156,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionText: {fileID: 1939541529}
-  currentQuestion: {fileID: 11400000, guid: e35a0733d377a3540a609c4023b8d447, type: 2}
+  question:
+  - {fileID: 11400000, guid: e35a0733d377a3540a609c4023b8d447, type: 2}
+  - {fileID: 11400000, guid: c00faf9c3f2e7e44ba6d8dd7f5b64347, type: 2}
+  - {fileID: 11400000, guid: 78da6ec6e64a0f8498d318cd60039a53, type: 2}
+  - {fileID: 11400000, guid: 791776385995ad5458425ef562b7db55, type: 2}
+  - {fileID: 11400000, guid: f8cba850b27fcd44088b53d67c83122d, type: 2}
   answerButtons:
   - {fileID: 1467393326}
   - {fileID: 1664065690}
@@ -438,8 +443,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToAnswerQuestion: 10
+  timeToTurnOffQuestion: 5
   fillFraction: 0
   isAnsweringQuestion: 1
+  loadNextQuestion: 0
 --- !u!1001 &991563791
 PrefabInstance:
   m_ObjectHideFlags: 0

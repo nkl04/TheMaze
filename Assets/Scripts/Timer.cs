@@ -6,9 +6,11 @@ using UnityEngine.UIElements;
 public class Timer : MonoBehaviour
 {
    [SerializeField] float timeToAnswerQuestion = 30f; 
+   [SerializeField] float timeToTurnOffQuestion = 5f;
     float timeValue;
     public float fillFraction;
     public bool isAnsweringQuestion = false;
+    public bool loadNextQuestion;
     void UpdateTimer()
     {
         timeValue -= Time.deltaTime;
@@ -22,21 +24,27 @@ public class Timer : MonoBehaviour
             else
             {
                 isAnsweringQuestion = false;
-                timeValue = timeToAnswerQuestion;
+                timeValue = timeToTurnOffQuestion;
             }
         }
         else
         {
             if (timeValue > 0)
             {
-                fillFraction = timeValue / timeToAnswerQuestion;
+                fillFraction = timeValue / timeToTurnOffQuestion;
             }
             else
             {
                 isAnsweringQuestion = true;
                 timeValue = timeToAnswerQuestion;
+                loadNextQuestion = true;
             }
         }
+    }
+
+    public void CancelTimer()
+    {
+        timeValue = 0;
     }
 
     void Update()

@@ -8,22 +8,31 @@ public class Quiz : MonoBehaviour
 {
     [Header("Question")]
     [SerializeField] TextMeshProUGUI questionText;
-    [SerializeField] QuestionSO currentQuestion;
+    [SerializeField] List<QuestionSO> question = new List<QuestionSO>();
+    QuestionSO currentQuestion;
     [Header("Answers")]
     [SerializeField] GameObject[] answerButtons;
     int correctAnswerIndex;
+    bool hasAnsweredEarly;
     [Header("Button Image")]
     [SerializeField] Sprite defaultAnswerSprite;
     [SerializeField] Sprite correctAnswerSprite;
     [Header("Timer")]
     [SerializeField] Image timerImage;
     Timer timer;
+
     void Start(){
         timer = FindObjectOfType<Timer>();
-        DisplayQuestion();
+        GetNextQuestion();
     }
     void Update(){
         timerImage.fillAmount = timer.fillFraction;
+        if (timer.loadNextQuestion)
+        {
+            GetNextQuestion();
+            timer.loadNextQuestion = false;
+        }
+
     }
     void DisplayQuestion()
     {
@@ -46,12 +55,29 @@ public class Quiz : MonoBehaviour
             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
         }
+        SetButtonState(false);
+        timer.CancelTimer();
     }
 
     void GetNextQuestion(){
-        SetButtonState(true);
-        SetDefaultButtonSprites();
-        DisplayQuestion();
+        if (question.Count > 0)
+        {
+            SetButtonState(true);
+            SetDefaultButtonSprites();
+            GetRandomQuestion();
+            DisplayQuestion();
+
+        }
+    }
+
+    void GetRandomQuestion()
+    {
+        int index = Random.Range(0,question.Count);
+        currentQuestion = question[index];
+        if (question.Contains(currentQuestion))
+        {
+            question.Remove(currentQuestion);
+        }
     }
 
     void SetButtonState( bool state){
