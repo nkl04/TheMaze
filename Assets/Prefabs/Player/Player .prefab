@@ -308,10 +308,10 @@ MonoBehaviour:
   coyoteTime: 0.2
   jumpBufferTime: 0.2
   groundCheckPoint: {fileID: 50522685351132394}
-  groundCheckSize: {x: 0.94, y: 0.03}
+  groundCheckSize: {x: 0.94, y: 0.01}
   groundCheckLayer:
     serializedVersion: 2
-    m_Bits: 12928
+    m_Bits: 0
   elevatorLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -366,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 6766338930385089353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4961, z: 0}
+  m_LocalPosition: {x: 0, y: -0.49522, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -35,10 +35,8 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private bool canJump;
     private bool isJumping;
-    private bool hasJumped;
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
-
 
     
     private void Start()
@@ -167,12 +165,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && canMove && !hasJumped)
+        if (context.performed && canMove)
         {   
-            if(IsGrounded())
+            
+
             if (canJump && !isJumping)
             {
-                hasJumped = true;
+
                 canJump = false;
                 isJumping = true;
                 coyoteTimeCounter = 0f;
