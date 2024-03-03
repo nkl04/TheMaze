@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     private const string IS_RUNNING = "isRunning";
-    //private const string IS_JUMPING = "isJumping";
     private const string VECTOR_Y = "Vector y";
     private const string IS_JUMPING = "isJumping";
     private const string IS_TOUCHING_GROUND = "isTouchingGround";
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask wallLayer;    
     public bool isTouchingWall = false;
     public Rigidbody2D rb2D;
-    public float VectorY;
+    //public float VectorY;
 
 
     public void Start ()
@@ -53,38 +52,35 @@ public class PlayerController : MonoBehaviour
         
         animator.SetBool(IS_TOUCHING_WALL, false);
 
-        if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
-        {
-            isFacingRight = !isFacingRight;
-            Flip();
-        }
-        animator.SetBool(IS_RUNNING, direction != 0);
-
-        
-            
         if(Input.GetButtonDown("Jump"))
         {   
             animator.SetBool(IS_JUMPING, true);             
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);  
             animator.SetBool(IS_TOUCHING_GROUND, false);              
         }
+        
+        if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
+        {
+            isFacingRight = !isFacingRight;
+            Flip();
+        }
+          
+        
+
         if (rb2D.velocity.y < jumpSpeed )
             animator.SetBool(IS_JUMPING, false);
 
-        if (rb2D.velocity.y == 0)
-        {
-        animator.SetBool(IS_TOUCHING_GROUND, true);
-        }
+        if (rb2D.velocity.y == 0)       
+            animator.SetBool(IS_TOUCHING_GROUND, true);
+        
         
         if (isTouchingWall == true)
         {
             animator.SetBool(IS_TOUCHING_WALL, true);
-            if (isTouchingGround) 
-            {
-                animator.SetBool(IS_TOUCHING_GROUND, true);
-            }
+            if (isFacingRight == false) Flip();
         }
-        
+
+        animator.SetBool(IS_RUNNING, direction != 0);
        
         
     }
