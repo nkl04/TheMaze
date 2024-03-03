@@ -2,15 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System;
 
 public class Timer : MonoBehaviour
 {
+    public static Timer Instance {private set;get;}
+    public event EventHandler OnWaitingTimeOver;
    [SerializeField] float timeToAnswerQuestion = 30f; 
    [SerializeField] float timeToTurnOffQuestion = 5f;
     float timeValue;
     public float fillFraction;
     public bool isAnsweringQuestion = false;
     public bool loadNextQuestion;
+
+    private void Start() {
+        Instance = this;
+    }
     void UpdateTimer()
     {
         timeValue -= Time.deltaTime;
@@ -32,12 +39,11 @@ public class Timer : MonoBehaviour
             if (timeValue > 0)
             {
                 fillFraction = timeValue / timeToTurnOffQuestion;
+                
             }
             else
             {
-                isAnsweringQuestion = true;
-                timeValue = timeToAnswerQuestion;
-                loadNextQuestion = true;
+                OnWaitingTimeOver?.Invoke(this,EventArgs.Empty);
             }
         }
     }
@@ -50,5 +56,12 @@ public class Timer : MonoBehaviour
     void Update()
     {
        UpdateTimer();
+    }
+
+    public void StartTimeCounter()
+    {
+        isAnsweringQuestion = true;
+        timeValue = timeToAnswerQuestion;
+        loadNextQuestion = true;
     }
 }

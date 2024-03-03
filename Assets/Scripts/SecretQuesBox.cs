@@ -6,6 +6,7 @@ using UnityEngine;
 public class SecretQuesBox : MonoBehaviour
 {
 
+    public event EventHandler OnOpenSecretQuestion;
     public enum Player{
         Player1,
         Player2,
@@ -36,27 +37,22 @@ public class SecretQuesBox : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag(tagString))
         {
             //question canvas active
+            OnOpenSecretQuestion?.Invoke(this,EventArgs.Empty);
             //question play
 
             //destroy this gameobject
-            DestroySelf();
+            HideSelf();
         }   
     }
 
-    private void DestroySelf()
+    private void HideSelf()
     {
-        Destroy(transform.gameObject);
+        transform.gameObject.SetActive(false);
+        
     }
 }
