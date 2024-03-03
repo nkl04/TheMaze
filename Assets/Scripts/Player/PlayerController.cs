@@ -26,14 +26,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundCheckLayer;
+
+    [Header("Elevator Stand")]
+    [SerializeField] private LayerMask elevatorLayer;
     
     private Rigidbody2D rb2d;
     private Vector2 direction;
     private bool isFacingRight = true;
     private bool canJump;
     private bool isJumping;
+    private bool hasJumped;
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
+
 
     
     private void Start()
@@ -65,10 +70,10 @@ public class PlayerController : MonoBehaviour
         // Experience Improvement
         #region  Coyote Time & Jump Buffer 
         if(IsGrounded())
-        {
-            coyoteTimeCounter = coyoteTime;
+        {  
             canJump = true;
-            isJumping = false;  
+            isJumping = false;
+            coyoteTimeCounter = coyoteTime;      
         }
         else 
         {
@@ -99,7 +104,20 @@ public class PlayerController : MonoBehaviour
         #endregion
 
     }
+    
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.GetComponent<Elevator>() && IsStandOnElevator())
+        {
+            transform.SetParent(other.transform);
+        }
+    }
 
+    private void OnCollisionExit2D(Collision2D other) {
+        if (other.gameObject.GetComponent<Elevator>())
+        {
+            transform.SetParent(null);
+        }
+    }
     public void HorizontalMovement()
     {
         //change the velocity of the player
@@ -122,6 +140,11 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,groundCheckLayer);
     }
 
+    public bool IsStandOnElevator()
+    {
+        return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,elevatorLayer);
+    }
+
     public void VerticalFlip()
     {
         transform.Rotate(0f,180f,0f);
@@ -134,26 +157,25 @@ public class PlayerController : MonoBehaviour
 
 
     //============================================ PLAYER INPUT SYSTEM ================================================
-    public void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
         if (canMove)
         {
-            direction = value.Get<Vector2>();
+            direction = context.ReadValue<Vector2>();
         }
     }
 
-    public void OnJump(InputValue value)
+    public void OnJump(InputAction.CallbackContext context)
     {
-        if (value.isPressed && canMove)
+        if (context.performed && canMove && !hasJumped)
         {   
-            if(rb2d.velocity.y > 0)
-            {
-                return;
-            }
+            if(IsGrounded())
             if (canJump && !isJumping)
             {
+                hasJumped = true;
                 canJump = false;
                 isJumping = true;
+                coyoteTimeCounter = 0f;
                 VerticalMovement();
 
             }
