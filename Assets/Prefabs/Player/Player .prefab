@@ -308,7 +308,7 @@ MonoBehaviour:
   coyoteTime: 0.2
   jumpBufferTime: 0.2
   groundCheckPoint: {fileID: 50522685351132394}
-  groundCheckSize: {x: 0.94, y: 0.01}
+  groundCheckSize: {x: 0.9, y: 0.01}
   groundCheckLayer:
     serializedVersion: 2
     m_Bits: 0

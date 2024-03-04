@@ -12,34 +12,38 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Transform revivePoint;
     [SerializeField] private bool reverseGravity = false;
     [SerializeField] private Canvas questionCanvas;
+    [SerializeField] private Timer quizTimer;
     [SerializeField] private GameObject[] secretQuestionBoxArray;
     private bool canReverseGravity;
 
     // Start is called before the first frame update
     void Start()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
         player1.GetComponent<PlayerHealth>().OnPlayerDie += PlayerHealth_OnPlayerDie;
         player2.GetComponent<PlayerHealth>().OnPlayerDie += PlayerHealth_OnPlayerDie;
         foreach (GameObject questionBox in secretQuestionBoxArray)
         {
             questionBox.GetComponent<SecretQuesBox>().OnOpenSecretQuestion += QuestionBox_OnOpenSecretQuestion;
         }
-        Timer.Instance.OnWaitingTimeOver += Timer_OnWaitingTimeOver;
+        quizTimer.OnWaitingTimeOver += Timer_OnWaitingTimeOver;
 
     }
 
     private void Timer_OnWaitingTimeOver(object sender, EventArgs e)
     {
         questionCanvas.gameObject.SetActive(false);
-        Timer.Instance.CancelTimer();
+        quizTimer.CancelTimer();
         
     }
 
     private void QuestionBox_OnOpenSecretQuestion(object sender, EventArgs e)
     {
         questionCanvas.gameObject.SetActive(true);
-        Timer.Instance.StartTimeCounter();
+        quizTimer.StartTimeCounter();
     }
 
     private void PlayerHealth_OnPlayerDie(object sender, EventArgs e)

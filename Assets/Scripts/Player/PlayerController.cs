@@ -69,8 +69,6 @@ public class PlayerController : MonoBehaviour
         #region  Coyote Time & Jump Buffer 
         if(IsGrounded())
         {  
-            canJump = true;
-            isJumping = false;
             coyoteTimeCounter = coyoteTime;      
         }
         else 
@@ -108,12 +106,28 @@ public class PlayerController : MonoBehaviour
         {
             transform.SetParent(other.transform);
         }
+
+        if (IsGrounded() && ((1<<other.gameObject.layer) & groundCheckLayer) != 0)
+        {
+            canJump = true;
+            isJumping = false;
+        }
     }
+
+    // private void OnCollisionStay2D(Collision2D other) {
+        
+    // }
 
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.GetComponent<Elevator>())
         {
             transform.SetParent(null);
+        }
+
+        if (!IsGrounded() && ((1<<other.gameObject.layer) & groundCheckLayer) != 0)
+        {
+            canJump = false;
+            isJumping = true;
         }
     }
     public void HorizontalMovement()
@@ -167,7 +181,6 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && canMove)
         {   
-            
 
             if (canJump && !isJumping)
             {

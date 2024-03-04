@@ -6,20 +6,15 @@ using System;
 public class LevelEntrance : MonoBehaviour
 {
 
-    public static LevelEntrance Instance {private set; get;}
     public event EventHandler OnTakePlayerToNextLevel;
     [SerializeField] private float speed;
+    [SerializeField] private Transform upperPosition;
 
     private HashSet<GameObject> playersOnEntrance = new HashSet<GameObject>();
-    private Vector3 initPosition;
 
-    private void Start() {
-        Instance = this;
-        initPosition = transform.position;
-    }
     private void LiftEntrance()
     {
-        transform.position = Vector2.MoveTowards(transform.position,initPosition,speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position,upperPosition.position,speed * Time.deltaTime);
     }
 
     private void Update() {

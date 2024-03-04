@@ -13,20 +13,27 @@ public class MovementButton : MonoBehaviour
 
     [SerializeField] private Elevator[] elevatorArray;
     [SerializeField] private Door[] doorArray;
+    [SerializeField] private LevelEntrance levelEntrance;
     [SerializeField] Open open;
 
     private float timeToHoldButton = 0.5f;
     private float timeToHoldButtonCounter;
 
     private void Start() {
-        LevelEntrance.Instance.OnTakePlayerToNextLevel += LevelEntrance_OnTakePlayerToNextLevel;
+        if (levelEntrance != null)
+        {
+            levelEntrance.OnTakePlayerToNextLevel += LevelEntrance_OnTakePlayerToNextLevel;
+        }
     }
 
     private void LevelEntrance_OnTakePlayerToNextLevel(object sender, EventArgs e)
     {
         foreach (Door door in doorArray)
         {
-            door.IsTurnOn = false; 
+            if(door.gameObject.GetComponent<LevelEntrance>())
+            {
+                door.IsTurnOn = false;
+            }
         }
     }
 

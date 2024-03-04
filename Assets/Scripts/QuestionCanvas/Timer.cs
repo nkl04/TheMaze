@@ -6,7 +6,6 @@ using System;
 
 public class Timer : MonoBehaviour
 {
-    public static Timer Instance {private set;get;}
     public event EventHandler OnWaitingTimeOver;
    [SerializeField] float timeToAnswerQuestion = 30f; 
    [SerializeField] float timeToTurnOffQuestion = 5f;
@@ -14,10 +13,6 @@ public class Timer : MonoBehaviour
     public float fillFraction;
     public bool isAnsweringQuestion = false;
     public bool loadNextQuestion;
-
-    private void Start() {
-        Instance = this;
-    }
     void UpdateTimer()
     {
         timeValue -= Time.deltaTime;
