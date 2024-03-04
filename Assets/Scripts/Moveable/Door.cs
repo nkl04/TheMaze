@@ -9,7 +9,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Transform toOpenPoint;
     [SerializeField] private float openSpeed = 1f;
 
-    private bool isTurnOn;
+    public bool isTurnOn;
 
     private Vector3 startPosition;
 

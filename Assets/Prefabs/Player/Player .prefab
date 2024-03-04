@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 8303566046017809963}
   - component: {fileID: 160621227621407594}
   - component: {fileID: 4926765075257201085}
+  - component: {fileID: 44311436047887069}
   m_Layer: 6
   m_Name: 'Player '
-  m_TagString: Player
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.111320674, b: 0.111320674, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,7 +150,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.0007491112}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -160,7 +161,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.9985018}
   m_EdgeRadius: 0
 --- !u!114 &8303566046017809963
 MonoBehaviour:
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 7b14d9d97fa8a5b4fbc364ff639ebcd4, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -267,6 +268,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: dec231fd-e6f8-40fe-a77b-55371528aa56
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6252c34c-d539-4dfd-80d5-9d3ab284a129
+    m_ActionName: Player 2/Jump[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0e15624d-9b6c-4455-a6da-1f277cde5518
+    m_ActionName: Player 2/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9985729d-51fa-4e6f-b012-06d811b5fb13
+    m_ActionName: Player 2/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: de954abc-05fe-43ac-b058-9493f5522f63
+    m_ActionName: Player 2/Move[/Keyboard/leftArrow,/Keyboard/downArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player 1
@@ -286,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airMoveSpeed: 7
   moveSpeed: 10
-  jumpForce: 10
+  jumpForce: 9.5
   canMove: 1
   coyoteTime: 0.2
   jumpBufferTime: 0.2
@@ -294,7 +311,10 @@ MonoBehaviour:
   groundCheckSize: {x: 0.9, y: 0.01}
   groundCheckLayer:
     serializedVersion: 2
-    m_Bits: 4224
+    m_Bits: 2816
+  elevatorLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &4926765075257201085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +327,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68489a15595e3545a45204551985c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 160621227621407594}
   playerCollider2D: {fileID: 3185872595315018304}
+--- !u!114 &44311436047887069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533162545353097756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d5082afd90a3947afbf63c933af946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6766338930385089353
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 6766338930385089353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4961, z: 0}
+  m_LocalPosition: {x: 0, y: -0.49522, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
