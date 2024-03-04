@@ -1,28 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LevelEntrance : MonoBehaviour
 {
-    
+
+    public static LevelEntrance Instance {private set; get;}
+    public event EventHandler OnTakePlayerToNextLevel;
     [SerializeField] private float speed;
 
     private HashSet<GameObject> playersOnEntrance = new HashSet<GameObject>();
+    private Vector3 initPosition;
+
+    private void Start() {
+        Instance = this;
+        initPosition = transform.position;
+    }
     private void LiftEntrance()
     {
-        transform.position = Vector2.MoveTowards(transform.position,transform.position + Vector3.up*5,speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position,initPosition,speed * Time.deltaTime);
+    }
+
+    private void Update() {
+        if (playersOnEntrance.Count == 2)
+        {
+            OnTakePlayerToNextLevel?.Invoke(this,EventArgs.Empty);
+            LiftEntrance();
+            Debug.Log("Lift");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
         {
             playersOnEntrance.Add(other.gameObject);
+        }
+    }
 
-            // Kiểm tra nếu cả hai player đều đứng lên trên cổng
-            if (playersOnEntrance.Count == 2)
+    private void OnCollisionExit2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
+        {
+            if (playersOnEntrance.Contains(other.gameObject))
             {
-                LiftEntrance();
+                playersOnEntrance.Remove(other.gameObject);
             }
         }
+
     }
 }

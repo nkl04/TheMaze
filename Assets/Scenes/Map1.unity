@@ -541,59 +541,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1369043051}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &279556993
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 279556994}
-  - component: {fileID: 279556995}
-  m_Layer: 5
-  m_Name: QuizTimeCounter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &279556994
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279556993}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &279556995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279556993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb02890d4211c164ea2a3820a07ee870, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToAnswerQuestion: 30
-  timeToTurnOffQuestion: 5
-  fillFraction: 0
-  isAnsweringQuestion: 0
-  loadNextQuestion: 0
 --- !u!1 &286760299 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3254220096265539733, guid: 3a9f2187913006c4187edb7f137278df, type: 3}
@@ -709,7 +656,7 @@ Transform:
   m_GameObject: {fileID: 384298344}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.08, y: -5.39, z: 0.013885666}
+  m_LocalPosition: {x: -11.92, y: -5.31, z: 0.013885666}
   m_LocalScale: {x: 0.6104, y: 0.4936, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12075,6 +12022,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c69b48921411124ca0f90ba48a24643, type: 3}
+--- !u!1 &1328711558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1328711560}
+  - component: {fileID: 1328711559}
+  m_Layer: 0
+  m_Name: QuizTimeCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1328711559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328711558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb02890d4211c164ea2a3820a07ee870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToAnswerQuestion: 30
+  timeToTurnOffQuestion: 5
+  fillFraction: 0
+  isAnsweringQuestion: 0
+  loadNextQuestion: 0
+--- !u!4 &1328711560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328711558}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.1147456, y: -1.2609706, z: -0.08489345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1330091880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4634965155439340513, guid: 21f66a1f1492f384b9ede59b3d4d0889, type: 3}
@@ -18432,7 +18428,7 @@ SceneRoots:
   - {fileID: 746762042}
   - {fileID: 568779616}
   - {fileID: 1517558242}
-  - {fileID: 279556994}
+  - {fileID: 1328711560}
   - {fileID: 1257341656}
   - {fileID: 1328629416}
   - {fileID: 1322510710}

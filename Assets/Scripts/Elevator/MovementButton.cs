@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,21 @@ public class MovementButton : MonoBehaviour
     [SerializeField] private Door[] doorArray;
     [SerializeField] Open open;
 
+    private float timeToHoldButton = 0.5f;
+    private float timeToHoldButtonCounter;
+
+    private void Start() {
+        LevelEntrance.Instance.OnTakePlayerToNextLevel += LevelEntrance_OnTakePlayerToNextLevel;
+    }
+
+    private void LevelEntrance_OnTakePlayerToNextLevel(object sender, EventArgs e)
+    {
+        foreach (Door door in doorArray)
+        {
+            door.IsTurnOn = false; 
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (open == Open.Elevator)
         {
@@ -24,13 +40,22 @@ public class MovementButton : MonoBehaviour
         }
         else
         {
-            foreach (Door door in doorArray)
+            timeToHoldButtonCounter = 0;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (open == Open.Door)
+        {
+            timeToHoldButtonCounter += Time.deltaTime;
+            if (timeToHoldButtonCounter >= timeToHoldButton)
             {
-                door.IsTurnOn = true; 
+                foreach (Door door in doorArray)
+                {
+                    door.IsTurnOn = true; 
+                }
             }
         }
-        
-         
     }
 
     private void OnTriggerExit2D(Collider2D other) {
@@ -39,13 +64,6 @@ public class MovementButton : MonoBehaviour
             foreach (Elevator elevator in elevatorArray)
             {
                 elevator.IsTurnOn = false; 
-            }
-        }
-        else
-        {
-            foreach (Door door in doorArray)
-            {
-                door.IsTurnOn = false; 
             }
         }
     }
