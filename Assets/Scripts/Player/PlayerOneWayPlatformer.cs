@@ -11,7 +11,10 @@ public class PlayerOneWayPlatformer : MonoBehaviour
     private Vector2 direction;
 
     private void Update() {
-        direction = playerController.GetDirectionVector();
+        if (playerController.GetDirectionVector() != null)
+        {
+            direction = playerController.GetDirectionVector();
+        }
         if (direction.y < 0)
         {
             if (currentOneWayPlatform != null)

@@ -14,7 +14,9 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Canvas questionCanvas;
     [SerializeField] private Timer quizTimer;
     [SerializeField] private GameObject[] secretQuestionBoxArray;
+    [SerializeField] private LevelEntrance levelEntrance;
     private bool canReverseGravity;
+    private ScoreKeeper scoreKeeper;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,15 @@ public class MapManager : MonoBehaviour
             questionBox.GetComponent<SecretQuesBox>().OnOpenSecretQuestion += QuestionBox_OnOpenSecretQuestion;
         }
         quizTimer.OnWaitingTimeOver += Timer_OnWaitingTimeOver;
+        levelEntrance.OnOutOfTheMap += LevelEntrance_OnOutOfTheMap;
 
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
+    }
+
+    private void LevelEntrance_OnOutOfTheMap(object sender, EventArgs e)
+    {
+        //loading the next level scene
+        Loader.LoadTheNextScene();
     }
 
     private void Timer_OnWaitingTimeOver(object sender, EventArgs e)
@@ -68,6 +78,17 @@ public class MapManager : MonoBehaviour
             ResetGravity(player1);
             ResetGravity(player2);
         }
+
+        if (scoreKeeper.GetQuestionCollect() == secretQuestionBoxArray.Length)
+        {
+            //player get all secret box in the level
+            levelEntrance.CanMove = true;
+            //enable the levelentrance to take player to the next level
+        }
+        else
+        {
+            levelEntrance.CanMove = false;
+        }
     }
 
     private void ReverseGravity(GameObject gameObject)
@@ -91,6 +112,8 @@ public class MapManager : MonoBehaviour
         player1.transform.position = revivePoint.position;
         player2.transform.position = revivePoint.position + new Vector3(0,0,2);
     }
+
+
 
     
 }

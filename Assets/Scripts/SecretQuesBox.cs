@@ -26,12 +26,12 @@ public class SecretQuesBox : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (player == Player.Player1)
         {
-            spriteRenderer.sprite = redSprite;
+            spriteRenderer.color = Color.red;
             tagString = "Player1";
         }
         else
         {
-            spriteRenderer.sprite = blueSprite;
+            spriteRenderer.color = Color.blue;
             tagString = "Player2";
 
         }
