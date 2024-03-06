@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         //animator.SetFloat("Vector y", VectorY);
         
         animator.SetBool(IS_TOUCHING_WALL, isTouchingWall);
-        animator.SetBool(IS_TOUCHING_GROUND, isTouchingGround);
+        
         animator.SetBool(IS_RUNNING, direction != 0);
 
         if(Input.GetButtonDown("Jump") && isTouchingGround == true)
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);  
             //if (direction != 0) animator.SetBool(IS_RUNNING, false);
         }
-        
+        animator.SetBool(IS_TOUCHING_GROUND, isTouchingGround);
         if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
         {
             if(Input.GetButtonDown("Jump")) 
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
             if (isTouchingWall == true)
             {
-                rb2D.velocity = new Vector2(0, 0);
+                rb2D.velocity = new Vector2(0, -1);
                 animator.SetBool(IS_RUNNING, false);
             }
             isFacingRight = !isFacingRight;
