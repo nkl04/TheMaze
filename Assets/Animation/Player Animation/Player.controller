@@ -94,6 +94,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isTouchingWall
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isTouchingGround
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isJumping
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5306977612371141068}
   m_Solo: 0
@@ -122,13 +128,13 @@ AnimatorStateMachine:
     m_Position: {x: 30, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5523381653462717625}
-    m_Position: {x: 30, y: 500, z: 0}
+    m_Position: {x: 30, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3260693068523625033}
     m_Position: {x: -420, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4360209701137702062}
-    m_Position: {x: -260, y: 400, z: 0}
+    m_Position: {x: 360, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5306977612371141068}
     m_Position: {x: 370, y: 220, z: 0}

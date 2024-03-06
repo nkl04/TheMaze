@@ -50,38 +50,38 @@ public class PlayerController : MonoBehaviour
         
         //animator.SetFloat("Vector y", VectorY);
         
-        animator.SetBool(IS_TOUCHING_WALL, false);
+        animator.SetBool(IS_TOUCHING_WALL, isTouchingWall);
+        animator.SetBool(IS_TOUCHING_GROUND, isTouchingGround);
+        animator.SetBool(IS_RUNNING, direction != 0);
 
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && isTouchingGround == true)
         {   
             animator.SetBool(IS_JUMPING, true);             
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);  
-            animator.SetBool(IS_TOUCHING_GROUND, false);              
+            //if (direction != 0) animator.SetBool(IS_RUNNING, false);
         }
         
         if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
         {
+            if(Input.GetButtonDown("Jump")) 
+            {
+                animator.SetBool(IS_JUMPING, true);
+                animator.SetBool(IS_RUNNING, false); 
+                
+            }
+            else animator.SetBool(IS_RUNNING, true);
+
+            if (isTouchingWall == true)
+            {
+                rb2D.velocity = new Vector2(0, 0);
+                animator.SetBool(IS_RUNNING, false);
+            }
             isFacingRight = !isFacingRight;
             Flip();
-        }
-          
-        
+        }       
 
         if (rb2D.velocity.y < jumpSpeed )
-            animator.SetBool(IS_JUMPING, false);
-
-        if (rb2D.velocity.y == 0)       
-            animator.SetBool(IS_TOUCHING_GROUND, true);
-        
-        
-        if (isTouchingWall == true)
-        {
-            animator.SetBool(IS_TOUCHING_WALL, true);
-            if (isFacingRight == false) Flip();
-        }
-
-        animator.SetBool(IS_RUNNING, direction != 0);
-       
+            animator.SetBool(IS_JUMPING, false);       
         
     }
     private void Flip() 
