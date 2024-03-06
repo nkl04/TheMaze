@@ -71,8 +71,9 @@ public class PlayerController : MonoBehaviour
             }
             else animator.SetBool(IS_RUNNING, true);
 
-            if (isTouchingWall == true)
+            if (isTouchingWall == true && direction != 0)
             {
+                direction = 0;
                 rb2D.velocity = new Vector2(0, -1);
                 animator.SetBool(IS_RUNNING, false);
             }
