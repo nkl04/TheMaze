@@ -8,12 +8,15 @@ public class Pause : MonoBehaviour
 {
     public void GotoScene(string sceneName)
     {
-        
         SceneManager.LoadScene(sceneName);
     }
     public void RestartTheGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void PauseGame()
+    {
+        //Time.deltaTime = 0;
     }
 
 }

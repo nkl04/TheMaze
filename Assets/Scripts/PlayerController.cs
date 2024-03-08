@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, wallLayer);
         Movement();
-        //VectorY = ;
     }
      
     private void Movement()
@@ -46,8 +45,6 @@ public class PlayerController : MonoBehaviour
         direction = Input.GetAxisRaw("Horizontal");
 
         rb2D.velocity = new Vector2(speed*direction, rb2D.velocity.y);
-        
-        //animator.SetFloat("Vector y", VectorY);
         
         animator.SetBool(IS_TOUCHING_WALL, isTouchingWall);
         
@@ -65,18 +62,12 @@ public class PlayerController : MonoBehaviour
         {
             if(Input.GetButtonDown("Jump")) 
             {
-                animator.SetBool(IS_JUMPING, true);
-                //animator.SetBool(IS_RUNNING, false); 
-                
+                animator.SetBool(IS_JUMPING, true);               
             }
-            //else animator.SetBool(IS_RUNNING, true);
 
             if (isTouchingWall == true && direction != 0)
             {
-                direction = 0;
-                //animator.SetFloat(SPEED, 0);
-                rb2D.velocity = new Vector2(0, -5f);
-                //animator.SetBool(IS_RUNNING, false);
+                rb2D.velocity = new Vector2(0, -5f);               
             }
             
             isFacingRight = !isFacingRight;
