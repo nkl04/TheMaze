@@ -6,17 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
-    public void GotoScene(string sceneName)
+    public GameObject pauseGameUI;
+    public void pauseScreen()
     {
-        SceneManager.LoadScene(sceneName);
+        pauseGameUI.SetActive(true);
     }
-    public void RestartTheGame()
+
+    public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    public void PauseGame()
-    {
-        //Time.deltaTime = 0;
     }
 
 }
