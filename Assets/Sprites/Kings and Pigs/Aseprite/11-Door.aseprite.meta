@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 09c9f663e4c30cd46bb560835aa1b88e
+guid: 99fed74b350334941af5d7277e1ed495
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: ffa4645fd5f22414984084d48849b4e0
+    spriteID: c0e7a91f31b1833458e60347d50a1097
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: 64cfad1ec473f1f4593634fb854d1d53
+    spriteID: 88c16f4cc3f90f646a519159d7844c47
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: c188ce0413defe44684d6ce7c1027d0c
+    spriteID: f310a526643473640b99c253496b78a4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: 8e9457bcfe24fef4a9b72b84a675511c
+    spriteID: 0ce90116cc145534f9a5f1fdc35b2b09
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: a3d0ba9c8a0b227498117ad9c0693a88
+    spriteID: 780f7c7bb5f197a47bb0a0b8824f8063
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 108
       width: 96
       height: 96
-    spriteID: 707db268aed41934daaf12724776acc8
+    spriteID: 0b534e1892de4644dbfb746cf61e3cf3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 212
       width: 96
       height: 96
-    spriteID: 85e1f325b233963468265e55355ab43f
+    spriteID: f59b805271269b84c8491cf7912fffbb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -272,7 +272,7 @@ ScriptedImporter:
       y: 316
       width: 96
       height: 96
-    spriteID: ce1e218308a33234aa9f6890965c38d8
+    spriteID: f569b57f2233bf54bafe325ea5256f80
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -292,7 +292,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 96
-    spriteID: dd52d4b45655f454a9ec0043872ccd1a
+    spriteID: 87cef7333dd6cb04aa5ebc5bc7fdf62a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -317,7 +317,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: ffa4645fd5f22414984084d48849b4e0
+      spriteId: c0e7a91f31b1833458e60347d50a1097
     - name: 11-Door_Frame_1
       frameIndex: 1
       cellRect:
@@ -325,7 +325,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 64cfad1ec473f1f4593634fb854d1d53
+      spriteId: 88c16f4cc3f90f646a519159d7844c47
     - name: 11-Door_Frame_2
       frameIndex: 2
       cellRect:
@@ -333,7 +333,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: c188ce0413defe44684d6ce7c1027d0c
+      spriteId: f310a526643473640b99c253496b78a4
     - name: 11-Door_Frame_3
       frameIndex: 3
       cellRect:
@@ -341,7 +341,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 8e9457bcfe24fef4a9b72b84a675511c
+      spriteId: 0ce90116cc145534f9a5f1fdc35b2b09
     - name: 11-Door_Frame_4
       frameIndex: 4
       cellRect:
@@ -349,7 +349,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: a3d0ba9c8a0b227498117ad9c0693a88
+      spriteId: 780f7c7bb5f197a47bb0a0b8824f8063
     - name: 11-Door_Frame_5
       frameIndex: 5
       cellRect:
@@ -357,7 +357,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 707db268aed41934daaf12724776acc8
+      spriteId: 0b534e1892de4644dbfb746cf61e3cf3
     - name: 11-Door_Frame_6
       frameIndex: 6
       cellRect:
@@ -365,7 +365,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: 85e1f325b233963468265e55355ab43f
+      spriteId: f59b805271269b84c8491cf7912fffbb
     - name: 11-Door_Frame_7
       frameIndex: 7
       cellRect:
@@ -373,7 +373,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: ce1e218308a33234aa9f6890965c38d8
+      spriteId: f569b57f2233bf54bafe325ea5256f80
     - name: 11-Door_Frame_8
       frameIndex: 8
       cellRect:
@@ -381,7 +381,7 @@ ScriptedImporter:
         y: 0
         width: 96
         height: 96
-      spriteId: dd52d4b45655f454a9ec0043872ccd1a
+      spriteId: 87cef7333dd6cb04aa5ebc5bc7fdf62a
     linkedCells: []
     parentIndex: -1
   platformSettings: []

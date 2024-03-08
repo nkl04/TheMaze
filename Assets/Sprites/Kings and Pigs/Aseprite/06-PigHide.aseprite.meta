@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9b9414c89d88905409f5e42911a19127
+guid: 464f1a44544c0a148a7334be556ae945
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 80
       height: 80
-    spriteID: c6da165439d336d47ab50f9021f6ed77
+    spriteID: 1f1306ae62f960a43a2b5e1980c150f0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 92
       width: 80
       height: 80
-    spriteID: 5d450f1c62ffd8e4385a07db678c9228
+    spriteID: e95af3258ae93d940a90c8298673fd6f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 180
       width: 80
       height: 80
-    spriteID: 7305bc1eba7c2c340add72c20d58d929
+    spriteID: 07943ff3f1a497c40bedf663bf288671
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 268
       width: 80
       height: 80
-    spriteID: e64d2c8a9b0ac884da96c3cf3c727e92
+    spriteID: 2ebf5b91f49a4934bb19e19e646abf16
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 356
       width: 80
       height: 80
-    spriteID: f87a58b1af5ab1a468225699e41b4ede
+    spriteID: 80aa197db0e0ea042ae9df17197416eb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 4
       width: 80
       height: 80
-    spriteID: ae1bd98f5fff4364d8a23df638ab61b8
+    spriteID: 74d6f49b60e977042a3542263fab4e22
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 92
       width: 80
       height: 80
-    spriteID: c749c4cc62519f34c910bf5221789372
+    spriteID: 2769a412a3301d44ba99056b02238f2e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -272,7 +272,7 @@ ScriptedImporter:
       y: 180
       width: 80
       height: 80
-    spriteID: 7f22da53fc209aa4f95884f2ca6d4c3a
+    spriteID: 677b3457d3aaa0f48bd1a5e3647082a2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -292,7 +292,7 @@ ScriptedImporter:
       y: 268
       width: 80
       height: 80
-    spriteID: c17324c85ba800549aff140df188c0e6
+    spriteID: eead4311ef2535a46bb089d93e901449
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -317,7 +317,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 80
-      spriteId: c6da165439d336d47ab50f9021f6ed77
+      spriteId: 1f1306ae62f960a43a2b5e1980c150f0
     - name: 06-PigHide_Frame_1
       frameIndex: 1
       cellRect:
@@ -325,7 +325,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 80
-      spriteId: 5d450f1c62ffd8e4385a07db678c9228
+      spriteId: e95af3258ae93d940a90c8298673fd6f
     - name: 06-PigHide_Frame_2
       frameIndex: 2
       cellRect:
@@ -333,7 +333,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 80
-      spriteId: 7305bc1eba7c2c340add72c20d58d929
+      spriteId: 07943ff3f1a497c40bedf663bf288671
     - name: 06-PigHide_Frame_3
       frameIndex: 3
       cellRect:
@@ -341,7 +341,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 80
-      spriteId: e64d2c8a9b0ac884da96c3cf3c727e92
+      spriteId: 2ebf5b91f49a4934bb19e19e646abf16
     - name: 06-PigHide_Frame_4
       frameIndex: 4
       cellRect:
@@ -349,7 +349,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 80
-      spriteId: f87a58b1af5ab1a468225699e41b4ede
+      spriteId: 80aa197db0e0ea042ae9df17197416eb
     - name: 06-PigHide_Frame_5
       frameIndex: 5
       cellRect:
@@ -357,7 +357,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 80
-      spriteId: ae1bd98f5fff4364d8a23df638ab61b8
+      spriteId: 74d6f49b60e977042a3542263fab4e22
     - name: 06-PigHide_Frame_6
       frameIndex: 6
       cellRect:
@@ -365,7 +365,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 80
-      spriteId: c749c4cc62519f34c910bf5221789372
+      spriteId: 2769a412a3301d44ba99056b02238f2e
     - name: 06-PigHide_Frame_7
       frameIndex: 7
       cellRect:
@@ -373,7 +373,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 80
-      spriteId: 7f22da53fc209aa4f95884f2ca6d4c3a
+      spriteId: 677b3457d3aaa0f48bd1a5e3647082a2
     - name: 06-PigHide_Frame_8
       frameIndex: 8
       cellRect:
@@ -381,7 +381,7 @@ ScriptedImporter:
         y: 0
         width: 80
         height: 80
-      spriteId: c17324c85ba800549aff140df188c0e6
+      spriteId: eead4311ef2535a46bb089d93e901449
     linkedCells: []
     parentIndex: -1
   platformSettings: []

@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Question
+  - OneWayPlatform
+  - Player1
+  - Player2
+  - BlockPlatform
   layers:
   - Default
   - TransparentFX
@@ -13,12 +16,12 @@ TagManager:
   - Water
   - UI
   - Player1
-  - Ground
-  - NoFiction
   - Player2
-  - 
-  - 
-  - 
+  - OneWayPlatform
+  - Ground
+  - Terrain
+  - BlockPlatform
+  - GroundCheck
   - 
   - 
   - 
@@ -39,6 +42,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3642475405
+    locked: 0
+  - name: Decoration
+    uniqueID: 1153530355
+    locked: 0
+  - name: Terrain
+    uniqueID: 2667319441
+    locked: 0
+  - name: GroundMap
+    uniqueID: 2652602193
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
