@@ -12722,6 +12722,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 968914122}
     m_Modifications:
+    - target: {fileID: -2508325945571246531, guid: 720139e6e5b2a694897721d8e85b1438, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4429851903656334339, guid: 720139e6e5b2a694897721d8e85b1438, type: 3}
       propertyPath: m_Name
       value: Lava
