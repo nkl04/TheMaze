@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private const string IS_JUMPING = "isJumping";
     private const string IS_TOUCHING_GROUND = "isTouchingGround";
     private const string IS_TOUCHING_WALL = "isTouchingWall";
+    private const string IS_FALLING = "isFalling";
+    private const string VELOCITY_Y = "velocity Y";
     [SerializeField] private float speed = 5f; 
     [SerializeField] private Animator animator;
     [SerializeField] private float jumpSpeed = 5f;
@@ -49,6 +51,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IS_TOUCHING_WALL, isTouchingWall);
         
         animator.SetFloat(SPEED, direction*rb2D.velocity.x);
+        
+        animator.SetFloat(VELOCITY_Y, rb2D.velocity.y);
 
         if(Input.GetButtonDown("Jump") && isTouchingGround == true)
         {   
@@ -60,10 +64,7 @@ public class PlayerController : MonoBehaviour
         
         if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
         {
-            if(Input.GetButtonDown("Jump")) 
-            {
-                animator.SetBool(IS_JUMPING, true);               
-            }
+            
 
             if (isTouchingWall == true && direction != 0)
             {
