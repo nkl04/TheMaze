@@ -47,6 +47,7 @@ public class MapManager : MonoBehaviour
     {
         questionCanvas.gameObject.SetActive(false);
         quizTimer.CancelTimer();
+        Time.timeScale = 1;
         
     }
 
@@ -54,6 +55,7 @@ public class MapManager : MonoBehaviour
     {
         questionCanvas.gameObject.SetActive(true);
         quizTimer.StartTimeCounter();
+        Time.timeScale = 0;
     }
 
     private void PlayerHealth_OnPlayerDie(object sender, EventArgs e)

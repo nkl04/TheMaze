@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
     public bool loadNextQuestion;
     void UpdateTimer()
     {
-        timeValue -= Time.deltaTime;
+        timeValue -= Time.unscaledDeltaTime;
         
         if (isAnsweringQuestion)
         {
