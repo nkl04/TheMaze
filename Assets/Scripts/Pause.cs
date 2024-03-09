@@ -9,6 +9,10 @@ public class Pause : MonoBehaviour
     public GameObject pauseGameUI;
     public bool isPaused = false;
 
+    void Start()
+    {
+        pauseGameUI.SetActive(false);
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) pauseScreen(); 
