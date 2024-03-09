@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public enum Direction
 {
@@ -12,6 +13,8 @@ public enum Direction
 public class Elevator : MonoBehaviour
 {
     public bool IsTurnOn{get{return isTurnOn;} set{isTurnOn = value;}}
+    
+    [SerializeField] private Light2D light2d;
 
     [SerializeField] private float speed = 3f;
     [SerializeField] private Transform upperPos;
@@ -29,6 +32,7 @@ public class Elevator : MonoBehaviour
 
     private void Start() {
         initPosition = transform.position;
+        light2d.intensity = 0f;
     }
 
     private void Update() {
@@ -63,9 +67,12 @@ public class Elevator : MonoBehaviour
             {
                 MoveLeft();
             }
+
+            light2d.intensity = 12f;
         }
         else{
             MoveToInitialPosition();
+            light2d.intensity = 0f;
         }
     }
 
@@ -90,9 +97,12 @@ public class Elevator : MonoBehaviour
             {
                 MoveUp();
             }
+            light2d.intensity = 12f;
         }
         else{
             MoveToInitialPosition();
+            light2d.intensity = 0f;
+
         }
     }
 

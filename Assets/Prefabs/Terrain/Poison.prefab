@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.3312691
       objectReference: {fileID: 0}
+    - target: {fileID: 8538064894562665723, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents:
     - {fileID: -7702349890584461024, guid: a7775e06e94eefb4e9bce610106d071b, type: 3}
     m_RemovedGameObjects: []

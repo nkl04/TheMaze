@@ -5,6 +5,7 @@ using UnityEditor;
 
 [CustomEditor(typeof(Elevator))] 
 public class ElevatorEdittor : Editor {
+    SerializedProperty light2d;
     SerializedProperty speedProp;
     SerializedProperty upperPosProp;
     SerializedProperty downPosProp;
@@ -14,6 +15,7 @@ public class ElevatorEdittor : Editor {
 
     private void OnEnable()
     {
+        light2d = serializedObject.FindProperty("light2d");
         speedProp = serializedObject.FindProperty("speed");
         upperPosProp = serializedObject.FindProperty("upperPos");
         downPosProp = serializedObject.FindProperty("downPos");
@@ -27,7 +29,7 @@ public class ElevatorEdittor : Editor {
         // Cập nhật giá trị của các SerializedProperty
         serializedObject.Update();
 
- 
+        EditorGUILayout.PropertyField(light2d);
         EditorGUILayout.PropertyField(speedProp);
         EditorGUILayout.PropertyField(directionProp);
 
