@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4131764962562189659, guid: 07e16ba00a292184eaed0201a93f2c0b, type: 3}
       propertyPath: m_Offset.y
-      value: -0.19
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 6139428836897785583, guid: 07e16ba00a292184eaed0201a93f2c0b, type: 3}
       propertyPath: m_Sprite
