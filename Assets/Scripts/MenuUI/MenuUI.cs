@@ -11,12 +11,15 @@ public class MenuUI : MonoBehaviour
    [SerializeField] private Button quitButton;
    [SerializeField] private Button optionButton;
    private void Awake(){
-    playButton.onClick.AddListener(() =>{
-        SceneManager.LoadScene(1);
-    });
-    quitButton.onClick.AddListener(() =>{
-        Application.Quit();
-    });
+        playButton.onClick.AddListener(() =>{
+            Loading.Load(Loading.Scene.Map1);
+        });
+        optionButton.onClick.AddListener(() =>{
+            Loading.Load(Loading.Scene.MapOption);
+        });
+        quitButton.onClick.AddListener(() =>{
+            Application.Quit();
+        });
 
    }
 }
