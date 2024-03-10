@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a29555c1ab05344e94a2032b071eb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseGameUI: {fileID: 0}
 --- !u!1 &79482781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2356,7 +2357,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1007082511
@@ -2450,22 +2451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e780d3f67fad1499f364af84024a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  animator: {fileID: 1007082509}
-  jumpSpeed: 6
-  groundCheck: {fileID: 249862415}
-  groundCheckRadius: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  isTouchingGround: 0
-  wallCheck: {fileID: 999672326}
-  wallCheckRadius: 0.1
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  isTouchingWall: 0
-  rb2D: {fileID: 0}
 --- !u!1 &1060347747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,7 +2628,6 @@ GameObject:
   - component: {fileID: 1192769822}
   - component: {fileID: 1192769821}
   - component: {fileID: 1192769823}
-  - component: {fileID: 1192769824}
   m_Layer: 0
   m_Name: Saw 1
   m_TagString: Untagged
@@ -2750,7 +2734,7 @@ SpriteRenderer:
   m_Size: {x: 0.38, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1192769823
@@ -2774,20 +2758,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1192769824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192769818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f12d2858ea02dc2478e7f4825241a935, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gotHit: 0
-  animator: {fileID: 0}
 --- !u!1 &1406396612
 GameObject:
   m_ObjectHideFlags: 0
