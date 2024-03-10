@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4453365024921576182}
   - component: {fileID: 1100997014498105799}
   - component: {fileID: 1222959926229640608}
+  - component: {fileID: 2659955487376089430}
   m_Layer: 8
   m_Name: Elevetor
   m_TagString: OneWayPlatform
@@ -176,6 +177,33 @@ MonoBehaviour:
   leftPos: {fileID: 0}
   rightPos: {fileID: 0}
   openPosition: {fileID: 0}
+--- !u!50 &2659955487376089430
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971514465459208246}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9192098783015525738
 GameObject:
   m_ObjectHideFlags: 0

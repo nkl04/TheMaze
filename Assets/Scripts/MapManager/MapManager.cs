@@ -10,13 +10,13 @@ public class MapManager : MonoBehaviour
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
     [SerializeField] private Transform revivePoint;
-    [SerializeField] private bool reverseGravity = false;
+
     [SerializeField] private Canvas questionCanvas;
     [SerializeField] private Timer quizTimer;
     [SerializeField] private GameObject[] secretQuestionBoxArray;
     [SerializeField] private LevelEntrance levelEntrance;
     [SerializeField] private GameObject finishPoint;
-    private bool canReverseGravity;
+
     private ScoreKeeper scoreKeeper;
 
     // Start is called before the first frame update
@@ -70,22 +70,7 @@ public class MapManager : MonoBehaviour
     }
 
     private void Update() {
-        if (reverseGravity)
-        {
-            if (canReverseGravity)
-            {
-                ReverseGravity(player1);
-                ReverseGravity(player2);
-                canReverseGravity = false;
-            }
-        }
-        else
-        {
-            canReverseGravity = true;
-            ResetGravity(player1);
-            ResetGravity(player2);
-        }
-
+        
         if (scoreKeeper.GetQuestionCollect() == secretQuestionBoxArray.Length)
         {
             //player get all secret box in the level
@@ -98,19 +83,7 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    private void ReverseGravity(GameObject gameObject)
-    {
-        float gravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
-        gameObject.GetComponent<Rigidbody2D>().gravityScale = -gravity;
-        gameObject.transform.GetComponent<PlayerController>().HorizontalFlip();
-    }
-
-    private void ResetGravity(GameObject gameObject)
-    {
-        float gravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
-        gameObject.GetComponent<Rigidbody2D>().gravityScale = Mathf.Abs(gravity);
-        gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-    }
+    
 
 
     private void RevivePlayer()
@@ -120,7 +93,4 @@ public class MapManager : MonoBehaviour
         player2.transform.position = revivePoint.position + new Vector3(0,0,2);
     }
 
-
-
-    
 }

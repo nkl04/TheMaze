@@ -155,10 +155,7 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f,180f,0f);
     }
 
-    public void HorizontalFlip()
-    {
-        transform.Rotate(180f,0f,0f);
-    }
+
 
 
     //============================================ PLAYER INPUT SYSTEM ================================================
