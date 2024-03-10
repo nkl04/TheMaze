@@ -10,7 +10,8 @@ public static class Loading
         Map2, 
         Map3_Duongdemo,
         LoadingScene,
-        MapOption
+        MapOption,
+        MainMenuScene
 
     }
 

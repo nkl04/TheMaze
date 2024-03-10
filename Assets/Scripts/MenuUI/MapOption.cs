@@ -21,7 +21,7 @@ public class MapOption : MonoBehaviour
             Loading.Load(Loading.Scene.Map3_Duongdemo);
         });
         cancelButton.onClick.AddListener(() =>{
-            Application.Quit();
+            Loading.Load(Loading.Scene.MainMenuScene);
         });
 
    }

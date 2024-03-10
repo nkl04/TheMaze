@@ -178,7 +178,7 @@ MonoBehaviour:
   Map1: {fileID: 2126378693}
   Map2: {fileID: 1824083068}
   Map3: {fileID: 902573881}
-  cancelButton: {fileID: 0}
+  cancelButton: {fileID: 1990366272}
 --- !u!1 &350370772
 GameObject:
   m_ObjectHideFlags: 0
