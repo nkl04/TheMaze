@@ -46,8 +46,6 @@ public class MapManager : MonoBehaviour
 
         //loading the next level scene
         Loader.LoadTheNextScene();
-
-        
     }
 
     private void Timer_OnWaitingTimeOver(object sender, EventArgs e)
