@@ -12,10 +12,10 @@ public class MenuUI : MonoBehaviour
    [SerializeField] private Button optionButton;
    private void Awake(){
         playButton.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.Map1);
+            Loader.Load(Loader.Scene.Level1Scene);
         });
         optionButton.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.MapOption);
+            Loader.Load(Loader.Scene.SelectLevelScene);
         });
         quitButton.onClick.AddListener(() =>{
             Application.Quit();

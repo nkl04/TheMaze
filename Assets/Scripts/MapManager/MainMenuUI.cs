@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapOption : MonoBehaviour
+public class MainMenuUI : MonoBehaviour
 {
     
    [SerializeField] private Button Map1;
@@ -12,13 +12,13 @@ public class MapOption : MonoBehaviour
    [SerializeField] private Button cancelButton;
    private void Awake(){
         Map1.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.Map1);
+            Loader.Load(Loader.Scene.Level1Scene);
         });
         Map2.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.Map2);
+            Loader.Load(Loader.Scene.Level2Scene);
         });
         Map3.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.Map3_Duongdemo);
+            Loader.Load(Loader.Scene.Level3Scene);
         });
         cancelButton.onClick.AddListener(() =>{
             Application.Quit();

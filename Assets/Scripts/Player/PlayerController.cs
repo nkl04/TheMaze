@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
         #endregion
         // Debug.Log(canJump + " " + isJumping + " ");
 
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
     }
     
     // private void OnCollisionEnter2D(Collision2D other) {

@@ -10,45 +10,97 @@ public enum Direction
     Vertical
 }
 
-public class Elevator : MonoBehaviour
+public enum Type
 {
-    public bool IsTurnOn{get{return isTurnOn;} set{isTurnOn = value;}}
-    
-    [SerializeField] private Light2D light2d;
+    Elevator,
+    Door,
+    LevelEntrance
+}
 
+public class Moveable : MonoBehaviour
+{
+
+    public bool IsTurnOn = false;
+    public bool hasLight;
+    [SerializeField] private Light2D light2d;
+    [SerializeField] private float lightIntensity = 0.2f;
+    [SerializeField] private Type _type;
+    [SerializeField] private Direction direction;
     [SerializeField] private float speed = 3f;
     [SerializeField] private Transform upperPos;
     [SerializeField] private Transform downPos;
     [SerializeField] private Transform leftPos;
     [SerializeField] private Transform rightPos;
-    [SerializeField] private Direction direction;
-
-    private bool isTurnOn;
+    [SerializeField] private Transform openPosition;
     private bool isMoveDown;
     private bool isMoveRight;
-    
     private Vector3 initPosition;
 
 
     private void Start() {
         initPosition = transform.position;
-        light2d.intensity = 0f;
     }
 
     private void Update() {
-        if (direction == Direction.Horizontal)
+        if (_type == Type.Elevator)
         {
-            MoveHorizontal();
+            if (IsTurnOn)
+            {
+                if (direction == Direction.Horizontal)
+                {
+                    MoveHorizontal();
+                }
+                else
+                {
+                    MoveVertical();
+                }
+            }
+            else
+            {
+                MoveToInitialPosition();
+            }
+            
+        }
+        else if(_type == Type.Door)
+        {
+            if (IsTurnOn)
+            {
+                OpenDoor();
+            }
+            else
+            {
+                MoveToInitialPosition();
+            }
         }
         else
         {
-            MoveVertical();
+            if (IsTurnOn)
+            {
+                
+                OpenDoor();
+                if (transform.position == openPosition.position)
+                {
+                    IsTurnOn = false;
+                }
+            }
+        }
+
+        if (hasLight)
+        {
+            if (IsTurnOn)
+            {
+                light2d.intensity = lightIntensity;
+            }
+            else
+            {
+                light2d.intensity = 0;
+            }
         }
     }
 
     private void MoveHorizontal()
     {
-        if (isTurnOn)
+        if (IsTurnOn)
         {  
             if (transform.position.x == leftPos.position.x)
             {
@@ -67,18 +119,15 @@ public class Elevator : MonoBehaviour
             {
                 MoveLeft();
             }
-
-            light2d.intensity = 12f;
         }
         else{
             MoveToInitialPosition();
-            light2d.intensity = 0f;
         }
     }
 
     private void MoveVertical()
     {
-        if (isTurnOn)
+        if (IsTurnOn)
         {  
             if (transform.position.y == upperPos.position.y)
             {
@@ -97,12 +146,9 @@ public class Elevator : MonoBehaviour
             {
                 MoveUp();
             }
-            light2d.intensity = 12f;
         }
         else{
             MoveToInitialPosition();
-            light2d.intensity = 0f;
-
         }
     }
 
@@ -129,6 +175,11 @@ public class Elevator : MonoBehaviour
     private void MoveToInitialPosition()
     {
         transform.position = Vector2.MoveTowards(transform.position,initPosition,speed * Time.deltaTime);
+    }
+
+    private void OpenDoor()
+    {
+        transform.position = Vector2.MoveTowards(transform.position,openPosition.position,speed * Time.deltaTime);
     }
 
     public Direction GetDirection()
