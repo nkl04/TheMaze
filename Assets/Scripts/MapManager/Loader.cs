@@ -29,7 +29,6 @@ public static class Loader
     {
         SceneManager.LoadScene(targetScene.ToString());
     }
-    
     public static void LoadTheNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

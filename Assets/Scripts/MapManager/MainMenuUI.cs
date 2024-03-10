@@ -21,7 +21,7 @@ public class MainMenuUI : MonoBehaviour
             Loader.Load(Loader.Scene.Level3Scene);
         });
         cancelButton.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.MainMenuScene);
+            Loader.Load(Loader.Scene.MainMenuScene);
         });
 
    }

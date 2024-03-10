@@ -15,6 +15,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private Timer quizTimer;
     [SerializeField] private GameObject[] secretQuestionBoxArray;
     [SerializeField] private LevelEntrance levelEntrance;
+    [SerializeField] private GameObject finishPoint;
     private bool canReverseGravity;
     private ScoreKeeper scoreKeeper;
 
@@ -39,8 +40,14 @@ public class MapManager : MonoBehaviour
 
     private void LevelEntrance_OnOutOfTheMap(object sender, EventArgs e)
     {
+
+        //unlock new level
+        finishPoint.GetComponent<FinishPoint>().UnlockNewLevel();
+
         //loading the next level scene
         Loader.LoadTheNextScene();
+
+        
     }
 
     private void Timer_OnWaitingTimeOver(object sender, EventArgs e)
