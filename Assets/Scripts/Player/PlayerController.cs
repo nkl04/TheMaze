@@ -26,25 +26,34 @@ public class PlayerController : MonoBehaviour
     [Space(5)]
 
     [Header("Ground Check")]
-    [SerializeField] private GroundCheck groundCheck;
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private Vector2 groundCheckSize;
+    [SerializeField] private LayerMask groundCheckLayer;
 
     [Header("Elevator Stand")]
     [SerializeField] private LayerMask elevatorLayer;
     
     private Rigidbody2D rb2d;
     private Vector2 direction;
-    private bool isGrounded;
     private bool isFacingRight = true;
-    private bool canJump;
-    private bool isJumping;
-    private float coyoteTimeCounter;
-    private float jumpBufferTimeCounter;
+    // private bool canJump;
+    // private bool isJumping;
+    // private float coyoteTimeCounter;
+    // private float jumpBufferTimeCounter;
 
+    private Vector3 vector3Up;
     
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         transform.GetComponent<PlayerHealth>().OnPlayerDie += Health_OnPlayerDie;
+        ReverseGravityZone.Instance.OnReverseGravity += ReverseGravityZone_OnReverseGravity;
+    }
+
+    private void ReverseGravityZone_OnReverseGravity(object sender, EventArgs e)
+    {
+        transform.SetParent(null);
+        Debug.Log("set null parent");
     }
 
     private void Health_OnPlayerDie(object sender, EventArgs e)
@@ -54,8 +63,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
-
-        isGrounded = groundCheck.IsGrounded;
 
         #region movement && flip
         // //horizontal movement
@@ -71,31 +78,31 @@ public class PlayerController : MonoBehaviour
 
         // Experience Improvement
         #region  Coyote Time & Jump Buffer 
-        if(isGrounded)
-        {  
-            canJump = true;
-            isJumping =false;
-            coyoteTimeCounter = coyoteTime;      
-        }
-        else 
-        {
-            // player on the air
-            if (isJumping)
-            {
-                // player jump
-                canJump = false;
-                jumpBufferTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                // not jump but leave the ground
-                coyoteTimeCounter -= Time.deltaTime;
-                if (coyoteTimeCounter <= 0)
-                {
-                    canJump = false;  
-                } 
-            }
-        }
+        // if(IsGrounded())
+        // {  
+        //     canJump = true;
+        //     isJumping =false;
+        //     coyoteTimeCounter = coyoteTime;      
+        // }
+        // else 
+        // {
+        //     // player on the air
+        //     if (isJumping)
+        //     {
+        //         // player jump
+        //         canJump = false;
+        //         jumpBufferTimeCounter -= Time.deltaTime;
+        //     }
+        //     else
+        //     {
+        //         // not jump but leave the ground
+        //         coyoteTimeCounter -= Time.deltaTime;
+        //         if (coyoteTimeCounter <= 0)
+        //         {
+        //             canJump = false;  
+        //         } 
+        //     }
+        // }
 
         // if(jumpBufferTimeCounter > 0 && IsGrounded())
         // {
@@ -104,29 +111,34 @@ public class PlayerController : MonoBehaviour
         //     isJumping = true;
         // }
         #endregion
-        // Debug.Log(canJump + " " + isJumping + " ");
-
-        //Debug.Log(isGrounded);
+        
+         
+        // if (transform.parent != null && transform.parent.up != vector3Up)
+        // {
+        //     transform.SetParent(null);
+        // }
     }
     
-    // private void OnCollisionEnter2D(Collision2D other) {
-    //     if (other.gameObject.GetComponent<Elevator>() && IsStandOnElevator())
-    //     {
-    //         transform.SetParent(other.transform);
-    //     }
-    // }
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.GetComponent<Moveable>() && IsStandOnElevator())
+        {
+            transform.SetParent(other.transform);
+            vector3Up = other.transform.up;
+            Debug.Log("set parrent");
+        }
+    }
 
-
-    // private void OnCollisionExit2D(Collision2D other) {
-    //     if (other.gameObject.GetComponent<Elevator>())
-    //     {
-    //         transform.SetParent(null);
-    //     }
-    // }
+    private void OnCollisionExit2D(Collision2D other) {
+        if (other.gameObject.GetComponent<Moveable>())
+        {
+            transform.SetParent(null);
+            vector3Up = Vector3.zero;
+        }
+    }
     public void HorizontalMovement()
     {
         //change the velocity of the player
-        if(!isGrounded)
+        if(!IsGrounded())
         {
             rb2d.velocity = new Vector2(airMoveSpeed * direction.x, rb2d.velocity.y);
 
@@ -140,15 +152,15 @@ public class PlayerController : MonoBehaviour
         rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce * transform.up.y);
     }
 
-    // public bool IsGrounded()
-    // {
-    //     return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,groundCheckLayer);
-    // }
+    public bool IsGrounded()
+    {
+        return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,groundCheckLayer);
+    }
 
-    // public bool IsStandOnElevator()
-    // {
-    //     return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,elevatorLayer);
-    // }
+    public bool IsStandOnElevator()
+    {
+        return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,elevatorLayer);
+    }
 
     public void VerticalFlip()
     {
@@ -171,29 +183,19 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && canMove)
         {   
-
-            if (canJump && !isJumping)
+            if(IsGrounded())
             {
-                canJump = false;
-                isJumping = true;
-                coyoteTimeCounter = 0f;
-                VerticalMovement();
-
-            }
-            else
-            {
-                // player on the air
-                jumpBufferTimeCounter = jumpBufferTime;
+               VerticalMovement(); 
             }
         }
     }
     //=================================================================================================================
 
-    // private void OnDrawGizmos()
-    // {
-    //     Gizmos.color = Color.red;
-    //     Gizmos.DrawWireCube(groundCheckPoint.position,groundCheckSize);
-    // }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(groundCheckPoint.position,groundCheckSize);
+    }
 
     public Vector2 GetDirectionVector()
     {
