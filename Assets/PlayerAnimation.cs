@@ -49,7 +49,8 @@ public class PlayerAnimation : MonoBehaviour
         {   
             animator.SetBool(IS_JUMPING, true); 
         }
-        
+        animator.SetBool(IS_JUMPING, false);
+
         if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
         {
             isFacingRight = !isFacingRight;
