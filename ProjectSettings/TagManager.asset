@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - OneWayPlatform
+  - Player1
+  - Player2
+  - BlockPlatform
+  - Saw
   layers:
   - Default
   - TransparentFX
@@ -11,14 +16,14 @@ TagManager:
   - 
   - Water
   - UI
+  - Player1
+  - Player2
+  - OneWayPlatform
   - Ground
-  - Wall
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Terrain
+  - BlockPlatform
+  - GroundCheck
+  - Trap
   - 
   - 
   - 
@@ -38,6 +43,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3642475405
+    locked: 0
+  - name: Decoration
+    uniqueID: 1153530355
+    locked: 0
+  - name: Terrain
+    uniqueID: 2667319441
+    locked: 0
+  - name: GroundMap
+    uniqueID: 2652602193
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Trap
+    uniqueID: 2055434163
     locked: 0
