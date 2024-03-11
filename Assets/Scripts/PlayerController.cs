@@ -7,15 +7,10 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-    private const string SPEED = "Speed";
-    private const string IS_JUMPING = "isJumping";
-    private const string IS_TOUCHING_GROUND = "isTouchingGround";
-    private const string IS_TOUCHING_WALL = "isTouchingWall";
-    private const string IS_FALLING = "isFalling";
-    private const string VELOCITY_Y = "velocity Y";
+    
     [SerializeField] private float speed = 5f; 
-    [SerializeField] private Animator animator;
     [SerializeField] private float jumpSpeed = 5f;
+    [SerializeField] private float wallSlideSpeed = 5f;
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
@@ -33,7 +28,7 @@ public class PlayerController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
     }
     private float direction;
-    private bool isFacingRight = true;
+    
     
     public void Update() 
     {
@@ -42,47 +37,31 @@ public class PlayerController : MonoBehaviour
         Movement();
     }
      
-    private void Movement()
+    public void Movement()
     {
         direction = Input.GetAxisRaw("Horizontal");
-
         rb2D.velocity = new Vector2(speed*direction, rb2D.velocity.y);
-        
-        animator.SetBool(IS_TOUCHING_WALL, isTouchingWall);
-        
-        animator.SetFloat(SPEED, direction*rb2D.velocity.x);
-        
-        animator.SetFloat(VELOCITY_Y, rb2D.velocity.y);
 
-        if(Input.GetButtonDown("Jump") && isTouchingGround == true)
+        if(Input.GetButtonDown("Jump") && isTouchingGround)
         {   
-            animator.SetBool(IS_JUMPING, true);             
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);  
         }
-
-        animator.SetBool(IS_TOUCHING_GROUND, isTouchingGround);
         
-        if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
+        // if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
+        // {
+        //     if (isTouchingWall == true && direction != 0)
+        //     {
+        //         rb2D.velocity = new Vector2(0, -5f);               
+        //     }
+        // }       
+
+        if (isTouchingWall && !isTouchingGround)
         {
-            
-
-            if (isTouchingWall == true && direction != 0)
-            {
-                rb2D.velocity = new Vector2(0, -5f);               
-            }
-            
-            isFacingRight = !isFacingRight;
-            Flip();
-        }       
-
-        if (rb2D.velocity.y < jumpSpeed )
-            animator.SetBool(IS_JUMPING, false);       
+            rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed, float.MaxValue));
+        }
         
     }
-    private void Flip() 
-    {
-        transform.Rotate(0f, 180f, 0f);
-    }
+    
     
     
 

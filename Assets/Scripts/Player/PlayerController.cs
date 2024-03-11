@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class PlayerController : MonoBehaviour
+public class playerController : MonoBehaviour
 {
     
 
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [Space(5)]
 
     [Header("Ground Check")]
-    [SerializeField] private GroundCheck groundCheck;
+    [SerializeField] private groundCheck groundCheck;
 
     [Header("Elevator Stand")]
     [SerializeField] private LayerMask elevatorLayer;

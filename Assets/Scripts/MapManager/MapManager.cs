@@ -102,7 +102,7 @@ public class MapManager : MonoBehaviour
     {
         float gravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = -gravity;
-        gameObject.transform.GetComponent<PlayerController>().HorizontalFlip();
+        gameObject.transform.GetComponent<playerController>().HorizontalFlip();
     }
 
     private void ResetGravity(GameObject gameObject)

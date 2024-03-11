@@ -1644,6 +1644,7 @@ GameObject:
   - component: {fileID: 1007082513}
   - component: {fileID: 1007082512}
   - component: {fileID: 1007082514}
+  - component: {fileID: 1007082515}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1713,12 +1714,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -750681430, guid: 9f0ffd7c20c3ffb45a138764ac27a2d5, type: 3}
+  m_Sprite: {fileID: -35346028, guid: 9375a6c38b8cdf54f98e9fd5c3c27e16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1816,21 +1817,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  animator: {fileID: 1007082509}
   jumpSpeed: 6
+  wallSlideSpeed: 5
+  rb2D: {fileID: 1007082513}
+--- !u!114 &1007082515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007082508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65749b4ecb375954e96f9742d68d5256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: 1007082513}
+  animator: {fileID: 1007082509}
   groundCheck: {fileID: 762878609}
   groundCheckRadius: 0.1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   isTouchingGround: 0
   wallCheck: {fileID: 999672326}
   wallCheckRadius: 0.1
   wallLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   isTouchingWall: 0
-  rb2D: {fileID: 0}
 --- !u!1 &1060347747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,7 +2266,7 @@ SpriteRenderer:
   m_Size: {x: 0.38, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1192769823
