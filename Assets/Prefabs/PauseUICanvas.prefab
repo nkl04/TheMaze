@@ -657,9 +657,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 232033723862276446}
         m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: restart
+        m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -813,7 +813,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &5886904485764742557
 MonoBehaviour:
@@ -867,8 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a29555c1ab05344e94a2032b071eb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseGameUI: {fileID: 0}
-  isPaused: 0
+  pauseGameUI: {fileID: 5246903491260739777}
 --- !u!1 &7606192825576256204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,9 +1117,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 232033723862276446}
         m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: restart
+        m_MethodName: HomeScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
