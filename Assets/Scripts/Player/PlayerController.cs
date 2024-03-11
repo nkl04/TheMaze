@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 10;
     [SerializeField] private bool canMove = true;
 
-    [Header("Improvement")]
-    [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private float jumpBufferTime = 0.2f;
+    // [Header("Improvement")]
+    // [SerializeField] private float coyoteTime = 0.2f;
+    // [SerializeField] private float jumpBufferTime = 0.2f;
     
     [Space(5)]
 
@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
     private void ReverseGravityZone_OnReverseGravity(object sender, EventArgs e)
     {
         transform.SetParent(null);
-        Debug.Log("set null parent");
     }
 
     private void Health_OnPlayerDie(object sender, EventArgs e)
@@ -124,7 +123,6 @@ public class PlayerController : MonoBehaviour
         {
             transform.SetParent(other.transform);
             vector3Up = other.transform.up;
-            Debug.Log("set parrent");
         }
     }
 
