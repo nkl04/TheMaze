@@ -52,13 +52,14 @@ public class MapManager : MonoBehaviour
     {
         questionCanvas.gameObject.SetActive(false);
         quizTimer.CancelTimer();
+        quizTimer.gameObject.SetActive(false);
         Time.timeScale = 1;
-        
     }
 
     private void QuestionBox_OnOpenSecretQuestion(object sender, EventArgs e)
     {
         questionCanvas.gameObject.SetActive(true);
+        quizTimer.gameObject.SetActive(true);
         quizTimer.StartTimeCounter();
         Time.timeScale = 0;
     }
@@ -85,7 +86,10 @@ public class MapManager : MonoBehaviour
 
     
 
-
+    public Canvas getQuesCanvas()
+    {
+        return questionCanvas;
+    }
     private void RevivePlayer()
     {
         Debug.Log("Die!");

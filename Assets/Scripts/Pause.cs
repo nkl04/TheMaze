@@ -6,40 +6,56 @@ using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
+    public static Pause Instance {private set; get;}
     public GameObject pauseGameUI;
-    public bool isPaused = false;
+    private bool isPaused = false;
 
     void Start()
     {
+        Instance = this;
         pauseGameUI.SetActive(false);
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) pauseScreen(); 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPaused)
+            {
+                PauseScreen();
+                isPaused = true;
+            }
+            else
+            {
+                ResumeGame();
+                isPaused = false;
+            }
+        } 
     }
-    public void pauseScreen()
+    public void PauseScreen()
     {
-        isPaused = true;
         Time.timeScale = 0f;
         pauseGameUI.SetActive(true);
+        isPaused = true;
     }
 
-    public void restart()
+    public void ResumeGame()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        isPaused = false;
+        if (!MapManager.Instance.getQuesCanvas().gameObject.activeInHierarchy)
+        {
+            Time.timeScale = 1f;
+        }
+        pauseGameUI.SetActive(false);
+        isPaused = false;     
     }
 
-    public void resumeGame()
-    {
-        Time.timeScale = 1f;
-        pauseGameUI.SetActive(false); 
-        isPaused = false;       
-    }
 
     public void HomeScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Loader.Load(Loader.Scene.MainMenuScene);
+    }
+
+    public bool IsPaused()
+    {
+        return isPaused;
     }
 }
