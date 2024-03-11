@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private float speed = 5f; 
     [SerializeField] private float jumpSpeed = 5f;
-    [SerializeField] private float wallSlideSpeed = 5f;
+    [SerializeField] private float wallSlideSpeed = 2f;
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         //     }
         // }       
 
-        if (isTouchingWall && !isTouchingGround)
+        if (isTouchingWall && !isTouchingGround && direction != 0)
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed, float.MaxValue));
         }
