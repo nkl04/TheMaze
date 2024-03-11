@@ -44,12 +44,14 @@ public class ReverseGravityZone : MonoBehaviour
     {
         foreach (GameObject item in gameObjectList)
         {
+            bool isReversed = false;
             Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            if (rb != null && !isReversed)
             {
                 float gravity = rb.gravityScale;
                 rb.gravityScale = -gravity;
                 HorizontalFlip(item.transform);
+                isReversed = true;
             }
         }
         
@@ -59,12 +61,14 @@ public class ReverseGravityZone : MonoBehaviour
     {
         foreach (GameObject item in gameObjectList)
         {
+            bool isReversed = false;
             Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            if (rb != null && !isReversed)
             {
                 float gravity = rb.gravityScale;
                 rb.gravityScale = Mathf.Abs(gravity);
                 item.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                isReversed = true;
             }
         }
         
