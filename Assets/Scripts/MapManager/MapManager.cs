@@ -64,8 +64,12 @@ public class MapManager : MonoBehaviour
         quizTimer.gameObject.SetActive(true);
         quizTimer.StartTimeCounter();
         Time.timeScale = 0;
-        player1.GetComponent<PlayerController>().CanMove = false;
-        player2.GetComponent<PlayerController>().CanMove = false;
+        PlayerController p1 = player1.GetComponent<PlayerController>();
+        PlayerController p2 = player2.GetComponent<PlayerController>();
+        p1.CanMove = false;
+        p2.CanMove = false;
+        p1.ResetVelocity();
+        p2.ResetVelocity();
     }
 
     private void PlayerHealth_OnPlayerDie(object sender, EventArgs e)

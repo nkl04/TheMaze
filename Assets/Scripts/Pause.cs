@@ -22,6 +22,8 @@ public class Pause : MonoBehaviour
     private void Awake() {
         resumeButton.onClick.AddListener(() =>{
             ResumeGame();
+            player1.GetComponent<PlayerController>().CanMove = true;
+            player2.GetComponent<PlayerController>().CanMove = true;
         });
         // optionButton.onClick.AddListener(() =>{
         //     Loader.Load(SceneManager.GetActiveScene().buildIndex);
@@ -47,8 +49,6 @@ public class Pause : MonoBehaviour
 
                 player1.GetComponent<PlayerController>().CanMove = false;
                 player2.GetComponent<PlayerController>().CanMove = false;
-
-
                 isPaused = true;
             }
             else
@@ -59,6 +59,7 @@ public class Pause : MonoBehaviour
                 isPaused = false;
             }
         } 
+        
     }
     public void PauseScreen()
     {

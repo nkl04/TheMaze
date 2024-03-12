@@ -119,6 +119,8 @@ public class PlayerController : MonoBehaviour
         // {
         //     transform.SetParent(null);
         // }
+
+        Debug.Log(canMove);
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
@@ -166,6 +168,11 @@ public class PlayerController : MonoBehaviour
     public void VerticalFlip()
     {
         transform.Rotate(0f,180f,0f);
+    }
+
+    public void ResetVelocity()
+    {
+        rb2d.velocity = new Vector2(0f,0f);
     }
 
 
