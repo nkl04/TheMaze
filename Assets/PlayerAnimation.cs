@@ -20,7 +20,7 @@ public class PlayerAnimation : MonoBehaviour
     public LayerMask wallLayer;    
     public bool isTouchingWall = false;
     private float direction;
-    public bool isFacingRight = true;
+    public bool isFacingRight = false;
 
     public void Start()
     {

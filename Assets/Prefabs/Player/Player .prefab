@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 4926765075257201085}
   - component: {fileID: 44311436047887069}
   - component: {fileID: 4921709484010208414}
+  - component: {fileID: 3271117600235542459}
   m_Layer: 6
   m_Name: 'Player '
   m_TagString: Player1
@@ -398,6 +399,27 @@ MonoBehaviour:
     m_Bits: 16384
   isTouchingWall: 0
   isFacingRight: 1
+--- !u!95 &3271117600235542459
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533162545353097756}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b0776afbd44edcd429edf68d0be8ba00, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6766338930385089353
 GameObject:
   m_ObjectHideFlags: 0
