@@ -8,6 +8,7 @@ public class Pause : MonoBehaviour
 {
     public static Pause Instance {private set; get;}
     public GameObject pauseGameUI;
+    public bool canPause = true;
     private bool isPaused = false;
 
     void Start()
@@ -17,7 +18,7 @@ public class Pause : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
             if (!isPaused)
             {

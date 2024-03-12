@@ -21,7 +21,7 @@ public class playerController : MonoBehaviour
 
     // [Header("Improvement")]
     // [SerializeField] private float coyoteTime = 0.2f;
-    // [SerializeField] private float jumpBufferTime = 0.2f;
+    // [SerializeField] pr  ivate float jumpBufferTime = 0.2f;
     
     [Space(5)]
 
@@ -47,7 +47,10 @@ public class playerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         transform.GetComponent<PlayerHealth>().OnPlayerDie += Health_OnPlayerDie;
-        ReverseGravityZone.Instance.OnReverseGravity += ReverseGravityZone_OnReverseGravity;
+        if (ReverseGravityZone.Instance != null)
+        {
+            ReverseGravityZone.Instance.OnReverseGravity += ReverseGravityZone_OnReverseGravity;    
+        }
     }
 
     private void ReverseGravityZone_OnReverseGravity(object sender, EventArgs e)

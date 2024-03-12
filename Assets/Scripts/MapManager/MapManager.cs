@@ -68,6 +68,8 @@ public class MapManager : MonoBehaviour
     {
         //Revive players
         RevivePlayer();
+        GameOverManager.Instance.Show();
+        Time.timeScale = 0f;
     }
 
     private void Update() {

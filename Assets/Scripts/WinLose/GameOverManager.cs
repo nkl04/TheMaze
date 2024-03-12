@@ -1,25 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
-  [SerializeField] private Button Restart;
-   [SerializeField] private Button MainMenu;
-   [SerializeField] private Button Quit;
+    public static GameOverManager Instance {private set; get;}
+    [SerializeField] private GameObject losingUI;
+    [SerializeField] private Button playAgainButton;
+    [SerializeField] private Button homeButton;
+    
 
    private void Awake(){
-        Restart.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.Map1);
+        Instance = this;
+        Hide();
+        
+        playAgainButton.onClick.AddListener(() =>{
+            Loader.Load(SceneManager.GetActiveScene().buildIndex);
         });
         
-        MainMenu.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.MainMenuScene);
-        });
-
-        Quit.onClick.AddListener(() =>{
-            Application.Quit();
+        homeButton.onClick.AddListener(() =>{
+            Loader.Load(Loader.Scene.MainMenuScene);
         });
    }
+
+    public void Hide()
+    {
+        losingUI.SetActive(false);
+    }
+
+    public void Show()
+    {
+        losingUI.SetActive(true);
+
+    }
 }
