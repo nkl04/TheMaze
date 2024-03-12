@@ -17,11 +17,11 @@ public class GameOverManager : MonoBehaviour
         Hide();
         
         playAgainButton.onClick.AddListener(() =>{
-            Loader.Load(SceneManager.GetActiveScene().buildIndex);
+            PlayAgain();
         });
         
         homeButton.onClick.AddListener(() =>{
-            Loader.Load(Loader.Scene.MainMenuScene);
+            ReturnHome();
         });
    }
 
@@ -33,6 +33,17 @@ public class GameOverManager : MonoBehaviour
     public void Show()
     {
         losingUI.SetActive(true);
+    }
 
+    public void PlayAgain()
+    {
+        Loader.Load(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+    }
+
+    public void ReturnHome()
+    {
+        Loader.Load(Loader.Scene.MainMenuScene);
+        Time.timeScale = 1f;
     }
 }

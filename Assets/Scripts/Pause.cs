@@ -9,11 +9,13 @@ public class Pause : MonoBehaviour
 {
     public static Pause Instance {private set; get;}
     public GameObject pauseGameUI;
+    [SerializeField] private GameObject player1;
+    [SerializeField] private GameObject player2;
+
     public bool canPause = true;
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button optionButton;
     [SerializeField] private Button homeButton;
-    private GameObject[] playerArray;
 
     private bool isPaused = false;
 
@@ -26,7 +28,7 @@ public class Pause : MonoBehaviour
         // });
         
         homeButton.onClick.AddListener(() =>{
-            Loader.Load(Loader.Scene.MainMenuScene);
+            LoadHomeScene();
         });
     }
 
@@ -34,7 +36,6 @@ public class Pause : MonoBehaviour
     {
         Instance = this;
         pauseGameUI.SetActive(false);
-        playerArray = MapManager.Instance.GetPlayers();
     }
     void Update()
     {
@@ -43,19 +44,18 @@ public class Pause : MonoBehaviour
             if (!isPaused)
             {
                 PauseScreen();
-                foreach (GameObject player in playerArray)
-                {
-                    player.GetComponent<PlayerController>().CanMove = false;
-                }
+
+                player1.GetComponent<PlayerController>().CanMove = false;
+                player2.GetComponent<PlayerController>().CanMove = false;
+
+
                 isPaused = true;
             }
             else
             {
                 ResumeGame();
-                foreach (GameObject player in playerArray)
-                {
-                    player.GetComponent<PlayerController>().CanMove = true;
-                }
+                player1.GetComponent<PlayerController>().CanMove = true;
+                player2.GetComponent<PlayerController>().CanMove = true;
                 isPaused = false;
             }
         } 
@@ -78,9 +78,10 @@ public class Pause : MonoBehaviour
     }
 
 
-    public void HomeScene()
+    public void LoadHomeScene()
     {
         Loader.Load(Loader.Scene.MainMenuScene);
+        Time.timeScale = 1;
     }
 
     public bool IsPaused()
