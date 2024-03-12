@@ -61,11 +61,11 @@ public class playerController : MonoBehaviour
         // //horizontal movement
         HorizontalMovement();
         //flip player when change direction
-        if((isFacingRight && direction.x < 0) || (!isFacingRight && direction.x > 0))
-        {
-            isFacingRight = !isFacingRight;
-            VerticalFlip();
-        } 
+        // if((isFacingRight && direction.x < 0) || (!isFacingRight && direction.x > 0))
+        // {
+        //     isFacingRight = !isFacingRight;
+        //     VerticalFlip();
+        // } 
         #endregion
 
 
