@@ -54,6 +54,8 @@ public class MapManager : MonoBehaviour
         quizTimer.CancelTimer();
         quizTimer.gameObject.SetActive(false);
         Time.timeScale = 1;
+        player1.GetComponent<PlayerController>().CanMove = true;
+        player2.GetComponent<PlayerController>().CanMove = true;
     }
 
     private void QuestionBox_OnOpenSecretQuestion(object sender, EventArgs e)
@@ -62,6 +64,8 @@ public class MapManager : MonoBehaviour
         quizTimer.gameObject.SetActive(true);
         quizTimer.StartTimeCounter();
         Time.timeScale = 0;
+        player1.GetComponent<PlayerController>().CanMove = false;
+        player2.GetComponent<PlayerController>().CanMove = false;
     }
 
     private void PlayerHealth_OnPlayerDie(object sender, EventArgs e)
@@ -70,6 +74,8 @@ public class MapManager : MonoBehaviour
         RevivePlayer();
         GameOverManager.Instance.Show();
         Time.timeScale = 0f;
+        Pause.Instance.canPause = false;
+        
     }
 
     private void Update() {
@@ -97,6 +103,12 @@ public class MapManager : MonoBehaviour
         Debug.Log("Die!");
         player1.transform.position = revivePoint.position;
         player2.transform.position = revivePoint.position + new Vector3(0,0,2);
+    }
+
+    public GameObject[] GetPlayers()
+    {
+        GameObject[] playerArray = {player1,player2};
+        return playerArray;
     }
 
 }

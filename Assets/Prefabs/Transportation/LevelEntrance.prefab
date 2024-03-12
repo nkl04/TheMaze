@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3809594547983021417}
   - component: {fileID: 2245506225816304434}
   - component: {fileID: 4919902628120735315}
-  - component: {fileID: 5547880829823981182}
   - component: {fileID: 3137045726796155365}
+  - component: {fileID: 5827589342587524232}
   m_Layer: 8
   m_Name: LevelEntrance
   m_TagString: OneWayPlatform
@@ -152,20 +152,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &5547880829823981182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465766333468182499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb104d9585a33a4cb7b6ea2f51c9c9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  nextLevelPosition: {fileID: 0}
 --- !u!114 &3137045726796155365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +176,17 @@ MonoBehaviour:
   leftPos: {fileID: 0}
   rightPos: {fileID: 0}
   openPosition: {fileID: 0}
+--- !u!114 &5827589342587524232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465766333468182499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385e73e18d430e645a6391ac4234cb18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  nextLevelPosition: {fileID: 2095274597317023403, guid: 30ace1e94994367429c0c79d8bb3e8f7, type: 3}

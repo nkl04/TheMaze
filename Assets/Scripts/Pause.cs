@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class Pause : MonoBehaviour
@@ -9,12 +10,31 @@ public class Pause : MonoBehaviour
     public static Pause Instance {private set; get;}
     public GameObject pauseGameUI;
     public bool canPause = true;
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button optionButton;
+    [SerializeField] private Button homeButton;
+    private GameObject[] playerArray;
+
     private bool isPaused = false;
+
+    private void Awake() {
+        resumeButton.onClick.AddListener(() =>{
+            ResumeGame();
+        });
+        // optionButton.onClick.AddListener(() =>{
+        //     Loader.Load(SceneManager.GetActiveScene().buildIndex);
+        // });
+        
+        homeButton.onClick.AddListener(() =>{
+            Loader.Load(Loader.Scene.MainMenuScene);
+        });
+    }
 
     void Start()
     {
         Instance = this;
         pauseGameUI.SetActive(false);
+        playerArray = MapManager.Instance.GetPlayers();
     }
     void Update()
     {
@@ -23,11 +43,19 @@ public class Pause : MonoBehaviour
             if (!isPaused)
             {
                 PauseScreen();
+                foreach (GameObject player in playerArray)
+                {
+                    player.GetComponent<PlayerController>().CanMove = false;
+                }
                 isPaused = true;
             }
             else
             {
                 ResumeGame();
+                foreach (GameObject player in playerArray)
+                {
+                    player.GetComponent<PlayerController>().CanMove = true;
+                }
                 isPaused = false;
             }
         } 

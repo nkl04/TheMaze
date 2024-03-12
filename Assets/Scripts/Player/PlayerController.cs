@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     
 

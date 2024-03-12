@@ -5,7 +5,6 @@ using System;
 
 public class LevelEntrance : MonoBehaviour
 {
-
     public event EventHandler OnOutOfTheMap;
     public bool CanMove {get{return canMove;} set{canMove = value;}}
     [SerializeField] private float speed;
@@ -23,6 +22,10 @@ public class LevelEntrance : MonoBehaviour
     private void Update() {
         if (playersOnEntrance.Count == 2 && canMove)
         {
+            foreach (GameObject player in playersOnEntrance)
+            {
+                player.GetComponent<PlayerController>().CanMove = false;
+            }
             LiftEntrance();
             if (transform.position == nextLevelPosition.position)
             {
@@ -48,5 +51,4 @@ public class LevelEntrance : MonoBehaviour
             }
         }
     }
-
 }

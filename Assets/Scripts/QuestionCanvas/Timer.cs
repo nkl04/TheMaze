@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     public float fillFraction;
     public bool isAnsweringQuestion = false;
     public bool loadNextQuestion;
+    private bool flag;
     void UpdateTimer()
     {
 
@@ -49,7 +50,11 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                OnWaitingTimeOver?.Invoke(this,EventArgs.Empty);
+                if (flag)
+                {
+                    OnWaitingTimeOver?.Invoke(this,EventArgs.Empty);
+                    flag = false;
+                }
 
             }
         }
@@ -70,5 +75,6 @@ public class Timer : MonoBehaviour
         isAnsweringQuestion = true;
         timeValue = timeToAnswerQuestion;
         loadNextQuestion = true;
+        flag = true;
     }
 }
