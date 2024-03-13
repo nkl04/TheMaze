@@ -1086,9 +1086,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a29555c1ab05344e94a2032b071eb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseGameUI: {fileID: 0}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  pauseGameUI: {fileID: 1852758392}
+  player1: {fileID: 1500239486}
+  player2: {fileID: 123733651}
   canPause: 1
   resumeButton: {fileID: 0}
   optionButton: {fileID: 0}
