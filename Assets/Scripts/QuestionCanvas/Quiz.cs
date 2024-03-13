@@ -23,7 +23,11 @@ public class Quiz : MonoBehaviour
     [SerializeField] Image timerImage;
     Timer timer;
     ScoreKeeper scoreKeeper;
-
+     AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     void Start(){
         timer = FindObjectOfType<Timer>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
@@ -43,6 +47,7 @@ public class Quiz : MonoBehaviour
     }
 
     public void OnAnswerSelected(int index){
+        audioManager.PlaySFX(audioManager.action);
         hasAnsweredEarly = true;
         DisplayAnswer(index);
         SetButtonState(false);
