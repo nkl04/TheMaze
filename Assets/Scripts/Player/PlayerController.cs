@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     // private float jumpBufferTimeCounter;
 
     private Vector3 vector3Up;
+
     
     private void Start()
     {
