@@ -19,6 +19,12 @@ public class MapManager : MonoBehaviour
 
     private ScoreKeeper scoreKeeper;
 
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +81,9 @@ public class MapManager : MonoBehaviour
     private void PlayerHealth_OnPlayerDie(object sender, EventArgs e)
     {
         //Revive players
+        
+        audioManager.PlaySFX(audioManager.death);
+        //audioManager.PlaySFX(audioManager.lose);
         RevivePlayer();
         GameOverManager.Instance.Show();
         Time.timeScale = 0f;

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Networking.PlayerConnection;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -42,10 +43,22 @@ public class PlayerController : MonoBehaviour
     // private float jumpBufferTimeCounter;
 
     private Vector3 vector3Up;
-
+    //public AudioSource soundmain_source;
+    //public AudioSource sounddie_source;
+    //public AudioSource soundjump_source;
     
+    //public AudioClip soundmain_clip;
+    //public AudioClip sounddie_clip;
+    //public AudioClip soundjump_clip;
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     private void Start()
     {
+        //soundmain_source.clip = soundmain_clip;
+        //soundmain_source.Play();
         rb2d = GetComponent<Rigidbody2D>();
         transform.GetComponent<PlayerHealth>().OnPlayerDie += Health_OnPlayerDie;
         if (ReverseGravityZone.Instance != null)
@@ -154,6 +167,30 @@ public class PlayerController : MonoBehaviour
     {
         //change the vetical position of player (Jump) 
         rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce * transform.up.y);
+        //sound_main.PlayOneShot(sound_jump);
+        //soundjump_source.clip = soundjump_clip;
+        //soundjump_source.PlayOneShot(soundjump_clip);
+        System.Random random = new System.Random();
+        int randomNumber = random.Next(1, 5);
+        switch(randomNumber)
+        {
+            case 1:
+            audioManager.PlaySFX(audioManager.jump1a);
+            break;
+            case 2:
+            audioManager.PlaySFX(audioManager.jump1b);
+            break;
+            case 3:
+            audioManager.PlaySFX(audioManager.jump1c);
+            break;
+            case 4:
+            audioManager.PlaySFX(audioManager.jump2a);
+            break;
+            default:
+            audioManager.PlaySFX(audioManager.jump2b);
+            break;
+        }
+        
     }
 
     public bool IsGrounded()
