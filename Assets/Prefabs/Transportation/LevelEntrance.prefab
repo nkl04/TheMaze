@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5782599667304580182}
   - component: {fileID: 3809594547983021417}
-  - component: {fileID: 397576849812637467}
   - component: {fileID: 2245506225816304434}
   - component: {fileID: 4919902628120735315}
-  - component: {fileID: 5547880829823981182}
+  - component: {fileID: 3137045726796155365}
+  - component: {fileID: 5827589342587524232}
   m_Layer: 8
   m_Name: LevelEntrance
   m_TagString: OneWayPlatform
@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,20 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &397576849812637467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465766333468182499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a018495744c3fb64abb1b95579956478, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toOpenPoint: {fileID: 0}
-  openSpeed: 2
 --- !u!61 &2245506225816304434
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -166,7 +152,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &5547880829823981182
+--- !u!114 &3137045726796155365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +161,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 465766333468182499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb104d9585a33a4cb7b6ea2f51c9c9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a57654e5a3f0f547a5ad6e11c626469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  IsTurnOn: 0
+  hasLight: 0
+  light2d: {fileID: 0}
+  lightIntensity: 0.2
+  _type: 2
+  direction: 0
+  speed: 3
+  upperPos: {fileID: 0}
+  downPos: {fileID: 0}
+  leftPos: {fileID: 0}
+  rightPos: {fileID: 0}
+  openPosition: {fileID: 0}
+--- !u!114 &5827589342587524232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465766333468182499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385e73e18d430e645a6391ac4234cb18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  nextLevelPosition: {fileID: 2095274597317023403, guid: 30ace1e94994367429c0c79d8bb3e8f7, type: 3}

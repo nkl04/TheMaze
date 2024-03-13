@@ -9,16 +9,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    
 
+    public bool CanMove {get{return canMove;} set{canMove = value;}}
+    
     [Header("Movement")]
     [SerializeField] private float airMoveSpeed = 5;
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float jumpForce = 10;
     [SerializeField] private bool canMove = true;
 
-    [Header("Improvement")]
-    [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private float jumpBufferTime = 0.2f;
+    // [Header("Improvement")]
+    // [SerializeField] private float coyoteTime = 0.2f;
+    // [SerializeField] pr  ivate float jumpBufferTime = 0.2f;
     
     [Space(5)]
 
@@ -33,16 +36,26 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private Vector2 direction;
     private bool isFacingRight = true;
-    private bool canJump;
-    private bool isJumping;
-    private float coyoteTimeCounter;
-    private float jumpBufferTimeCounter;
+    // private bool canJump;
+    // private bool isJumping;
+    // private float coyoteTimeCounter;
+    // private float jumpBufferTimeCounter;
 
+    private Vector3 vector3Up;
     
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         transform.GetComponent<PlayerHealth>().OnPlayerDie += Health_OnPlayerDie;
+        if (ReverseGravityZone.Instance != null)
+        {
+            ReverseGravityZone.Instance.OnReverseGravity += ReverseGravityZone_OnReverseGravity;    
+        }
+    }
+
+    private void ReverseGravityZone_OnReverseGravity(object sender, EventArgs e)
+    {
+        transform.SetParent(null);
     }
 
     private void Health_OnPlayerDie(object sender, EventArgs e)
@@ -52,82 +65,77 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
+
         #region movement && flip
         // //horizontal movement
         HorizontalMovement();
-
         //flip player when change direction
         if((isFacingRight && direction.x < 0) || (!isFacingRight && direction.x > 0))
         {
             isFacingRight = !isFacingRight;
             VerticalFlip();
         } 
-
         #endregion
+
 
         // Experience Improvement
         #region  Coyote Time & Jump Buffer 
-        if(IsGrounded())
-        {  
-            coyoteTimeCounter = coyoteTime;      
-        }
-        else 
-        {
-            // player on the air
-            if (isJumping)
-            {
-                // player jump
-                canJump = false;
-                jumpBufferTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                // not jump but leave the ground
-                coyoteTimeCounter -= Time.deltaTime;
-                if (coyoteTimeCounter <= 0)
-                {
-                    canJump = false;  
-                } 
-            }
-        }
+        // if(IsGrounded())
+        // {  
+        //     canJump = true;
+        //     isJumping =false;
+        //     coyoteTimeCounter = coyoteTime;      
+        // }
+        // else 
+        // {
+        //     // player on the air
+        //     if (isJumping)
+        //     {
+        //         // player jump
+        //         canJump = false;
+        //         jumpBufferTimeCounter -= Time.deltaTime;
+        //     }
+        //     else
+        //     {
+        //         // not jump but leave the ground
+        //         coyoteTimeCounter -= Time.deltaTime;
+        //         if (coyoteTimeCounter <= 0)
+        //         {
+        //             canJump = false;  
+        //         } 
+        //     }
+        // }
 
-        if(jumpBufferTimeCounter > 0 && IsGrounded())
-        {
-            VerticalMovement();
-            canJump = false;
-            isJumping = true;
-        }
+        // if(jumpBufferTimeCounter > 0 && IsGrounded())
+        // {
+        //     VerticalMovement();
+        //     canJump = false;
+        //     isJumping = true;
+        // }
         #endregion
+        
+         
+        // if (transform.parent != null && transform.parent.up != vector3Up)
+        // {
+        //     transform.SetParent(null);
+        // }
 
+        Debug.Log(canMove);
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.GetComponent<Elevator>() && IsStandOnElevator())
+        if (other.gameObject.GetComponent<Moveable>() && IsStandOnElevator())
         {
             transform.SetParent(other.transform);
-        }
-
-        if (IsGrounded() && ((1<<other.gameObject.layer) & groundCheckLayer) != 0)
-        {
-            canJump = true;
-            isJumping = false;
+            vector3Up = other.transform.up;
         }
     }
 
-    // private void OnCollisionStay2D(Collision2D other) {
-        
-    // }
-
     private void OnCollisionExit2D(Collision2D other) {
-        if (other.gameObject.GetComponent<Elevator>())
+        if (other.gameObject.GetComponent<Moveable>())
         {
             transform.SetParent(null);
-        }
-
-        if (!IsGrounded() && ((1<<other.gameObject.layer) & groundCheckLayer) != 0)
-        {
-            canJump = false;
-            isJumping = true;
+            vector3Up = Vector3.zero;
         }
     }
     public void HorizontalMovement()
@@ -162,10 +170,12 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f,180f,0f);
     }
 
-    public void HorizontalFlip()
+    public void ResetVelocity()
     {
-        transform.Rotate(180f,0f,0f);
+        rb2d.velocity = new Vector2(0f,0f);
     }
+
+
 
 
     //============================================ PLAYER INPUT SYSTEM ================================================
@@ -181,20 +191,9 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && canMove)
         {   
-
-            if (canJump && !isJumping)
+            if(IsGrounded())
             {
-
-                canJump = false;
-                isJumping = true;
-                coyoteTimeCounter = 0f;
-                VerticalMovement();
-
-            }
-            else
-            {
-                // player on the air
-                jumpBufferTimeCounter = jumpBufferTime;
+               VerticalMovement(); 
             }
         }
     }
@@ -210,5 +209,7 @@ public class PlayerController : MonoBehaviour
     {
         return direction;
     }
+
+    
     
 }

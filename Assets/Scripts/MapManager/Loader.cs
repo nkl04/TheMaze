@@ -25,11 +25,17 @@ public static class Loader
         SceneManager.LoadScene(Scene.LoadingScene.ToString());
     }
 
+    public static void Load(int currentSceneIndex)
+    {
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+
+
     public static void LoaderCallback()
     {
         SceneManager.LoadScene(targetScene.ToString());
     }
-    
     public static void LoadTheNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

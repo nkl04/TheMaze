@@ -8,6 +8,7 @@ TagManager:
   - Player1
   - Player2
   - BlockPlatform
+  - Saw
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Ground
   - Terrain
   - BlockPlatform
-  - 
-  - 
+  - GroundCheck
+  - Trap
   - 
   - 
   - 
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Trap
+    uniqueID: 2055434163
     locked: 0
