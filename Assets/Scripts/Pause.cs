@@ -2,44 +2,91 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class Pause : MonoBehaviour
 {
+    public static Pause Instance {private set; get;}
     public GameObject pauseGameUI;
-    public bool isPaused = false;
+    [SerializeField] private GameObject player1;
+    [SerializeField] private GameObject player2;
+
+    public bool canPause = true;
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button optionButton;
+    [SerializeField] private Button homeButton;
+
+    private bool isPaused = false;
+
+    private void Awake() {
+        resumeButton.onClick.AddListener(() =>{
+            ResumeGame();
+            player1.GetComponent<PlayerController>().CanMove = true;
+            player2.GetComponent<PlayerController>().CanMove = true;
+        });
+        // optionButton.onClick.AddListener(() =>{
+        //     Loader.Load(SceneManager.GetActiveScene().buildIndex);
+        // });
+        
+        homeButton.onClick.AddListener(() =>{
+            LoadHomeScene();
+        });
+    }
 
     void Start()
     {
+        Instance = this;
         pauseGameUI.SetActive(false);
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) pauseScreen(); 
+        if (Input.GetKeyDown(KeyCode.Escape) && canPause)
+        {
+            if (!isPaused)
+            {
+                PauseScreen();
+
+                player1.GetComponent<PlayerController>().CanMove = false;
+                player2.GetComponent<PlayerController>().CanMove = false;
+                isPaused = true;
+            }
+            else
+            {
+                ResumeGame();
+                player1.GetComponent<PlayerController>().CanMove = true;
+                player2.GetComponent<PlayerController>().CanMove = true;
+                isPaused = false;
+            }
+        } 
+        
     }
-    public void pauseScreen()
+    public void PauseScreen()
     {
-        isPaused = true;
         Time.timeScale = 0f;
         pauseGameUI.SetActive(true);
+        isPaused = true;
     }
 
-    public void restart()
+    public void ResumeGame()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        isPaused = false;
+        if (!MapManager.Instance.getQuesCanvas().gameObject.activeInHierarchy)
+        {
+            Time.timeScale = 1f;
+        }
+        pauseGameUI.SetActive(false);
+        isPaused = false;     
     }
 
-    public void resumeGame()
+
+    public void LoadHomeScene()
     {
-        Time.timeScale = 1f;
-        pauseGameUI.SetActive(false); 
-        isPaused = false;       
+        Loader.Load(Loader.Scene.MainMenuScene);
+        Time.timeScale = 1;
     }
 
-    public void HomeScene()
+    public bool IsPaused()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        return isPaused;
     }
 }

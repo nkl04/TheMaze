@@ -7,6 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class Quiz : MonoBehaviour
 {
+
     [Header("Question")]
     [SerializeField] TextMeshProUGUI questionText;
     [SerializeField] List<QuestionSO> questionList = new List<QuestionSO>();

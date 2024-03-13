@@ -32,6 +32,9 @@ public class LevelPanel : MonoBehaviour
         levelButtons[2].onClick.AddListener(() =>{
             Loader.Load(Loader.Scene.Level3Scene);
         });
+        levelButtons[3].onClick.AddListener(() =>{
+            Loader.Load(Loader.Scene.Level4Scene);
+        });
 
 
     } 

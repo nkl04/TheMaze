@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerOneWayPlatformer : MonoBehaviour
 {
     private GameObject currentOneWayPlatform;
-    [SerializeField] private playerController playerController;
-    [SerializeField] private CapsuleCollider2D playerCollider2D;
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private BoxCollider2D playerCollider2D;
     
     private Vector2 direction;
 
