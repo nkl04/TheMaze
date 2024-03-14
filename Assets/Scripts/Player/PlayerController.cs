@@ -171,7 +171,17 @@ public class PlayerController : MonoBehaviour
         //soundjump_source.clip = soundjump_clip;
         //soundjump_source.PlayOneShot(soundjump_clip);
         System.Random random = new System.Random();
-        int randomNumber = random.Next(1, 5);
+
+        int randomNumber;
+        if (transform.gameObject.tag == "Player1")
+        {
+            randomNumber = random.Next(1, 3);
+        }
+        else
+        {
+            randomNumber = random.Next(4, 5);
+        }
+        
         switch(randomNumber)
         {
             case 1:
@@ -248,6 +258,10 @@ public class PlayerController : MonoBehaviour
         return direction;
     }
 
+    public void SetDirectionVector(Vector2 vector)
+    {
+        direction = vector;
+    }
     
     
 }

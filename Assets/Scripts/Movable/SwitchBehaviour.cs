@@ -16,6 +16,7 @@ public class SwitchBehaviour : MonoBehaviour
     [SerializeField] private bool canCloseSwitch;
     [SerializeField] private Mode mode;
     [SerializeField] private Moveable[] moveableGameObject;
+    [SerializeField] private SwitchBehaviour remainButton;
 
     private bool isPressingSwitch = false;
     private HashSet<GameObject> playersOnEntrance = new HashSet<GameObject>();
@@ -24,7 +25,10 @@ public class SwitchBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
+            
             playersOnEntrance.Add(other.gameObject);
+            Debug.Log("add" +other.gameObject);
+            Debug.Log(playersOnEntrance.Count);
             if (mode == Mode.Toggle)
             {
                 isPressingSwitch = !isPressingSwitch;
@@ -58,19 +62,44 @@ public class SwitchBehaviour : MonoBehaviour
         if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             playersOnEntrance.Remove(other.gameObject);
-            if(playersOnEntrance.Count > 0) return;
             if (mode == Mode.Hold)
             {
-                foreach (Moveable item in moveableGameObject)
+                if (remainButton != null)
                 {
-                    if (canOpenSwitch && canCloseSwitch && item.IsTurnOn)
+                    if (playersOnEntrance.Count == 0 && remainButton.GetGameObjectSet().Count == 0)
                     {
-                        item.IsTurnOn = !item.IsTurnOn;
+                        foreach (Moveable item in moveableGameObject)
+                        {
+                            if (canOpenSwitch && canCloseSwitch && item.IsTurnOn)
+                            {
+                                item.IsTurnOn = !item.IsTurnOn;
+                            }
+                        }
                     }
                 }
+                else
+                {
+                    if (playersOnEntrance.Count == 0)
+                    {
+                        foreach (Moveable item in moveableGameObject)
+                        {
+                            if (canOpenSwitch && canCloseSwitch && item.IsTurnOn)
+                            {
+                                item.IsTurnOn = !item.IsTurnOn;
+                            }
+                        }
+                    }
+                }
+                
+                
             }
             isPressingSwitch = false;
         }
+    }
+
+    public HashSet<GameObject> GetGameObjectSet()
+    {
+        return playersOnEntrance;
     }
 
     

@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour
 
     [Header ("---------Audio Clip-----------")]
     public AudioClip background;
+    public AudioClip quizbackground;
+    public AudioClip correctAns;
+    public AudioClip incorrectAns;
     public AudioClip jump1a;
     public AudioClip jump1b;
     public AudioClip jump1c;
@@ -20,11 +23,21 @@ public class AudioManager : MonoBehaviour
     public AudioClip action;
     private void Start()
     {
-        musicSource.clip=background;
-        musicSource.Play();
+        
+        PlayBackgroundMusic(background);
     }
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
+    }
+
+    public void PlayBackgroundMusic(AudioClip background)
+    {
+        musicSource.clip=background;
+        musicSource.Play();
+    }
+    public void StopMusic()
+    {
+        musicSource.Stop();
     }
 }

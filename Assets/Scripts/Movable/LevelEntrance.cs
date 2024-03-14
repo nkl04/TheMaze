@@ -34,6 +34,7 @@ public class LevelEntrance : MonoBehaviour
             }
 
             LiftEntrance();
+            
             if (transform.position == nextLevelPosition.position)
             {
                 OnOutOfTheMap?.Invoke(this,EventArgs.Empty);
@@ -45,8 +46,12 @@ public class LevelEntrance : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
         {
-            audioManager.PlaySFX(audioManager.win);
             playersOnEntrance.Add(other.gameObject);
+            if (canMove && playersOnEntrance.Count == 2)
+            {
+                audioManager.PlaySFX(audioManager.win);
+                audioManager.StopMusic();
+            }
         }
     }
 

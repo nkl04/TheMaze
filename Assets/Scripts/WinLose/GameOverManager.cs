@@ -11,16 +11,20 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private Button playAgainButton;
     [SerializeField] private Button homeButton;
     
+    AudioManager audioManager;
 
    private void Awake(){
         Instance = this;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         Hide();
         
         playAgainButton.onClick.AddListener(() =>{
+            audioManager.PlaySFX(audioManager.action);
             PlayAgain();
         });
         
         homeButton.onClick.AddListener(() =>{
+            audioManager.PlaySFX(audioManager.action);
             ReturnHome();
         });
    }

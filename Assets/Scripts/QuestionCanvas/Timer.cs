@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
 {
     public event EventHandler OnWaitingTimeOver;
    [SerializeField] float timeToAnswerQuestion = 30f; 
-   [SerializeField] float timeToTurnOffQuestion = 5f;
+   [SerializeField] float timeToTurnOffQuestion = 2f;
     float timeValue;
     public float fillFraction;
     public bool isAnsweringQuestion = false;
