@@ -656,7 +656,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4676733053090351397}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 232033723862276446}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &7833591511071613739
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -856,6 +868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseGameUI: {fileID: 5246903491260739777}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   canPause: 1
   resumeButton: {fileID: 7848616876209257698}
   optionButton: {fileID: 4757266605469161076}
@@ -1108,7 +1122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5792263935202502610}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 232033723862276446}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: LoadHomeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &8193800995077333188
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1307,7 +1333,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5360439166015736212}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7405341047027971269}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &2452140007471236261
 CanvasRenderer:
   m_ObjectHideFlags: 0

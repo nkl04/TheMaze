@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2956483706701071727}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.26977, y: 6.0438232, z: 1.0097173}
+  m_LocalPosition: {x: 0.7, y: -0.25, z: 1.0097173}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_ActionName: Player 1/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 0e5e4e9e-c3e6-4566-9f3d-3007d3d2c590
+  m_DefaultActionMap: Player 2
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &160621227621407594
@@ -303,6 +303,8 @@ MonoBehaviour:
   moveSpeed: 10
   jumpForce: 9.5
   canMove: 1
+  coyoteTime: 0.2
+  jumpBufferTime: 0.2
   groundCheckPoint: {fileID: 50522685351132394}
   groundCheckSize: {x: 0.95, y: 0.02}
   groundCheckLayer:
@@ -435,7 +437,7 @@ Transform:
   m_GameObject: {fileID: 6766338930385089353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.498, z: 0}
+  m_LocalPosition: {x: 0, y: -1.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

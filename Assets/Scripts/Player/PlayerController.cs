@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canMove = true;
 
     // [Header("Improvement")]
-    // [SerializeField] private float coyoteTime = 0.2f;
-    // [SerializeField] pr  ivate float jumpBufferTime = 0.2f;
+    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private float jumpBufferTime = 0.2f;
     
     [Space(5)]
 
@@ -36,11 +36,11 @@ public class PlayerController : MonoBehaviour
     
     private Rigidbody2D rb2d;
     private Vector2 direction;
-    private bool isFacingRight = true;
-    // private bool canJump;
-    // private bool isJumping;
-    // private float coyoteTimeCounter;
-    // private float jumpBufferTimeCounter;
+    //private bool isFacingRight = true;
+    private bool canJump;
+    private bool isJumping;
+    private float coyoteTimeCounter;
+    private float jumpBufferTimeCounter;
 
     private Vector3 vector3Up;
     //public AudioSource soundmain_source;
@@ -51,10 +51,10 @@ public class PlayerController : MonoBehaviour
     //public AudioClip sounddie_clip;
     //public AudioClip soundjump_clip;
     AudioManager audioManager;
-    private void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
+    // private void Awake()
+    // {
+    //     audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    // }
     private void Start()
     {
         //soundmain_source.clip = soundmain_clip;
@@ -94,38 +94,38 @@ public class PlayerController : MonoBehaviour
 
         // Experience Improvement
         #region  Coyote Time & Jump Buffer 
-        // if(IsGrounded())
-        // {  
-        //     canJump = true;
-        //     isJumping =false;
-        //     coyoteTimeCounter = coyoteTime;      
-        // }
-        // else 
-        // {
-        //     // player on the air
-        //     if (isJumping)
-        //     {
-        //         // player jump
-        //         canJump = false;
-        //         jumpBufferTimeCounter -= Time.deltaTime;
-        //     }
-        //     else
-        //     {
-        //         // not jump but leave the ground
-        //         coyoteTimeCounter -= Time.deltaTime;
-        //         if (coyoteTimeCounter <= 0)
-        //         {
-        //             canJump = false;  
-        //         } 
-        //     }
-        // }
+        if(IsGrounded())
+        {  
+            canJump = true;
+            isJumping =false;
+            coyoteTimeCounter = coyoteTime;      
+        }
+        else 
+        {
+            // player on the air
+            if (isJumping)
+            {
+                // player jump
+                canJump = false;
+                jumpBufferTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                // not jump but leave the ground
+                coyoteTimeCounter -= Time.deltaTime;
+                if (coyoteTimeCounter <= 0)
+                {
+                    canJump = false;  
+                } 
+            }
+        }
 
-        // if(jumpBufferTimeCounter > 0 && IsGrounded())
-        // {
-        //     VerticalMovement();
-        //     canJump = false;
-        //     isJumping = true;
-        // }
+        if(jumpBufferTimeCounter > 0 && IsGrounded())
+        {
+            VerticalMovement();
+            canJump = false;
+            isJumping = true;
+        }
         #endregion
         
          
@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
     public void VerticalMovement()
     {
         //change the vetical position of player (Jump) 
-        rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce * transform.up.y);
+        rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce * rb2d.velocity.y);
         //sound_main.PlayOneShot(sound_jump);
         //soundjump_source.clip = soundjump_clip;
         //soundjump_source.PlayOneShot(soundjump_clip);

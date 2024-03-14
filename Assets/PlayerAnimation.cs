@@ -45,7 +45,7 @@ public class PlayerAnimation : MonoBehaviour
 
         animator.SetBool(IS_TOUCHING_GROUND, isTouchingGround);
 
-        if(Input.GetButtonDown("Jump") && isTouchingGround == true)
+        if(Input.GetButtonDown("Jump") && isTouchingGround)
         {   
             animator.SetBool(IS_JUMPING, true); 
         }
