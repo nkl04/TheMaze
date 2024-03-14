@@ -5,6 +5,11 @@ using System;
 
 public class LevelEntrance : MonoBehaviour
 {
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     public event EventHandler OnOutOfTheMap;
     public bool CanMove {get{return canMove;} set{canMove = value;}}
     [SerializeField] private float speed;
@@ -15,6 +20,7 @@ public class LevelEntrance : MonoBehaviour
 
     private void LiftEntrance()
     {
+
         transform.position = Vector2.MoveTowards(transform.position,nextLevelPosition.position,speed * Time.deltaTime);
         Debug.Log("Dang duoc nang");
     }
@@ -26,7 +32,9 @@ public class LevelEntrance : MonoBehaviour
             {
                 player.GetComponent<PlayerController>().CanMove = false;
             }
+
             LiftEntrance();
+            
             if (transform.position == nextLevelPosition.position)
             {
                 OnOutOfTheMap?.Invoke(this,EventArgs.Empty);
@@ -39,6 +47,11 @@ public class LevelEntrance : MonoBehaviour
         if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
         {
             playersOnEntrance.Add(other.gameObject);
+            if (canMove && playersOnEntrance.Count == 2)
+            {
+                audioManager.PlaySFX(audioManager.win);
+                audioManager.StopMusic();
+            }
         }
     }
 

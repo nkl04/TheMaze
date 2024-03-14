@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToAnswerQuestion: 30
-  timeToTurnOffQuestion: 5
+  timeToTurnOffQuestion: 2
   fillFraction: 0
   isAnsweringQuestion: 0
   loadNextQuestion: 0

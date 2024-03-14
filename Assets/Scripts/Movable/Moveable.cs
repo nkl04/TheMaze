@@ -39,6 +39,10 @@ public class Moveable : MonoBehaviour
 
     private void Start() {
         initPosition = transform.position;
+        if (!IsTurnOn && hasLight)
+        {
+            light2d.intensity = 0;   
+        }
     }
 
     private void Update() {
@@ -91,7 +95,7 @@ public class Moveable : MonoBehaviour
             {
                 light2d.intensity = lightIntensity;
             }
-            else
+            else if(!IsTurnOn && _type!=Type.LevelEntrance)
             {
                 light2d.intensity = 0;
             }

@@ -9,8 +9,6 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance {private set; get;}
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
-    [SerializeField] private Transform revivePoint;
-
     [SerializeField] private Canvas questionCanvas;
     [SerializeField] private Timer quizTimer;
     [SerializeField] private GameObject[] secretQuestionBoxArray;
@@ -18,6 +16,12 @@ public class MapManager : MonoBehaviour
     [SerializeField] private GameObject finishPoint;
 
     private ScoreKeeper scoreKeeper;
+
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +60,9 @@ public class MapManager : MonoBehaviour
         Time.timeScale = 1;
         player1.GetComponent<PlayerController>().CanMove = true;
         player2.GetComponent<PlayerController>().CanMove = true;
+        audioManager.PlayBackgroundMusic(audioManager.background);
+        player1.GetComponent<PlayerController>().SetDirectionVector(Vector2.zero);
+        player2.GetComponent<PlayerController>().SetDirectionVector(Vector2.zero);
     }
 
     private void QuestionBox_OnOpenSecretQuestion(object sender, EventArgs e)
@@ -70,12 +77,16 @@ public class MapManager : MonoBehaviour
         p2.CanMove = false;
         p1.ResetVelocity();
         p2.ResetVelocity();
+         audioManager.PlayBackgroundMusic(audioManager.quizbackground);
     }
 
     private void PlayerHealth_OnPlayerDie(object sender, EventArgs e)
     {
         //Revive players
-        RevivePlayer();
+        
+        audioManager.PlaySFX(audioManager.death);
+        audioManager.StopMusic();
+        //audioManager.PlaySFX(audioManager.lose);
         GameOverManager.Instance.Show();
         Time.timeScale = 0f;
         Pause.Instance.canPause = false;
@@ -101,12 +112,6 @@ public class MapManager : MonoBehaviour
     public Canvas getQuesCanvas()
     {
         return questionCanvas;
-    }
-    private void RevivePlayer()
-    {
-        Debug.Log("Die!");
-        player1.transform.position = revivePoint.position;
-        player2.transform.position = revivePoint.position + new Vector3(0,0,2);
     }
 
     public GameObject[] GetPlayers()

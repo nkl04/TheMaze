@@ -23,10 +23,15 @@ public class Quiz : MonoBehaviour
     [SerializeField] Image timerImage;
     Timer timer;
     ScoreKeeper scoreKeeper;
-
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     void Start(){
         timer = FindObjectOfType<Timer>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        audioManager.PlayBackgroundMusic(audioManager.quizbackground);
     }
     void Update(){
         timerImage.fillAmount = timer.fillFraction;
@@ -43,6 +48,7 @@ public class Quiz : MonoBehaviour
     }
 
     public void OnAnswerSelected(int index){
+        audioManager.PlaySFX(audioManager.action);
         hasAnsweredEarly = true;
         DisplayAnswer(index);
         SetButtonState(false);
@@ -59,12 +65,14 @@ public class Quiz : MonoBehaviour
             buttonImage = answerButtons[index].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
             scoreKeeper.IncrementScore();
+            audioManager.PlaySFX(audioManager.correctAns);
         }else {
             correctAnswerIndex = currentQuestion.GetCorrectAnswerIndex();
             string correctAnswer = currentQuestion.GetAnswer(correctAnswerIndex);
             questionText.text = "Correct Answer is \n" + correctAnswer;
             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
+            audioManager.PlaySFX(audioManager.incorrectAns);
         }
     }
     

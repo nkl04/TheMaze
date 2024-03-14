@@ -46,9 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 0}
   player2: {fileID: 0}
-  revivePoint: {fileID: 0}
-  questionCanvas: {fileID: 0}
-  quizTimer: {fileID: 0}
+  questionCanvas: {fileID: 1561942708401148930, guid: 728c8c066d7a85b439adbd0a2d2d2a3d, type: 3}
+  quizTimer: {fileID: 6927835993829476747, guid: d4a4a519411d25a41bf75b1df158226b, type: 3}
   secretQuestionBoxArray: []
   levelEntrance: {fileID: 5827589342587524232, guid: 8033fd71d25c7af4cb8d2756be28f5c1, type: 3}
   finishPoint: {fileID: 5392220207190266167, guid: 30ace1e94994367429c0c79d8bb3e8f7, type: 3}
