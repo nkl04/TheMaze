@@ -37,19 +37,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private Vector2 direction;
     private bool isFacingRight = true;
-    // private bool canJump;
-    // private bool isJumping;
-    // private float coyoteTimeCounter;
-    // private float jumpBufferTimeCounter;
 
     private Vector3 vector3Up;
-    //public AudioSource soundmain_source;
-    //public AudioSource sounddie_source;
-    //public AudioSource soundjump_source;
-    
-    //public AudioClip soundmain_clip;
-    //public AudioClip sounddie_clip;
-    //public AudioClip soundjump_clip;
     AudioManager audioManager;
     private void Awake()
     {
@@ -57,8 +46,6 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        //soundmain_source.clip = soundmain_clip;
-        //soundmain_source.Play();
         rb2d = GetComponent<Rigidbody2D>();
         transform.GetComponent<PlayerHealth>().OnPlayerDie += Health_OnPlayerDie;
         if (ReverseGravityZone.Instance != null)
@@ -127,14 +114,6 @@ public class PlayerController : MonoBehaviour
         //     isJumping = true;
         // }
         #endregion
-        
-         
-        // if (transform.parent != null && transform.parent.up != vector3Up)
-        // {
-        //     transform.SetParent(null);
-        // }
-
-        Debug.Log(canMove);
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
@@ -167,9 +146,7 @@ public class PlayerController : MonoBehaviour
     {
         //change the vetical position of player (Jump) 
         rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce * transform.up.y);
-        //sound_main.PlayOneShot(sound_jump);
-        //soundjump_source.clip = soundjump_clip;
-        //soundjump_source.PlayOneShot(soundjump_clip);
+        
         System.Random random = new System.Random();
 
         int randomNumber;

@@ -9,6 +9,7 @@ public class Pause : MonoBehaviour
 {
     public static Pause Instance {private set; get;}
     public GameObject pauseGameUI;
+    [SerializeField] GameObject optionGameObject;
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
 
@@ -25,9 +26,9 @@ public class Pause : MonoBehaviour
             player1.GetComponent<PlayerController>().CanMove = true;
             player2.GetComponent<PlayerController>().CanMove = true;
         });
-        // optionButton.onClick.AddListener(() =>{
-        //     Loader.Load(SceneManager.GetActiveScene().buildIndex);
-        // });
+        optionButton.onClick.AddListener(() =>{
+            optionGameObject.SetActive(true);
+        });
         
         homeButton.onClick.AddListener(() =>{
             LoadHomeScene();
@@ -38,6 +39,7 @@ public class Pause : MonoBehaviour
     {
         Instance = this;
         pauseGameUI.SetActive(false);
+        HideOptionUI();
     }
     void Update()
     {
@@ -53,10 +55,18 @@ public class Pause : MonoBehaviour
             }
             else
             {
-                ResumeGame();
-                player1.GetComponent<PlayerController>().CanMove = true;
-                player2.GetComponent<PlayerController>().CanMove = true;
-                isPaused = false;
+                if (optionGameObject.activeSelf)
+                {
+                    HideOptionUI();
+                }
+                else
+                {
+                    ResumeGame();
+                    player1.GetComponent<PlayerController>().CanMove = true;
+                    player2.GetComponent<PlayerController>().CanMove = true;
+                    isPaused = false;
+                }
+                
             }
         } 
         
@@ -89,4 +99,15 @@ public class Pause : MonoBehaviour
     {
         return isPaused;
     }
+
+    private void HideOptionUI()
+    {
+        optionGameObject.SetActive(false);
+    }
+
+    private void ShowOptionUI()
+    {
+        optionGameObject.SetActive(true);
+    }
+
 }
