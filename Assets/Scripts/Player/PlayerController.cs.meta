@@ -3,7 +3,14 @@ guid: a467910a6f09fa648a92e47ed0ecd150
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - groundCheckPoint: {instanceID: 0}
+  - soundmain_source: {instanceID: 0}
+  - sounddie_source: {instanceID: 0}
+  - soundjump_source: {instanceID: 0}
+  - soundmain_clip: {instanceID: 0}
+  - sounddie_clip: {instanceID: 0}
+  - soundjump_clip: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

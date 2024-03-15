@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Networking.PlayerConnection;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,32 +20,43 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 10;
     [SerializeField] private bool canMove = true;
 
-    [Header("Improvement")]
-    [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private float jumpBufferTime = 0.2f;
+    // [Header("Improvement")]
+    // [SerializeField] private float coyoteTime = 0.2f;
+    // [SerializeField] pr  ivate float jumpBufferTime = 0.2f;
     
     [Space(5)]
 
     [Header("Ground Check")]
-    [SerializeField] private GroundCheck groundCheck;
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private Vector2 groundCheckSize;
+    [SerializeField] private LayerMask groundCheckLayer;
 
     [Header("Elevator Stand")]
     [SerializeField] private LayerMask elevatorLayer;
     
     private Rigidbody2D rb2d;
     private Vector2 direction;
-    private bool isGrounded;
     private bool isFacingRight = true;
-    private bool canJump;
-    private bool isJumping;
-    private float coyoteTimeCounter;
-    private float jumpBufferTimeCounter;
 
-    
+    private Vector3 vector3Up;
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         transform.GetComponent<PlayerHealth>().OnPlayerDie += Health_OnPlayerDie;
+        if (ReverseGravityZone.Instance != null)
+        {
+            ReverseGravityZone.Instance.OnReverseGravity += ReverseGravityZone_OnReverseGravity;    
+        }
+    }
+
+    private void ReverseGravityZone_OnReverseGravity(object sender, EventArgs e)
+    {
+        transform.SetParent(null);
     }
 
     private void Health_OnPlayerDie(object sender, EventArgs e)
@@ -54,8 +66,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
-
-        isGrounded = groundCheck.IsGrounded;
 
         #region movement && flip
         // //horizontal movement
@@ -71,31 +81,31 @@ public class PlayerController : MonoBehaviour
 
         // Experience Improvement
         #region  Coyote Time & Jump Buffer 
-        if(isGrounded)
-        {  
-            canJump = true;
-            isJumping =false;
-            coyoteTimeCounter = coyoteTime;      
-        }
-        else 
-        {
-            // player on the air
-            if (isJumping)
-            {
-                // player jump
-                canJump = false;
-                jumpBufferTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                // not jump but leave the ground
-                coyoteTimeCounter -= Time.deltaTime;
-                if (coyoteTimeCounter <= 0)
-                {
-                    canJump = false;  
-                } 
-            }
-        }
+        // if(IsGrounded())
+        // {  
+        //     canJump = true;
+        //     isJumping =false;
+        //     coyoteTimeCounter = coyoteTime;      
+        // }
+        // else 
+        // {
+        //     // player on the air
+        //     if (isJumping)
+        //     {
+        //         // player jump
+        //         canJump = false;
+        //         jumpBufferTimeCounter -= Time.deltaTime;
+        //     }
+        //     else
+        //     {
+        //         // not jump but leave the ground
+        //         coyoteTimeCounter -= Time.deltaTime;
+        //         if (coyoteTimeCounter <= 0)
+        //         {
+        //             canJump = false;  
+        //         } 
+        //     }
+        // }
 
         // if(jumpBufferTimeCounter > 0 && IsGrounded())
         // {
@@ -104,29 +114,27 @@ public class PlayerController : MonoBehaviour
         //     isJumping = true;
         // }
         #endregion
-        // Debug.Log(canJump + " " + isJumping + " ");
-
-        Debug.Log(isGrounded);
     }
     
-    // private void OnCollisionEnter2D(Collision2D other) {
-    //     if (other.gameObject.GetComponent<Elevator>() && IsStandOnElevator())
-    //     {
-    //         transform.SetParent(other.transform);
-    //     }
-    // }
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.GetComponent<Moveable>() && IsStandOnElevator())
+        {
+            transform.SetParent(other.transform);
+            vector3Up = other.transform.up;
+        }
+    }
 
-
-    // private void OnCollisionExit2D(Collision2D other) {
-    //     if (other.gameObject.GetComponent<Elevator>())
-    //     {
-    //         transform.SetParent(null);
-    //     }
-    // }
+    private void OnCollisionExit2D(Collision2D other) {
+        if (other.gameObject.GetComponent<Moveable>())
+        {
+            transform.SetParent(null);
+            vector3Up = Vector3.zero;
+        }
+    }
     public void HorizontalMovement()
     {
         //change the velocity of the player
-        if(!isGrounded)
+        if(!IsGrounded())
         {
             rb2d.velocity = new Vector2(airMoveSpeed * direction.x, rb2d.velocity.y);
 
@@ -138,27 +146,61 @@ public class PlayerController : MonoBehaviour
     {
         //change the vetical position of player (Jump) 
         rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce * transform.up.y);
+        
+        System.Random random = new System.Random();
+
+        int randomNumber;
+        if (transform.gameObject.tag == "Player1")
+        {
+            randomNumber = random.Next(1, 3);
+        }
+        else
+        {
+            randomNumber = random.Next(4, 5);
+        }
+        
+        switch(randomNumber)
+        {
+            case 1:
+            audioManager.PlaySFX(audioManager.jump1a);
+            break;
+            case 2:
+            audioManager.PlaySFX(audioManager.jump1b);
+            break;
+            case 3:
+            audioManager.PlaySFX(audioManager.jump1c);
+            break;
+            case 4:
+            audioManager.PlaySFX(audioManager.jump2a);
+            break;
+            default:
+            audioManager.PlaySFX(audioManager.jump2b);
+            break;
+        }
+        
     }
 
-    // public bool IsGrounded()
-    // {
-    //     return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,groundCheckLayer);
-    // }
+    public bool IsGrounded()
+    {
+        return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,groundCheckLayer);
+    }
 
-    // public bool IsStandOnElevator()
-    // {
-    //     return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,elevatorLayer);
-    // }
+    public bool IsStandOnElevator()
+    {
+        return Physics2D.OverlapBox(new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y),groundCheckSize,0,elevatorLayer);
+    }
 
     public void VerticalFlip()
     {
         transform.Rotate(0f,180f,0f);
     }
 
-    public void HorizontalFlip()
+    public void ResetVelocity()
     {
-        transform.Rotate(180f,0f,0f);
+        rb2d.velocity = new Vector2(0f,0f);
     }
+
+
 
 
     //============================================ PLAYER INPUT SYSTEM ================================================
@@ -174,35 +216,29 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && canMove)
         {   
-
-            if (canJump && !isJumping)
+            if(IsGrounded())
             {
-                canJump = false;
-                isJumping = true;
-                coyoteTimeCounter = 0f;
-                VerticalMovement();
-
-            }
-            else
-            {
-                // player on the air
-                jumpBufferTimeCounter = jumpBufferTime;
+               VerticalMovement(); 
             }
         }
     }
     //=================================================================================================================
 
-    // private void OnDrawGizmos()
-    // {
-    //     Gizmos.color = Color.red;
-    //     Gizmos.DrawWireCube(groundCheckPoint.position,groundCheckSize);
-    // }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(groundCheckPoint.position,groundCheckSize);
+    }
 
     public Vector2 GetDirectionVector()
     {
         return direction;
     }
 
+    public void SetDirectionVector(Vector2 vector)
+    {
+        direction = vector;
+    }
     
     
 }

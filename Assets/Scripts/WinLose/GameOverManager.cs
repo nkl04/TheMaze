@@ -1,25 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
-  [SerializeField] private Button Restart;
-   [SerializeField] private Button MainMenu;
-   [SerializeField] private Button Quit;
+    public static GameOverManager Instance {private set; get;}
+    [SerializeField] private GameObject losingUI;
+    [SerializeField] private Button playAgainButton;
+    [SerializeField] private Button homeButton;
+    
+    AudioManager audioManager;
 
    private void Awake(){
-        Restart.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.Map1);
+        Instance = this;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        Hide();
+        
+        playAgainButton.onClick.AddListener(() =>{
+            audioManager.PlaySFX(audioManager.action);
+            PlayAgain();
         });
         
-        MainMenu.onClick.AddListener(() =>{
-            Loading.Load(Loading.Scene.MainMenuScene);
-        });
-
-        Quit.onClick.AddListener(() =>{
-            Application.Quit();
+        homeButton.onClick.AddListener(() =>{
+            audioManager.PlaySFX(audioManager.action);
+            ReturnHome();
         });
    }
+
+    public void Hide()
+    {
+        losingUI.SetActive(false);
+    }
+
+    public void Show()
+    {
+        losingUI.SetActive(true);
+    }
+
+    public void PlayAgain()
+    {
+        Loader.Load(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+    }
+
+    public void ReturnHome()
+    {
+        Loader.Load(Loader.Scene.MainMenuScene);
+        Time.timeScale = 1f;
+    }
 }

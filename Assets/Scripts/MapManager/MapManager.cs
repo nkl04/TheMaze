@@ -9,14 +9,19 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance {private set; get;}
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
-    [SerializeField] private Transform revivePoint;
-    [SerializeField] private bool reverseGravity = false;
     [SerializeField] private Canvas questionCanvas;
     [SerializeField] private Timer quizTimer;
     [SerializeField] private GameObject[] secretQuestionBoxArray;
     [SerializeField] private LevelEntrance levelEntrance;
-    private bool canReverseGravity;
+    [SerializeField] private GameObject finishPoint;
+
     private ScoreKeeper scoreKeeper;
+
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +44,10 @@ public class MapManager : MonoBehaviour
 
     private void LevelEntrance_OnOutOfTheMap(object sender, EventArgs e)
     {
+
+        //unlock new level
+        finishPoint.GetComponent<FinishPoint>().UnlockNewLevel();
+
         //loading the next level scene
         Loader.LoadTheNextScene();
     }
@@ -47,40 +56,45 @@ public class MapManager : MonoBehaviour
     {
         questionCanvas.gameObject.SetActive(false);
         quizTimer.CancelTimer();
+        quizTimer.gameObject.SetActive(false);
         Time.timeScale = 1;
-        
+        player1.GetComponent<PlayerController>().CanMove = true;
+        player2.GetComponent<PlayerController>().CanMove = true;
+        audioManager.PlayBackgroundMusic(audioManager.background);
+        player1.GetComponent<PlayerController>().SetDirectionVector(Vector2.zero);
+        player2.GetComponent<PlayerController>().SetDirectionVector(Vector2.zero);
     }
 
     private void QuestionBox_OnOpenSecretQuestion(object sender, EventArgs e)
     {
         questionCanvas.gameObject.SetActive(true);
+        quizTimer.gameObject.SetActive(true);
         quizTimer.StartTimeCounter();
         Time.timeScale = 0;
+        PlayerController p1 = player1.GetComponent<PlayerController>();
+        PlayerController p2 = player2.GetComponent<PlayerController>();
+        p1.CanMove = false;
+        p2.CanMove = false;
+        p1.ResetVelocity();
+        p2.ResetVelocity();
+         audioManager.PlayBackgroundMusic(audioManager.quizbackground);
     }
 
     private void PlayerHealth_OnPlayerDie(object sender, EventArgs e)
     {
         //Revive players
-        RevivePlayer();
+        
+        audioManager.PlaySFX(audioManager.death);
+        audioManager.StopMusic();
+        //audioManager.PlaySFX(audioManager.lose);
+        GameOverManager.Instance.Show();
+        Time.timeScale = 0f;
+        Pause.Instance.canPause = false;
+        
     }
 
     private void Update() {
-        if (reverseGravity)
-        {
-            if (canReverseGravity)
-            {
-                ReverseGravity(player1);
-                ReverseGravity(player2);
-                canReverseGravity = false;
-            }
-        }
-        else
-        {
-            canReverseGravity = true;
-            ResetGravity(player1);
-            ResetGravity(player2);
-        }
-
+        
         if (scoreKeeper.GetQuestionCollect() == secretQuestionBoxArray.Length)
         {
             //player get all secret box in the level
@@ -93,29 +107,17 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    private void ReverseGravity(GameObject gameObject)
-    {
-        float gravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
-        gameObject.GetComponent<Rigidbody2D>().gravityScale = -gravity;
-        gameObject.transform.GetComponent<PlayerController>().HorizontalFlip();
-    }
-
-    private void ResetGravity(GameObject gameObject)
-    {
-        float gravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
-        gameObject.GetComponent<Rigidbody2D>().gravityScale = Mathf.Abs(gravity);
-        gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-    }
-
-
-    private void RevivePlayer()
-    {
-        Debug.Log("Die!");
-        player1.transform.position = revivePoint.position;
-        player2.transform.position = revivePoint.position + new Vector3(0,0,2);
-    }
-
-
-
     
+
+    public Canvas getQuesCanvas()
+    {
+        return questionCanvas;
+    }
+
+    public GameObject[] GetPlayers()
+    {
+        GameObject[] playerArray = {player1,player2};
+        return playerArray;
+    }
+
 }

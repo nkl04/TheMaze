@@ -8,17 +8,28 @@ public class Timer : MonoBehaviour
 {
     public event EventHandler OnWaitingTimeOver;
    [SerializeField] float timeToAnswerQuestion = 30f; 
-   [SerializeField] float timeToTurnOffQuestion = 5f;
+   [SerializeField] float timeToTurnOffQuestion = 2f;
     float timeValue;
     public float fillFraction;
     public bool isAnsweringQuestion = false;
     public bool loadNextQuestion;
+    private bool flag;
     void UpdateTimer()
     {
-        timeValue -= Time.unscaledDeltaTime;
+
+        if(Pause.Instance.IsPaused())
+        {
+            timeValue -= Time.deltaTime;
+        }
+        else
+        {
+            timeValue -= Time.unscaledDeltaTime;
+        }
+        
         
         if (isAnsweringQuestion)
         {
+            //neu dang tra loi cau hoi
             if (timeValue > 0)
             {
                 fillFraction = timeValue / timeToAnswerQuestion;
@@ -31,6 +42,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
+            //neu da tra loi cau hoi
             if (timeValue > 0)
             {
                 fillFraction = timeValue / timeToTurnOffQuestion;
@@ -38,7 +50,12 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                OnWaitingTimeOver?.Invoke(this,EventArgs.Empty);
+                if (flag)
+                {
+                    OnWaitingTimeOver?.Invoke(this,EventArgs.Empty);
+                    flag = false;
+                }
+
             }
         }
     }
@@ -58,5 +75,6 @@ public class Timer : MonoBehaviour
         isAnsweringQuestion = true;
         timeValue = timeToAnswerQuestion;
         loadNextQuestion = true;
+        flag = true;
     }
 }
