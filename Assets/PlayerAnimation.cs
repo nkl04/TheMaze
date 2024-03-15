@@ -21,6 +21,7 @@ public class PlayerAnimation : MonoBehaviour
     public bool isTouchingWall = false;
     private float direction;
     public bool isFacingRight = true;
+    public float jumpForce = 10f;
 
     public void Start()
     {
@@ -45,9 +46,10 @@ public class PlayerAnimation : MonoBehaviour
 
         animator.SetBool(IS_TOUCHING_GROUND, isTouchingGround);
 
-        if(Input.GetButtonDown("Jump") && isTouchingGround)
+        if(Input.GetButtonDown("JumpPlayer2") && isTouchingGround)
         {   
             animator.SetBool(IS_JUMPING, true); 
+            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         }
         
         if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
