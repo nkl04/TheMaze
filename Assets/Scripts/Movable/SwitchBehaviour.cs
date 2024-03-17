@@ -25,7 +25,7 @@ public class SwitchBehaviour : MonoBehaviour
     private Vector3 switchUpPos;
     private Vector3 switchDownPos;
     private float switchSpeed = 1f;
-    private float switchDelay = 0.2f;
+    private float switchDelay = 0.5f;
     private bool isPressingSwitch = false;
     
     private void Awake() {

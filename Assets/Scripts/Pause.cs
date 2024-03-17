@@ -80,10 +80,11 @@ public class Pause : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (!MapManager.Instance.getQuesCanvas().gameObject.activeInHierarchy)
-        {
-            Time.timeScale = 1f;
-        }
+        // if (!MapManager.Instance.getQuesCanvas().gameObject.activeInHierarchy)
+        // {
+        //     Time.timeScale = 1f;
+        // }
+        Time.timeScale = 1f;
         pauseGameUI.SetActive(false);
         isPaused = false;     
     }

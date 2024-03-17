@@ -857,7 +857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseGameUI: {fileID: 5246903491260739777}
-  optionGameObject: {fileID: 0}
+  optionGameObject: {fileID: 8645827318214092843}
   player1: {fileID: 0}
   player2: {fileID: 0}
   canPause: 1
@@ -1807,5 +1807,10 @@ PrefabInstance:
 --- !u!224 &5470705391174991897 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5134079626609644473, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}
+  m_PrefabInstance: {fileID: 924420626598302624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8645827318214092843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8874366748534209419, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}
   m_PrefabInstance: {fileID: 924420626598302624}
   m_PrefabAsset: {fileID: 0}
