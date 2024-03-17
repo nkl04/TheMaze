@@ -10,6 +10,8 @@ TagManager:
   - BlockPlatform
   - Saw
   - Audio
+  - Pause
+  - Level
   layers:
   - Default
   - TransparentFX

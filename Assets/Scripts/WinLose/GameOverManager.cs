@@ -10,8 +10,10 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private GameObject losingUI;
     [SerializeField] private Button playAgainButton;
     [SerializeField] private Button homeButton;
+    [SerializeField] private Button continueButton;
     
     AudioManager audioManager;
+    public GameObject levelPanel;
 
    private void Awake(){
         Instance = this;
@@ -26,6 +28,10 @@ public class GameOverManager : MonoBehaviour
         homeButton.onClick.AddListener(() =>{
             audioManager.PlaySFX(audioManager.action);
             ReturnHome();
+        });
+         continueButton.onClick.AddListener(() =>{
+            audioManager.PlaySFX(audioManager.action);
+            AfterWinSelection();
         });
    }
 
@@ -49,5 +55,27 @@ public class GameOverManager : MonoBehaviour
     {
         Loader.Load(Loader.Scene.MainMenuScene);
         Time.timeScale = 1f;
+    }
+    //Does not work?
+    // public void AfterWinSelection(){
+    //     Loader.Load(Loader.Scene.MainMenuScene);
+    //     Time.timeScale = 1f;
+    //     // GameObject.FindGameObjectWithTag("Level").SetActive(true);
+    //     LevelPanel.SetActive(true);
+    // }
+ public void AfterWinSelection()
+    {
+        Loader.Load(Loader.Scene.MainMenuScene);
+        Time.timeScale = 1f;
+
+        // Activate LevelPanel using GameManager
+        if (Instance != null && Instance.levelPanel != null)
+        {
+            Instance.levelPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("GameManager or levelPanel reference is missing.");
+        }
     }
 }

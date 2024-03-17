@@ -17,12 +17,13 @@ public class Pause : MonoBehaviour
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button optionButton;
     [SerializeField] private Button homeButton;
-
+    [SerializeField] private Button cancelPauseUIButton;
     private bool isPaused = false;
 
     private void Awake() {
         resumeButton.onClick.AddListener(() =>{
             ResumeGame();
+            
             player1.GetComponent<PlayerController>().CanMove = true;
             player2.GetComponent<PlayerController>().CanMove = true;
         });
@@ -33,6 +34,9 @@ public class Pause : MonoBehaviour
         homeButton.onClick.AddListener(() =>{
             LoadHomeScene();
         });
+        // cancelPauseUIButton.onClick.AddListener( ()=> {
+        //     pauseGameUI.SetActive(false);//being fixed
+        // });
     }
 
     void Start()

@@ -1324,12 +1324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7877d9a9730e94fb08bbd3a5e09a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelPanel: {fileID: 1692780959}
-  OptionPanelUI: {fileID: 1803855352}
-  MainMenuButtons: {fileID: 1518356560}
-  playButton: {fileID: 1087735311}
-  optionButton: {fileID: 1182679681}
-  quitButton: {fileID: 335899866}
 --- !u!1 &1019591360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2418,7 +2412,7 @@ GameObject:
   - component: {fileID: 1692780961}
   m_Layer: 5
   m_Name: LevelPanel
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2718,11 +2712,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724278029}
   m_CullTransparentMesh: 1
---- !u!1 &1803855352 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8874366748534209419, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}
-  m_PrefabInstance: {fileID: 4693389331451564692}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1803855353 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5134079626609644473, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}
@@ -3135,6 +3124,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2573171042356278816, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984208347687047958, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3658982783760973045, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}
