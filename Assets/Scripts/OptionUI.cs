@@ -32,19 +32,17 @@ public class OptionUI : MonoBehaviour
 
     private void Awake() {
         Instance = this;
-        UpdateTextVisual();
+
         HidePressKeyToRebindTransform();
 
         //===========Audio==========
         soundEffectsButton.onClick.AddListener(() =>
         {
-            Debug.Log("SoundEff btn");
             AudioManager.Instance.ChangeVolumeSFX();
             UpdateVisual();
 
         });
         musicButton.onClick.AddListener(() => {
-            Debug.Log("Music btn");
             AudioManager.Instance.ChangeVolumeMusic();
             UpdateVisual();
         });
@@ -58,6 +56,12 @@ public class OptionUI : MonoBehaviour
         player2_moveDownButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_MoveDown);});
         player2_moveLeftButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_MoveLeft);});
         player2_moveRightButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_MoveRight);});
+        // UpdateTextVisual();
+    }
+
+    private void Start() {
+        UpdateTextVisual();
+        UpdateVisual();
     }
 
     private void UpdateTextVisual()
@@ -94,8 +98,5 @@ public class OptionUI : MonoBehaviour
     {
         soundEffectsText.text ="Sound Effects: " + Mathf.Round( AudioManager.Instance.GetvolumeSFX() *10f);
         musicText.text ="Music: " + Mathf.Round( AudioManager.Instance.GetvolumeMusic() *10f);
-        Debug.Log("UpdateVisual");
-
-
     }
 }

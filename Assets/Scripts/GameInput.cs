@@ -23,30 +23,24 @@ public class GameInput : MonoBehaviour
     private void Awake() {
         Instance = this;
         playerInputSystem = new PlayerInputSystem();
+        playerInputSystem.Player1.Enable();
+        playerInputSystem.Player2.Enable();
     }
 
     public string GetBindingText(Binding binding)
     {
-        switch(binding)
+        return binding switch
         {
-            default:
-            case Binding.Player1_Jump:
-                return playerInputSystem.Player1.Jump.bindings[0].ToDisplayString();
-            case Binding.Player1_MoveLeft:
-                return playerInputSystem.Player1.Move.bindings[1].ToDisplayString();
-            case Binding.Player1_MoveRight:
-                return playerInputSystem.Player1.Move.bindings[3].ToDisplayString();
-            case Binding.Player1_MoveDown:
-                return playerInputSystem.Player1.Move.bindings[2].ToDisplayString();
-            case Binding.Player2_Jump:
-                return playerInputSystem.Player2.Jump.bindings[0].ToDisplayString();
-            case Binding.Player2_MoveLeft:
-                return playerInputSystem.Player2.Move.bindings[1].ToDisplayString();
-            case Binding.Player2_MoveRight:
-                return playerInputSystem.Player2.Move.bindings[3].ToDisplayString();
-            case Binding.Player2_MoveDown:
-                return playerInputSystem.Player2.Move.bindings[2].ToDisplayString();
-        }
+            Binding.Player1_Jump => playerInputSystem.Player1.Jump.bindings[0].ToDisplayString(),
+            Binding.Player1_MoveLeft => playerInputSystem.Player1.Move.bindings[1].ToDisplayString(),
+            Binding.Player1_MoveRight => playerInputSystem.Player1.Move.bindings[3].ToDisplayString(),
+            Binding.Player1_MoveDown => playerInputSystem.Player1.Move.bindings[2].ToDisplayString(),
+            Binding.Player2_Jump => playerInputSystem.Player2.Jump.bindings[0].ToDisplayString(),
+            Binding.Player2_MoveLeft => playerInputSystem.Player2.Move.bindings[1].ToDisplayString(),
+            Binding.Player2_MoveRight => playerInputSystem.Player2.Move.bindings[3].ToDisplayString(),
+            Binding.Player2_MoveDown => playerInputSystem.Player2.Move.bindings[2].ToDisplayString(),
+            _ => null,
+        };
     }
 
     public void RebindBinding(Binding binding, Action action)
@@ -99,10 +93,31 @@ public class GameInput : MonoBehaviour
             playerInputSystem.Player2.Enable();
             action();
         }).Start();
-
-        
     }
 
+    public Vector2 GetDirectionVector(String tagplayer)
+    {
+        Vector2 inputVector;
+        if (tagplayer == "Player1")
+        {
+            inputVector = playerInputSystem.Player1.Move.ReadValue<Vector2>();
+
+        }
+        else
+        {
+            inputVector = playerInputSystem.Player2.Move.ReadValue<Vector2>();
+        }
+
+        inputVector = inputVector.normalized;
+        return inputVector;
+    }
+
+    public PlayerInputSystem GetPlayerInputSystem()
+    {
+        return playerInputSystem;
+    }
+
+    
 
 
 

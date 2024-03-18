@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        
     }
     private void Start()
     {
@@ -51,6 +53,15 @@ public class PlayerController : MonoBehaviour
         if (ReverseGravityZone.Instance != null)
         {
             ReverseGravityZone.Instance.OnReverseGravity += ReverseGravityZone_OnReverseGravity;    
+        }
+        if (gameObject.tag == "Player1")
+        {
+            GameInput.Instance.GetPlayerInputSystem().Player1.Jump.performed += ctx => OnJump(ctx);
+        }
+        else
+        {
+            GameInput.Instance.GetPlayerInputSystem().Player2.Jump.performed += ctx => OnJump(ctx);
+            
         }
     }
 
@@ -66,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
+        direction = GameInput.Instance.GetDirectionVector(gameObject.tag);
 
         #region movement && flip
         // //horizontal movement
@@ -204,13 +216,6 @@ public class PlayerController : MonoBehaviour
 
 
     //============================================ PLAYER INPUT SYSTEM ================================================
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        if (canMove)
-        {
-            direction = context.ReadValue<Vector2>();
-        }
-    }
 
     public void OnJump(InputAction.CallbackContext context)
     {
