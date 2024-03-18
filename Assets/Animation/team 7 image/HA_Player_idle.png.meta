@@ -152,27 +152,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HA_Player_idle_2
-      rect:
-        serializedVersion: 2
-        x: 2879
-        y: 253
-        width: 1
-        height: 385
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c6ffbc306d420548a7ab9a23f5dae9c
-      internalID: -1854953259
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: HA_Player_idle_3
       rect:
         serializedVersion: 2
