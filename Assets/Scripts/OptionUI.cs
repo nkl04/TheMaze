@@ -7,6 +7,11 @@ using UnityEngine.UI;
 public class OptionUI : MonoBehaviour
 {
     public static OptionUI Instance {get;private set;}
+    [SerializeField] private Button soundEffectsButton;
+    [SerializeField] private Button musicButton;
+    [SerializeField] private TextMeshProUGUI soundEffectsText;
+    [SerializeField] private TextMeshProUGUI musicText;
+
     [SerializeField] private Button player1_jumpButton;
     [SerializeField] private Button player1_moveDownButton;
     [SerializeField] private Button player1_moveLeftButton;
@@ -29,6 +34,21 @@ public class OptionUI : MonoBehaviour
         Instance = this;
         UpdateTextVisual();
         HidePressKeyToRebindTransform();
+
+        //===========Audio==========
+        soundEffectsButton.onClick.AddListener(() =>
+        {
+            Debug.Log("SoundEff btn");
+            AudioManager.Instance.ChangeVolumeSFX();
+            UpdateVisual();
+
+        });
+        musicButton.onClick.AddListener(() => {
+            Debug.Log("Music btn");
+            AudioManager.Instance.ChangeVolumeMusic();
+            UpdateVisual();
+        });
+        //========================================
 
         player1_jumpButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_Jump);});
         player1_moveDownButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_MoveDown);});
@@ -69,5 +89,13 @@ public class OptionUI : MonoBehaviour
             HidePressKeyToRebindTransform();
             UpdateTextVisual();
         });
+    }
+    private void UpdateVisual()
+    {
+        soundEffectsText.text ="Sound Effects: " + Mathf.Round( AudioManager.Instance.GetvolumeSFX() *10f);
+        musicText.text ="Music: " + Mathf.Round( AudioManager.Instance.GetvolumeMusic() *10f);
+        Debug.Log("UpdateVisual");
+
+
     }
 }

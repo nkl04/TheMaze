@@ -10,29 +10,10 @@ public class OptionsUI : MonoBehaviour
 
     [SerializeField] private Button soundEffectsButton;
     [SerializeField] private Button musicButton;
-    [SerializeField] private Button closeButton;
-    [SerializeField] private Button moveDownButton1;
-    [SerializeField] private Button moveLeftButton1;
-    [SerializeField] private Button moveRightButton1;
-    [SerializeField] private Button jumpButton1;
-    [SerializeField] private Button moveDownButton2;
-    [SerializeField] private Button moveLeftButton2;
-    [SerializeField] private Button moveRightButton2;
-    [SerializeField] private Button jumpButton2;
-    [SerializeField] private Button pauseButton;
-    [SerializeField] private Button restartButton;
+    
     [SerializeField] private TextMeshProUGUI soundEffectsText;
     [SerializeField] private TextMeshProUGUI musicText;
-    [SerializeField] private TextMeshProUGUI moveDownText1;
-    [SerializeField] private TextMeshProUGUI moveLeftText1;
-    [SerializeField] private TextMeshProUGUI moveRightText1;
-    [SerializeField] private TextMeshProUGUI jumpText1;
-    [SerializeField] private TextMeshProUGUI moveDownText2;
-    [SerializeField] private TextMeshProUGUI moveLeftText2;
-    [SerializeField] private TextMeshProUGUI moveRightText2;
-    [SerializeField] private TextMeshProUGUI jumpText2;
-    [SerializeField] private TextMeshProUGUI pauseText;
-    [SerializeField] private TextMeshProUGUI restartText;
+    
 
     private void Awake()
     {
@@ -46,9 +27,7 @@ public class OptionsUI : MonoBehaviour
             // MusicManager.Instance.ChangeVolume();
             UpdateVisual();
         });
-        closeButton.onClick.AddListener(() => {
-            Hide();
-        });
+        
     }
     private void Start()
     {
