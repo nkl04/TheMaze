@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class OptionUI : MonoBehaviour
 {
     public static OptionUI Instance {get;private set;}
+
+    [SerializeField] private Transform optionPanelUI;
+    [SerializeField] private Button returnButton;
+
     [Header("Sound&Music Button")]
     [SerializeField] private Button soundEffectsButton;
     [SerializeField] private Button musicButton;
@@ -42,6 +46,12 @@ public class OptionUI : MonoBehaviour
         Instance = this;
         confirmToDeleteData.gameObject.SetActive(false);
         HidePressKeyToRebindTransform();
+
+
+        returnButton.onClick.AddListener(()=>{
+            optionPanelUI.gameObject.SetActive(false);
+            confirmToDeleteData.gameObject.SetActive(false);
+        });
 
         //===========Audio==========
         soundEffectsButton.onClick.AddListener(() =>

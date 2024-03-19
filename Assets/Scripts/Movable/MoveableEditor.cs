@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(Moveable))]
 public class MoveableEditor : Editor {
     SerializedProperty hasLight;
@@ -76,6 +77,6 @@ public class MoveableEditor : Editor {
         serializedObject.ApplyModifiedProperties();
     }
 };
-
+#endif 
 
 

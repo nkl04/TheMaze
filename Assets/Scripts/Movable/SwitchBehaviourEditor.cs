@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(SwitchBehaviour))]
 public class SwitchBehaviourEditor : Editor {
     SerializedProperty canOpenSwitch;
@@ -34,3 +34,4 @@ public class SwitchBehaviourEditor : Editor {
         serializedObject.ApplyModifiedProperties();
     }
 };
+#endif 

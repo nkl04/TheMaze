@@ -27,7 +27,6 @@ public class MainMenuUI : MonoBehaviour
         optionButton.onClick.AddListener(() =>{
             audioManager.PlaySFX(audioManager.action);
             OptionPanelUI.SetActive(true);
-            MainMenuButtons.SetActive(false);
         });
         quitButton.onClick.AddListener(() =>{
             audioManager.PlaySFX(audioManager.action);
@@ -43,7 +42,6 @@ public class MainMenuUI : MonoBehaviour
         else if (OptionPanelUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             OptionPanelUI.SetActive(false);
-            MainMenuButtons.SetActive(true);
         }
     }
 }

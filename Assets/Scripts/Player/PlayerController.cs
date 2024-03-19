@@ -123,13 +123,13 @@ public class PlayerController : MonoBehaviour
         //     isJumping = true;
         // }
         #endregion
+        
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.GetComponent<Moveable>() && IsStandOnElevator())
+        if (other.gameObject.GetComponent<Moveable>() && IsStandOnElevator() && transform.parent == null)
         {
             transform.SetParent(other.transform);
-            vector3Up = other.transform.up;
         }
     }
 
@@ -137,7 +137,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.GetComponent<Moveable>())
         {
             transform.SetParent(null);
-            vector3Up = Vector3.zero;
         }
     }
     public void HorizontalMovement()
