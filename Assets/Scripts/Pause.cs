@@ -10,6 +10,7 @@ public class Pause : MonoBehaviour
     public static Pause Instance {private set; get;}
     public GameObject pauseGameUI;
     [SerializeField] GameObject optionGameObject;
+    [SerializeField] GameObject confirmToDeleteData;
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
 
@@ -32,7 +33,10 @@ public class Pause : MonoBehaviour
         
         homeButton.onClick.AddListener(() =>{
             LoadHomeScene();
+            isPaused = false;
         });
+
+        confirmToDeleteData.SetActive(false);
     }
 
     void Start()
@@ -55,7 +59,11 @@ public class Pause : MonoBehaviour
             }
             else
             {
-                if (optionGameObject.activeSelf)
+                if (confirmToDeleteData.activeSelf)
+                {
+                    confirmToDeleteData.SetActive(false);
+                }
+                else if (optionGameObject.activeSelf)
                 {
                     HideOptionUI();
                 }
@@ -94,6 +102,7 @@ public class Pause : MonoBehaviour
     {
         Loader.Load(Loader.Scene.MainMenuScene);
         Time.timeScale = 1;
+        
     }
 
     public bool IsPaused()

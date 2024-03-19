@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class GameInput : MonoBehaviour
 {
     public static GameInput Instance {get;private set;}
-
+    
     public enum Binding{
         Player1_Jump,
         Player1_MoveDown,
@@ -19,12 +19,21 @@ public class GameInput : MonoBehaviour
         Player2_MoveRight
     }
     private PlayerInputSystem playerInputSystem;
+    private const string PLAYER_PREFS_BINDING = "InputBindings";
+    private const string DEFAULT_PLAYER_PREFS_BINDING = "DefaultInputBindings";
     
     private void Awake() {
         Instance = this;
         playerInputSystem = new PlayerInputSystem();
+        PlayerPrefs.SetString(DEFAULT_PLAYER_PREFS_BINDING,playerInputSystem.SaveBindingOverridesAsJson());
+        if (PlayerPrefs.HasKey(PLAYER_PREFS_BINDING))
+        {
+            playerInputSystem.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDING));
+        }
         playerInputSystem.Player1.Enable();
         playerInputSystem.Player2.Enable();
+
+        
     }
 
     public string GetBindingText(Binding binding)
@@ -92,6 +101,7 @@ public class GameInput : MonoBehaviour
             playerInputSystem.Player1.Enable();
             playerInputSystem.Player2.Enable();
             action();
+            PlayerPrefs.SetString(PLAYER_PREFS_BINDING,playerInputSystem.SaveBindingOverridesAsJson());
         }).Start();
     }
 
@@ -115,6 +125,15 @@ public class GameInput : MonoBehaviour
     public PlayerInputSystem GetPlayerInputSystem()
     {
         return playerInputSystem;
+    }
+
+    public String getInputKey()
+    {
+        return PLAYER_PREFS_BINDING;
+    }
+    public String getDefaultInputKey()
+    {
+        return DEFAULT_PLAYER_PREFS_BINDING;
     }
 
     

@@ -858,6 +858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseGameUI: {fileID: 5246903491260739777}
   optionGameObject: {fileID: 8645827318214092843}
+  confirmToDeleteData: {fileID: 942209577213143293}
   player1: {fileID: 0}
   player2: {fileID: 0}
   canPause: 1
@@ -1820,6 +1821,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}
+--- !u!1 &942209577213143293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 128164809898015581, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}
+  m_PrefabInstance: {fileID: 924420626598302624}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &988530198883030544 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 100140577093633456, guid: 56663ad697dce5b498cedd15e331ac64, type: 3}

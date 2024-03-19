@@ -25,8 +25,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip death;
     public AudioClip action;
 
-    private float volumeMusic = 1f;
-    private float volumeSFX = 1f;
+    private float volumeMusic;
+    private float volumeSFX;
 
     private void Awake()
     {
@@ -34,8 +34,13 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-
+        volumeMusic = PlayerPrefs.GetFloat("MusicVolume");
+        volumeSFX = PlayerPrefs.GetFloat("SoundVolume");
+        SFXSource.volume = volumeSFX;
+        musicSource.volume = volumeMusic;     
         PlayBackgroundMusic(background);
+
+
     }
     public void PlaySFX(AudioClip clip)
     {
@@ -59,6 +64,8 @@ public class AudioManager : MonoBehaviour
             volumeMusic = 0f;
         }
         musicSource.volume = volumeMusic;
+        PlayerPrefs.SetFloat("MusicVolume",musicSource.volume);
+        PlayerPrefs.Save();
     }
     public float GetvolumeMusic()
     {
@@ -72,6 +79,8 @@ public class AudioManager : MonoBehaviour
             volumeSFX = 0f;
         }
         SFXSource.volume = volumeSFX;
+        PlayerPrefs.SetFloat("SoundVolume",SFXSource.volume);
+        PlayerPrefs.Save();
     }
     public float GetvolumeSFX()
     {

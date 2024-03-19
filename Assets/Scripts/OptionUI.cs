@@ -7,11 +7,19 @@ using UnityEngine.UI;
 public class OptionUI : MonoBehaviour
 {
     public static OptionUI Instance {get;private set;}
+    [Header("Sound&Music Button")]
     [SerializeField] private Button soundEffectsButton;
     [SerializeField] private Button musicButton;
     [SerializeField] private TextMeshProUGUI soundEffectsText;
     [SerializeField] private TextMeshProUGUI musicText;
 
+    [Header("Delete Data Button")]
+    [SerializeField] private Button deleteDataButton;
+    [SerializeField] private Transform confirmToDeleteData;
+    [SerializeField] private Button confirmDeleteButton;
+    [SerializeField] private Button cancelDeleteButton;
+
+    [Header("PlayerController Button")]
     [SerializeField] private Button player1_jumpButton;
     [SerializeField] private Button player1_moveDownButton;
     [SerializeField] private Button player1_moveLeftButton;
@@ -32,7 +40,7 @@ public class OptionUI : MonoBehaviour
 
     private void Awake() {
         Instance = this;
-
+        confirmToDeleteData.gameObject.SetActive(false);
         HidePressKeyToRebindTransform();
 
         //===========Audio==========
@@ -46,6 +54,25 @@ public class OptionUI : MonoBehaviour
             AudioManager.Instance.ChangeVolumeMusic();
             UpdateVisual();
         });
+        
+        //========================================
+        deleteDataButton.onClick.AddListener(() =>
+        {
+            confirmToDeleteData.gameObject.SetActive(true);
+        });
+
+        confirmDeleteButton.onClick.AddListener(() => {
+            PlayerPrefs.SetInt("ReachedIndex",0);
+            PlayerPrefs.SetInt("UnlockedLevel",1);
+            PlayerPrefs.SetString(GameInput.Instance.getInputKey(),PlayerPrefs.GetString(GameInput.Instance.getDefaultInputKey()));
+            PlayerPrefs.Save();
+            Loader.Load(Loader.Scene.MainMenuScene);
+            Time.timeScale = 1;
+        });
+        cancelDeleteButton.onClick.AddListener(() => {
+            confirmToDeleteData.gameObject.SetActive(false);
+        });
+
         //========================================
 
         player1_jumpButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_Jump);});
@@ -96,7 +123,7 @@ public class OptionUI : MonoBehaviour
     }
     private void UpdateVisual()
     {
-        soundEffectsText.text ="Sound Effects: " + Mathf.Round( AudioManager.Instance.GetvolumeSFX() *10f);
-        musicText.text ="Music: " + Mathf.Round( AudioManager.Instance.GetvolumeMusic() *10f);
+        soundEffectsText.text ="Sound Effects: " + Mathf.Round(PlayerPrefs.GetFloat("SoundVolume")*10f);
+        musicText.text ="Music: " + Mathf.Round(PlayerPrefs.GetFloat("MusicVolume")*10f) ;
     }
 }

@@ -8,6 +8,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] GameObject LevelPanel;
     [SerializeField] GameObject OptionPanelUI;
     [SerializeField] GameObject MainMenuButtons;
+    [SerializeField] GameObject ConfirmDeleteData;
     
     [SerializeField] Button playButton;
     [SerializeField] Button optionButton;
@@ -35,7 +36,11 @@ public class MainMenuUI : MonoBehaviour
     }
 
     private void Update() {
-        if (OptionPanelUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        if (ConfirmDeleteData.activeSelf && OptionPanelUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            ConfirmDeleteData.SetActive(false);
+        }
+        else if (OptionPanelUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             OptionPanelUI.SetActive(false);
             MainMenuButtons.SetActive(true);
