@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 
-[CustomEditor(typeof(SwitchBehaviour))] 
-public class SwitchBehaviourEditor : Editor
-{
+
+[CustomEditor(typeof(SwitchBehaviour))]
+public class SwitchBehaviourEditor : Editor {
     SerializedProperty canOpenSwitch;
     SerializedProperty canCloseSwitch;
     SerializedProperty mode;
@@ -34,4 +33,4 @@ public class SwitchBehaviourEditor : Editor
 
         serializedObject.ApplyModifiedProperties();
     }
-}
+};
