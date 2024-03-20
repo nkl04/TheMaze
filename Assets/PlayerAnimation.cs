@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -26,6 +27,7 @@ public class PlayerAnimation : MonoBehaviour
     public void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+
     }
     public void Update() 
     {
