@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
         System.Random random = new System.Random();
 
         int randomNumber;
-        if (transform.gameObject.tag == "Player1")
+        if (gameObject.tag == "Player1")
         {
             randomNumber = random.Next(1, 3);
         }

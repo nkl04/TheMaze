@@ -15,7 +15,7 @@ public class PlayerAnimation : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
-    public bool isTouchingGround;
+    public bool isTouchingGround = false;
     public Transform wallCheck;
     public float wallCheckRadius;
     public LayerMask wallLayer;    
@@ -23,6 +23,7 @@ public class PlayerAnimation : MonoBehaviour
     private float direction;
     public bool isFacingRight = true;
     public float jumpForce = 10f;
+    //public bool isJumping = false;
 
     public void Start()
     {
@@ -48,19 +49,22 @@ public class PlayerAnimation : MonoBehaviour
 
         animator.SetBool(IS_TOUCHING_GROUND, isTouchingGround);
 
-        if(gameObject.tag == "Player 1")
-        {   
-            if (Input.GetButtonDown("JumpPlayer1") && isTouchingGround)
-            //animator.SetBool(IS_JUMPING, true); 
-            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
-        }
-        else if (gameObject.tag == "Player 2")
-        {   
-            if (Input.GetButtonDown("JumpPlayer2") && isTouchingGround)
-            //animator.SetBool(IS_JUMPING, true); 
-            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
-        }
         
+        // if(gameObject.tag == "Player 1")
+        // {   
+        //     if (Input.GetButtonDown("JumpPlayer1") && isTouchingGround)
+        //     isJumping = true;
+        //     //rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+        // }
+        // else if (gameObject.tag == "Player 2")
+        // {   
+        //     if (Input.GetButtonDown("JumpPlayer2") && isTouchingGround)
+        //     isJumping = true;
+        //     //rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+        // }
+
+        //animator.SetBool(IS_JUMPING, isJumping);
+
         // if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
         // {
         //     isFacingRight = !isFacingRight;
