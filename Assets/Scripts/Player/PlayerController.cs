@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    
-
     public bool CanMove {get{return canMove;} set{canMove = value;}}
     
     [Header("Movement")]
@@ -39,9 +37,7 @@ public class PlayerController : MonoBehaviour
     AudioManager audioManager;
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
-        
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();     
     }
     private void Start()
     {
@@ -85,6 +81,8 @@ public class PlayerController : MonoBehaviour
             isFacingRight = !isFacingRight;
             VerticalFlip();
         } 
+
+        Debug.Log(transform.eulerAngles);
         #endregion
 
 
@@ -201,6 +199,11 @@ public class PlayerController : MonoBehaviour
     public void VerticalFlip()
     {
         transform.Rotate(0f,180f,0f);
+    }
+
+    public void horizontalFlip()
+    {
+        transform.Rotate(180f,0f,0f);
     }
 
     public void ResetVelocity()

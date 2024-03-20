@@ -63,7 +63,7 @@ public class SwitchBehaviour : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
         {
             
             playersOnEntrance.Add(other.gameObject);
@@ -88,11 +88,10 @@ public class SwitchBehaviour : MonoBehaviour
                 {
                     if (canOpenSwitch && canCloseSwitch && !item.IsTurnOn)
                     {
-                        item.IsTurnOn = !item.IsTurnOn;
+                        item.IsTurnOn = true;
                     }
                 }
-            }
-            
+            } 
         }
     }
 
@@ -130,7 +129,10 @@ public class SwitchBehaviour : MonoBehaviour
                 }
   
             }
-            StartCoroutine(SwitchUpDelay(switchDelay));
+            if (playersOnEntrance.Count == 0)
+            {
+                StartCoroutine(SwitchUpDelay(switchDelay));  
+            }
         }
     }
 

@@ -14,7 +14,7 @@ public class ReverseGravityZone : MonoBehaviour
     [SerializeField] private Slider slider;
     private bool canReverseGravity = false;
     private float timeCounter;
-    private List<GameObject> gameObjectList = new List<GameObject>();
+    private HashSet<GameObject> gameObjectSet = new HashSet<GameObject>();
 
     private void Awake() {
         Instance = this;
@@ -25,7 +25,7 @@ public class ReverseGravityZone : MonoBehaviour
     {
         if (other.CompareTag("Player1") || other.CompareTag("Player2") || other.CompareTag("BlockPlatform") || other.CompareTag("OneWayPlatform"))
         {
-            gameObjectList.Add(other.gameObject);
+            gameObjectSet.Add(other.gameObject);
             if (canReverseGravity)
             {
                 ReverseGravityOfGameObject(other.gameObject);
@@ -39,12 +39,12 @@ public class ReverseGravityZone : MonoBehaviour
         if (other.CompareTag("Player1") || other.CompareTag("Player2") || other.CompareTag("BlockPlatform") || other.CompareTag("OneWayPlatform"))
         {
             ResetGravityOfGameObject(other.gameObject);
-            gameObjectList.Remove(other.gameObject);
+            gameObjectSet.Remove(other.gameObject);
         }
     }
 
     private void LateUpdate() {
-        if (gameObjectList!=null)
+        if (gameObjectSet!=null)
         {
             if (!canReverseGravity)
             {
@@ -55,7 +55,7 @@ public class ReverseGravityZone : MonoBehaviour
                 }
                 if (timeCounter >= reverseGravityTime)
                 {
-                    ReverseGravity(gameObjectList);
+                    ReverseGravity(gameObjectSet);
                     timeCounter = 0f;
                     canReverseGravity = !canReverseGravity;
                 }
@@ -69,7 +69,7 @@ public class ReverseGravityZone : MonoBehaviour
                 }
                 if (timeCounter >= reverseGravityTime)
                 {
-                    ResetGravity(gameObjectList);
+                    ResetGravity(gameObjectSet);
                     timeCounter = 0f;
                     canReverseGravity = !canReverseGravity;
                 }
@@ -79,7 +79,7 @@ public class ReverseGravityZone : MonoBehaviour
 
     }
 
-    private void ReverseGravity(List<GameObject> gameObjectList)
+    private void ReverseGravity(HashSet<GameObject> gameObjectList)
     {
         foreach (GameObject item in gameObjectList)
         {
@@ -87,7 +87,7 @@ public class ReverseGravityZone : MonoBehaviour
         }
     }
 
-    private void ResetGravity(List<GameObject> gameObjectList)
+    private void ResetGravity(HashSet<GameObject> gameObjectList)
     {
         foreach (GameObject item in gameObjectList)
         {
@@ -102,11 +102,15 @@ public class ReverseGravityZone : MonoBehaviour
         if (rb != null && !isReversed)
         {
             OnReverseGravity?.Invoke(this,EventArgs.Empty);
-            float gravity = rb.gravityScale;
-            rb.gravityScale = -Mathf.Abs(gravity);
-            gameObject.transform.rotation = Quaternion.Euler(180f, 0f, 0f); 
-            isReversed = true;
+            rb.gravityScale = -Mathf.Abs(rb.gravityScale);
+            isReversed = !isReversed;
+            if (Mathf.Abs(gameObject.transform.eulerAngles.x) != 180f)
+            {
+                gameObject.transform.Rotate(180f,0f,0f);
+            }
         }
+        
+        
     }
 
     private void ResetGravityOfGameObject(GameObject gameObject)
@@ -115,15 +119,20 @@ public class ReverseGravityZone : MonoBehaviour
         if (rb != null)
         {
             OnReverseGravity?.Invoke(this,EventArgs.Empty);
-            float gravity = rb.gravityScale;
-            rb.gravityScale = Mathf.Abs(gravity);
-            gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);     
+            rb.gravityScale = Mathf.Abs(rb.gravityScale);
+            if (Mathf.Abs(gameObject.transform.eulerAngles.x) == 180f )
+            {
+                gameObject.transform.Rotate(180f,0f,0f);
+            }
+            else if(Mathf.Abs(gameObject.transform.eulerAngles.z) == 180f)
+            {
+                gameObject.transform.Rotate(0f,180f,180f);
+            }
+            
         }
-        
     }
 
-    public void HorizontalFlip(Transform transform)
-    {
-        transform.Rotate(180f, 0f, 0f);
-    }
+
+
+
 }
