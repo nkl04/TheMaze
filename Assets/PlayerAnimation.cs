@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
     public Rigidbody2D rb2D;
     private const string SPEED = "Speed";
-    private const string IS_JUMPING = "isJumping";
+    //private const string IS_JUMPING = "isJumping";
     private const string IS_TOUCHING_GROUND = "isTouchingGround";
-    private const string IS_TOUCHING_WALL = "isTouchingWall";
+    //private const string IS_TOUCHING_WALL = "isTouchingWall";
     private const string VELOCITY_Y = "velocity Y";
     [SerializeField] private Animator animator;
     public Transform groundCheck;
@@ -21,10 +22,12 @@ public class PlayerAnimation : MonoBehaviour
     public bool isTouchingWall = false;
     private float direction;
     public bool isFacingRight = true;
+    public float jumpForce = 10f;
 
     public void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+
     }
     public void Update() 
     {
@@ -35,9 +38,9 @@ public class PlayerAnimation : MonoBehaviour
 
     public void Moving()
     {
-        direction = Input.GetAxisRaw("Horizontal");
+        direction = Input.GetAxisRaw("Horizontal_2");
 
-        animator.SetBool(IS_TOUCHING_WALL, isTouchingWall);
+        //animator.SetBool(IS_TOUCHING_WALL, isTouchingWall);
         
         animator.SetFloat(SPEED, direction*rb2D.velocity.x);
         
@@ -45,9 +48,10 @@ public class PlayerAnimation : MonoBehaviour
 
         animator.SetBool(IS_TOUCHING_GROUND, isTouchingGround);
 
-        if(Input.GetButtonDown("Jump") && isTouchingGround == true)
+        if(Input.GetButtonDown("JumpPlayer2") && isTouchingGround)
         {   
-            animator.SetBool(IS_JUMPING, true); 
+            //animator.SetBool(IS_JUMPING, true); 
+            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         }
         
         if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
