@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2058258630991436762}
   - component: {fileID: 548818864223629473}
-  - component: {fileID: 8583992956405420968}
   - component: {fileID: 3915817161877895539}
+  - component: {fileID: 7901284980448282832}
   m_Layer: 9
   m_Name: Door
   m_TagString: Untagged
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9ccec79a71695654bb688eb65e0e05d5, type: 3}
+  m_Sprite: {fileID: -1142002882, guid: 24fe2ed045ee21943913d2caababfb4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +86,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8583992956405420968
+--- !u!114 &3915817161877895539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3931006314653918359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a57654e5a3f0f547a5ad6e11c626469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsTurnOn: 0
+  hasLight: 0
+  light2d: {fileID: 0}
+  lightIntensity: 0.2
+  _type: 1
+  direction: 1
+  speed: 3
+  upperPos: {fileID: 0}
+  downPos: {fileID: 0}
+  leftPos: {fileID: 0}
+  rightPos: {fileID: 0}
+  openPosition: {fileID: 0}
+--- !u!61 &7901284980448282832
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,40 +142,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.003287971}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.8, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.28321284}
+  m_Size: {x: 0.8, y: 3}
   m_EdgeRadius: 0
---- !u!114 &3915817161877895539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3931006314653918359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a57654e5a3f0f547a5ad6e11c626469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsTurnOn: 0
-  hasLight: 0
-  light2d: {fileID: 0}
-  lightIntensity: 0.2
-  _type: 1
-  direction: 1
-  speed: 3
-  upperPos: {fileID: 0}
-  downPos: {fileID: 0}
-  leftPos: {fileID: 0}
-  rightPos: {fileID: 0}
-  openPosition: {fileID: 0}

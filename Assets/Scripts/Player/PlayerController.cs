@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Networking.PlayerConnection;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,8 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canMove = true;
 
     // [Header("Improvement")]
-    [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private float jumpBufferTime = 0.2f;
+    // [SerializeField] private float coyoteTime = 0.2f;
+    // [SerializeField] pr  ivate float jumpBufferTime = 0.2f;
     
     [Space(5)]
 
@@ -36,34 +33,32 @@ public class PlayerController : MonoBehaviour
     
     private Rigidbody2D rb2d;
     private Vector2 direction;
-    //private bool isFacingRight = true;
-    private bool canJump;
-    private bool isJumping;
-    private float coyoteTimeCounter;
-    private float jumpBufferTimeCounter;
+    private bool isFacingRight = true;
 
     private Vector3 vector3Up;
-    //public AudioSource soundmain_source;
-    //public AudioSource sounddie_source;
-    //public AudioSource soundjump_source;
-    
-    //public AudioClip soundmain_clip;
-    //public AudioClip sounddie_clip;
-    //public AudioClip soundjump_clip;
     AudioManager audioManager;
-    // private void Awake()
-    // {
-    //     audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    // }
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        
+    }
     private void Start()
     {
-        //soundmain_source.clip = soundmain_clip;
-        //soundmain_source.Play();
         rb2d = GetComponent<Rigidbody2D>();
         transform.GetComponent<PlayerHealth>().OnPlayerDie += Health_OnPlayerDie;
         if (ReverseGravityZone.Instance != null)
         {
             ReverseGravityZone.Instance.OnReverseGravity += ReverseGravityZone_OnReverseGravity;    
+        }
+        if (gameObject.tag == "Player1")
+        {
+            GameInput.Instance.GetPlayerInputSystem().Player1.Jump.performed += ctx => OnJump(ctx);
+        }
+        else
+        {
+            GameInput.Instance.GetPlayerInputSystem().Player2.Jump.performed += ctx => OnJump(ctx);
+            
         }
     }
 
@@ -79,69 +74,62 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
+        direction = GameInput.Instance.GetDirectionVector(gameObject.tag);
 
         #region movement && flip
         // //horizontal movement
         HorizontalMovement();
         //flip player when change direction
-        // if((isFacingRight && direction.x < 0) || (!isFacingRight && direction.x > 0))
-        // {
-        //     isFacingRight = !isFacingRight;
-        //     VerticalFlip();
-        // } 
+        if((isFacingRight && direction.x < 0) || (!isFacingRight && direction.x > 0))
+        {
+            isFacingRight = !isFacingRight;
+            VerticalFlip();
+        } 
         #endregion
 
 
         // Experience Improvement
         #region  Coyote Time & Jump Buffer 
-        if(IsGrounded())
-        {  
-            canJump = true;
-            isJumping =false;
-            coyoteTimeCounter = coyoteTime;      
-        }
-        else 
-        {
-            // player on the air
-            if (isJumping)
-            {
-                // player jump
-                canJump = false;
-                jumpBufferTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                // not jump but leave the ground
-                coyoteTimeCounter -= Time.deltaTime;
-                if (coyoteTimeCounter <= 0)
-                {
-                    canJump = false;  
-                } 
-            }
-        }
-
-        if(jumpBufferTimeCounter > 0 && IsGrounded())
-        {
-            VerticalMovement();
-            canJump = false;
-            isJumping = true;
-        }
-        #endregion
-        
-         
-        // if (transform.parent != null && transform.parent.up != vector3Up)
+        // if(IsGrounded())
+        // {  
+        //     canJump = true;
+        //     isJumping =false;
+        //     coyoteTimeCounter = coyoteTime;      
+        // }
+        // else 
         // {
-        //     transform.SetParent(null);
+        //     // player on the air
+        //     if (isJumping)
+        //     {
+        //         // player jump
+        //         canJump = false;
+        //         jumpBufferTimeCounter -= Time.deltaTime;
+        //     }
+        //     else
+        //     {
+        //         // not jump but leave the ground
+        //         coyoteTimeCounter -= Time.deltaTime;
+        //         if (coyoteTimeCounter <= 0)
+        //         {
+        //             canJump = false;  
+        //         } 
+        //     }
         // }
 
-        Debug.Log(canMove);
+        // if(jumpBufferTimeCounter > 0 && IsGrounded())
+        // {
+        //     VerticalMovement();
+        //     canJump = false;
+        //     isJumping = true;
+        // }
+        #endregion
+        
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.GetComponent<Moveable>() && IsStandOnElevator())
+        if (other.gameObject.GetComponent<Moveable>() && IsStandOnElevator() && transform.parent == null)
         {
             transform.SetParent(other.transform);
-            vector3Up = other.transform.up;
         }
     }
 
@@ -149,7 +137,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.GetComponent<Moveable>())
         {
             transform.SetParent(null);
-            vector3Up = Vector3.zero;
         }
     }
     public void HorizontalMovement()
@@ -166,10 +153,8 @@ public class PlayerController : MonoBehaviour
     public void VerticalMovement()
     {
         //change the vetical position of player (Jump) 
-        rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce * rb2d.velocity.y);
-        //sound_main.PlayOneShot(sound_jump);
-        //soundjump_source.clip = soundjump_clip;
-        //soundjump_source.PlayOneShot(soundjump_clip);
+        rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce * transform.up.y);
+        
         System.Random random = new System.Random();
 
         int randomNumber;
@@ -227,13 +212,6 @@ public class PlayerController : MonoBehaviour
 
 
     //============================================ PLAYER INPUT SYSTEM ================================================
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        if (canMove)
-        {
-            direction = context.ReadValue<Vector2>();
-        }
-    }
 
     public void OnJump(InputAction.CallbackContext context)
     {

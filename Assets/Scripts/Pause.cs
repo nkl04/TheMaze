@@ -9,6 +9,8 @@ public class Pause : MonoBehaviour
 {
     public static Pause Instance {private set; get;}
     public GameObject pauseGameUI;
+    [SerializeField] GameObject optionGameObject;
+    [SerializeField] GameObject confirmToDeleteData;
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
 
@@ -25,19 +27,23 @@ public class Pause : MonoBehaviour
             player1.GetComponent<PlayerController>().CanMove = true;
             player2.GetComponent<PlayerController>().CanMove = true;
         });
-        // optionButton.onClick.AddListener(() =>{
-        //     Loader.Load(SceneManager.GetActiveScene().buildIndex);
-        // });
+        optionButton.onClick.AddListener(() =>{
+            optionGameObject.SetActive(true);
+        });
         
         homeButton.onClick.AddListener(() =>{
             LoadHomeScene();
+            isPaused = false;
         });
+
+        confirmToDeleteData.SetActive(false);
     }
 
     void Start()
     {
         Instance = this;
         pauseGameUI.SetActive(false);
+        HideOptionUI();
     }
     void Update()
     {
@@ -53,10 +59,22 @@ public class Pause : MonoBehaviour
             }
             else
             {
-                ResumeGame();
-                player1.GetComponent<PlayerController>().CanMove = true;
-                player2.GetComponent<PlayerController>().CanMove = true;
-                isPaused = false;
+                if (confirmToDeleteData.activeSelf)
+                {
+                    confirmToDeleteData.SetActive(false);
+                }
+                else if (optionGameObject.activeSelf)
+                {
+                    HideOptionUI();
+                }
+                else
+                {
+                    ResumeGame();
+                    player1.GetComponent<PlayerController>().CanMove = true;
+                    player2.GetComponent<PlayerController>().CanMove = true;
+                    isPaused = false;
+                }
+                
             }
         } 
         
@@ -70,10 +88,11 @@ public class Pause : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (!MapManager.Instance.getQuesCanvas().gameObject.activeInHierarchy)
-        {
-            Time.timeScale = 1f;
-        }
+        // if (!MapManager.Instance.getQuesCanvas().gameObject.activeInHierarchy)
+        // {
+        //     Time.timeScale = 1f;
+        // }
+        Time.timeScale = 1f;
         pauseGameUI.SetActive(false);
         isPaused = false;     
     }
@@ -83,10 +102,22 @@ public class Pause : MonoBehaviour
     {
         Loader.Load(Loader.Scene.MainMenuScene);
         Time.timeScale = 1;
+        
     }
 
     public bool IsPaused()
     {
         return isPaused;
     }
+
+    private void HideOptionUI()
+    {
+        optionGameObject.SetActive(false);
+    }
+
+    private void ShowOptionUI()
+    {
+        optionGameObject.SetActive(true);
+    }
+
 }
