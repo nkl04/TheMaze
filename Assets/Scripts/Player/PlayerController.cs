@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     // [Header("Improvement")]
     // [SerializeField] private float coyoteTime = 0.2f;
-    // [SerializeField] pr  ivate float jumpBufferTime = 0.2f;
+    // [SerializeField] private float jumpBufferTime = 0.2f;
     
     [Space(5)]
 

@@ -38,7 +38,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void Moving()
     {
-        direction = Input.GetAxisRaw("Horizontal_2");
+        direction = Input.GetAxisRaw("Horizontal");
 
         //animator.SetBool(IS_TOUCHING_WALL, isTouchingWall);
         
@@ -48,17 +48,24 @@ public class PlayerAnimation : MonoBehaviour
 
         animator.SetBool(IS_TOUCHING_GROUND, isTouchingGround);
 
-        if(Input.GetButtonDown("JumpPlayer2") && isTouchingGround)
+        if(gameObject.tag == "Player 1")
         {   
+            if (Input.GetButtonDown("JumpPlayer1") && isTouchingGround)
+            //animator.SetBool(IS_JUMPING, true); 
+            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+        }
+        else if (gameObject.tag == "Player 2")
+        {   
+            if (Input.GetButtonDown("JumpPlayer2") && isTouchingGround)
             //animator.SetBool(IS_JUMPING, true); 
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         }
         
-        if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
-        {
-            isFacingRight = !isFacingRight;
-            Flip();
-        }
+        // if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
+        // {
+        //     isFacingRight = !isFacingRight;
+        //     Flip();
+        // }
           
     }
     private void Flip() 

@@ -52,11 +52,11 @@ public class player1animation : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         }
         
-        if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
-        {
-            isFacingRight = !isFacingRight;
-            Flip();
-        }
+        // if ((isFacingRight && direction < 0) || (!isFacingRight && direction > 0))
+        // {
+        //     isFacingRight = !isFacingRight;
+        //     Flip();
+        // }
           
     }
     private void Flip() 
