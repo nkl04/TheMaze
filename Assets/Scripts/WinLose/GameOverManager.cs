@@ -56,19 +56,13 @@ public class GameOverManager : MonoBehaviour
         Loader.Load(Loader.Scene.MainMenuScene);
         Time.timeScale = 1f;
     }
-    //Does not work?
-    // public void AfterWinSelection(){
-    //     Loader.Load(Loader.Scene.MainMenuScene);
-    //     Time.timeScale = 1f;
-    //     // GameObject.FindGameObjectWithTag("Level").SetActive(true);
-    //     LevelPanel.SetActive(true);
-    // }
+ 
  public void AfterWinSelection()
     {
         Loader.Load(Loader.Scene.MainMenuScene);
         Time.timeScale = 1f;
 
-        // Activate LevelPanel using GameManager
+        
         if (Instance != null && Instance.levelPanel != null)
         {
             Instance.levelPanel.SetActive(true);
