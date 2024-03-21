@@ -63,7 +63,7 @@ public class SwitchBehaviour : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2")|| other.gameObject.CompareTag("BlockPlatform"))
+        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             
             playersOnEntrance.Add(other.gameObject);
@@ -88,15 +88,16 @@ public class SwitchBehaviour : MonoBehaviour
                 {
                     if (canOpenSwitch && canCloseSwitch && !item.IsTurnOn)
                     {
-                        item.IsTurnOn = true;
+                        item.IsTurnOn = !item.IsTurnOn;
                     }
                 }
-            } 
+            }
+            
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2")||other.gameObject.CompareTag("BlockPlatform"))
+        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             playersOnEntrance.Remove(other.gameObject);
             if (mode == Mode.Hold)
@@ -129,10 +130,7 @@ public class SwitchBehaviour : MonoBehaviour
                 }
   
             }
-            if (playersOnEntrance.Count == 0)
-            {
-                StartCoroutine(SwitchUpDelay(switchDelay));  
-            }
+            StartCoroutine(SwitchUpDelay(switchDelay));
         }
     }
 
