@@ -74,9 +74,8 @@ public class ReverseGravityZone : MonoBehaviour
                     canReverseGravity = !canReverseGravity;
                 }
             }
-            
         }
-
+        
     }
 
     private void ReverseGravity(HashSet<GameObject> gameObjectList)
@@ -104,10 +103,10 @@ public class ReverseGravityZone : MonoBehaviour
             OnReverseGravity?.Invoke(this,EventArgs.Empty);
             rb.gravityScale = -Mathf.Abs(rb.gravityScale);
             isReversed = !isReversed;
-            if (Mathf.Abs(gameObject.transform.eulerAngles.x) != 180f)
+            if (Mathf.Abs(gameObject.transform.rotation.w) == 1 || Mathf.Abs(gameObject.transform.rotation.y) == 1)
             {
-                gameObject.transform.Rotate(180f,0f,0f);
-            }
+                gameObject.transform.Rotate(180f,0f,0f);      
+            }          
         }
         
         
@@ -119,17 +118,17 @@ public class ReverseGravityZone : MonoBehaviour
         if (rb != null)
         {
             OnReverseGravity?.Invoke(this,EventArgs.Empty);
-            rb.gravityScale = Mathf.Abs(rb.gravityScale);
-            if (Mathf.Abs(gameObject.transform.eulerAngles.x) == 180f )
+            rb.gravityScale = Mathf.Abs(rb.gravityScale);   
+            if (Mathf.Abs(gameObject.transform.rotation.x) == 1)
             {
-                gameObject.transform.Rotate(180f,0f,0f);
+                gameObject.transform.Rotate(180f,0f,0f);      
             }
-            else if(Mathf.Abs(gameObject.transform.eulerAngles.z) == 180f)
+            if (Mathf.Abs(gameObject.transform.rotation.z) == 1)
             {
-                gameObject.transform.Rotate(0f,180f,180f);
+                gameObject.transform.Rotate(180f,0f,0);      
             }
-            
         }
+        
     }
 
 

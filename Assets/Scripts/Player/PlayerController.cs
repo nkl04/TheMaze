@@ -81,10 +81,7 @@ public class PlayerController : MonoBehaviour
             isFacingRight = !isFacingRight;
             VerticalFlip();
         } 
-
-        Debug.Log(transform.eulerAngles);
         #endregion
-
 
         // Experience Improvement
         #region  Coyote Time & Jump Buffer 

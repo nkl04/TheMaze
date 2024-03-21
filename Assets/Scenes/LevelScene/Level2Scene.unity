@@ -520,6 +520,10 @@ PrefabInstance:
       value: 'Player  2 '
       objectReference: {fileID: 0}
     - target: {fileID: 844867752003876677, guid: 395a3cb0335c60d44be166ddee0a7b73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9998025
+      objectReference: {fileID: 0}
+    - target: {fileID: 844867752003876677, guid: 395a3cb0335c60d44be166ddee0a7b73, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.019879103
       objectReference: {fileID: 0}
@@ -25115,7 +25119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1934715406826726317, guid: 68463dfc4e1ebf5409c58ab2a1421593, type: 3}
       propertyPath: groundCheckLayer.m_Bits
-      value: 2880
+      value: 2944
       objectReference: {fileID: 0}
     - target: {fileID: 2081086318365838023, guid: 68463dfc4e1ebf5409c58ab2a1421593, type: 3}
       propertyPath: m_LocalPosition.x
