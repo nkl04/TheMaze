@@ -63,7 +63,7 @@ public class SwitchBehaviour : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
+        if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2")|| other.gameObject.CompareTag("BlockPlatform"))
         {
             
             playersOnEntrance.Add(other.gameObject);
@@ -96,7 +96,7 @@ public class SwitchBehaviour : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
+        if (other.CompareTag("Player1") || other.CompareTag("Player2")||other.gameObject.CompareTag("BlockPlatform"))
         {
             playersOnEntrance.Remove(other.gameObject);
             if (mode == Mode.Hold)
