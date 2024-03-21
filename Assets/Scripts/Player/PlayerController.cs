@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
     [Header("Elevator Stand")]
     [SerializeField] private LayerMask elevatorLayer;
     
-    private Rigidbody2D rb2d;
-    private Vector2 direction;
+    public Rigidbody2D rb2d;
+    public Vector2 direction;
     private bool isFacingRight = true;
 
     private Vector3 vector3Up;

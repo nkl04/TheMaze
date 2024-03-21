@@ -117,8 +117,7 @@ public class ReverseGravityZone : MonoBehaviour
             OnReverseGravity?.Invoke(this,EventArgs.Empty);
             float gravity = rb.gravityScale;
             rb.gravityScale = Mathf.Abs(gravity);
-            
-            gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);     
+            gameObject.transform.rotation = Quaternion.Euler(180f, 0f, 0f);     
         }
         
     }
