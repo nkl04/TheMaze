@@ -46,7 +46,7 @@ public static class Loader
         }
         else
         {
-            Debug.Log("You're in the last scene");
+            Loader.Load(Loader.Scene.MainMenuScene);
         }
     }
 }
