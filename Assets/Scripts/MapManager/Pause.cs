@@ -15,25 +15,63 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject player2;
 
     public bool canPause = true;
+    [SerializeField] private Button pauseButton;
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button optionButton;
     [SerializeField] private Button homeButton;
 
     private bool isPaused = false;
+    AudioManager audioManager;
 
     private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        pauseButton.onClick.AddListener(() =>{
+            audioManager.PlaySFX(audioManager.action);
+            if (!isPaused && canPause)
+            {
+                PauseScreen();
+                player1.GetComponent<PlayerController>().CanMove = false;
+                player2.GetComponent<PlayerController>().CanMove = false;
+                isPaused = true;
+            }
+            else
+            {
+                if (confirmToDeleteData.activeSelf)
+                {
+                    confirmToDeleteData.SetActive(false);
+                }
+                else if (optionGameObject.activeSelf)
+                {
+                    HideOptionUI();
+                }
+                else
+                {
+                    ResumeGame();
+                    player1.GetComponent<PlayerController>().CanMove = true;
+                    player2.GetComponent<PlayerController>().CanMove = true;
+                    isPaused = false;
+                }
+                
+            }
+            
+        });
         resumeButton.onClick.AddListener(() =>{
             ResumeGame();
             player1.GetComponent<PlayerController>().CanMove = true;
             player2.GetComponent<PlayerController>().CanMove = true;
+            audioManager.PlaySFX(audioManager.action);
         });
         optionButton.onClick.AddListener(() =>{
             optionGameObject.SetActive(true);
+            audioManager.PlaySFX(audioManager.action);
         });
         
         homeButton.onClick.AddListener(() =>{
+            audioManager.PlaySFX(audioManager.action);
             LoadHomeScene();
             isPaused = false;
+            
         });
 
         confirmToDeleteData.SetActive(false);

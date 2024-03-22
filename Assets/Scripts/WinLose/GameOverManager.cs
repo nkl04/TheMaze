@@ -10,6 +10,7 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private GameObject losingUI;
     [SerializeField] private Button playAgainButton;
     [SerializeField] private Button homeButton;
+    [SerializeField] private GameObject pauseButton;
     
     AudioManager audioManager;
 
@@ -37,6 +38,7 @@ public class GameOverManager : MonoBehaviour
     public void Show()
     {
         losingUI.SetActive(true);
+        pauseButton.SetActive(false);
     }
 
     public void PlayAgain()

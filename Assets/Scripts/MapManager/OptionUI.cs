@@ -12,10 +12,8 @@ public class OptionUI : MonoBehaviour
     [SerializeField] private Button returnButton;
 
     [Header("Sound&Music Button")]
-    [SerializeField] private Button soundEffectsButton;
-    [SerializeField] private Button musicButton;
-    [SerializeField] private TextMeshProUGUI soundEffectsText;
-    [SerializeField] private TextMeshProUGUI musicText;
+    [SerializeField] private Slider soundEffectSlider;
+    [SerializeField] private Slider musicSlider;
 
     [Header("Delete Data Button")]
     [SerializeField] private Button deleteDataButton;
@@ -42,8 +40,10 @@ public class OptionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI player2_moveRightText;
     [SerializeField] private Transform pressKeyToRebindTransform;
 
+       AudioManager audioManager;
     private void Awake() {
         Instance = this;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         confirmToDeleteData.gameObject.SetActive(false);
         HidePressKeyToRebindTransform();
 
@@ -51,54 +51,67 @@ public class OptionUI : MonoBehaviour
         returnButton.onClick.AddListener(()=>{
             optionPanelUI.gameObject.SetActive(false);
             confirmToDeleteData.gameObject.SetActive(false);
+            audioManager.PlaySFX(audioManager.action);
         });
 
         //===========Audio==========
-        soundEffectsButton.onClick.AddListener(() =>
-        {
-            AudioManager.Instance.ChangeVolumeSFX();
-            UpdateVisual();
 
-        });
-        musicButton.onClick.AddListener(() => {
-            AudioManager.Instance.ChangeVolumeMusic();
-            UpdateVisual();
-        });
+        if (!PlayerPrefs.HasKey("MusicVolume"))
+        {
+            PlayerPrefs.SetFloat("MusicVolume",1);
+            LoadMusicVolume();
+        }
+        else
+        {
+            LoadMusicVolume();
+        }
+
+        if (!PlayerPrefs.HasKey("SoundVolume"))
+        {
+            PlayerPrefs.SetFloat("SoundVolume",1);
+            LoadSoundVolume();
+        }
+        else
+        {
+            LoadSoundVolume();
+        }
         
+
         //========================================
         deleteDataButton.onClick.AddListener(() =>
         {
             confirmToDeleteData.gameObject.SetActive(true);
+            audioManager.PlaySFX(audioManager.action);
         });
 
         confirmDeleteButton.onClick.AddListener(() => {
-            PlayerPrefs.SetInt("ReachedIndex",0);
-            PlayerPrefs.SetInt("UnlockedLevel",1);
-            PlayerPrefs.SetString(GameInput.Instance.getInputKey(),PlayerPrefs.GetString(GameInput.Instance.getDefaultInputKey()));
-            PlayerPrefs.Save();
-            Loader.Load(Loader.Scene.MainMenuScene);
+            GameInput.Instance.ResetKeyMap();
+            confirmToDeleteData.gameObject.SetActive(false);
+            UpdateTextVisual();
             Time.timeScale = 1;
+            audioManager.PlaySFX(audioManager.action);
         });
         cancelDeleteButton.onClick.AddListener(() => {
             confirmToDeleteData.gameObject.SetActive(false);
+            audioManager.PlaySFX(audioManager.action);
         });
 
         //========================================
 
-        player1_jumpButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_Jump);});
-        player1_moveDownButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_MoveDown);});
-        player1_moveLeftButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_MoveLeft);});
-        player1_moveRightButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_MoveRight);});
-        player2_jumpButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_Jump);});
-        player2_moveDownButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_MoveDown);});
-        player2_moveLeftButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_MoveLeft);});
-        player2_moveRightButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_MoveRight);});
-        // UpdateTextVisual();
+        player1_jumpButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_Jump);audioManager.PlaySFX(audioManager.action);});
+        player1_moveDownButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_MoveDown);audioManager.PlaySFX(audioManager.action);});
+        player1_moveLeftButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_MoveLeft);audioManager.PlaySFX(audioManager.action);});
+        player1_moveRightButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player1_MoveRight);audioManager.PlaySFX(audioManager.action);});
+        player2_jumpButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_Jump);audioManager.PlaySFX(audioManager.action);});
+        player2_moveDownButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_MoveDown);audioManager.PlaySFX(audioManager.action);});
+        player2_moveLeftButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_MoveLeft);audioManager.PlaySFX(audioManager.action);});
+        player2_moveRightButton.onClick.AddListener(() => {RebindBinding(GameInput.Binding.Player2_MoveRight);audioManager.PlaySFX(audioManager.action);});
+        //UpdateTextVisual();
     }
 
     private void Start() {
         UpdateTextVisual();
-        UpdateVisual();
+        //UpdateVisual();
     }
 
     private void UpdateTextVisual()
@@ -131,9 +144,48 @@ public class OptionUI : MonoBehaviour
             UpdateTextVisual();
         });
     }
-    private void UpdateVisual()
+    // private void UpdateVisual()
+    // {
+    //     soundEffectsText.text ="Sound Effects: " + Mathf.Round(PlayerPrefs.GetFloat("SoundVolume")*10f);
+    //     musicText.text ="Music: " + Mathf.Round(PlayerPrefs.GetFloat("MusicVolume")*10f) ;
+    // }
+
+    private void LoadSoundVolume()
     {
-        soundEffectsText.text ="Sound Effects: " + Mathf.Round(PlayerPrefs.GetFloat("SoundVolume")*10f);
-        musicText.text ="Music: " + Mathf.Round(PlayerPrefs.GetFloat("MusicVolume")*10f) ;
+        soundEffectSlider.value  = PlayerPrefs.GetFloat("SoundVolume"); 
     }
+
+    private void LoadMusicVolume()
+    {
+        musicSlider.value  = PlayerPrefs.GetFloat("MusicVolume");   
+    }
+
+    public void ChangeVolumeMusic()
+    {   
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.MusicVolume = musicSlider.value;  
+            SaveMusicVolume();
+        }
+    }
+    public void ChangeVolumeSound()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SoundVolume = soundEffectSlider.value;  
+            SaveSoundVolume();
+        }
+    }
+
+    private void SaveMusicVolume()
+    {
+        PlayerPrefs.SetFloat("MusicVolume",musicSlider.value);
+    }
+
+    private void SaveSoundVolume()
+    {
+        PlayerPrefs.SetFloat("SoundVolume",soundEffectSlider.value);
+    }
+
+
 }
