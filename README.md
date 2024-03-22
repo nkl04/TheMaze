@@ -5,7 +5,7 @@ The Maze is a simple yet challenging platformer game made by team 7 of Japanese 
 
 ## Description
 
-Players must control the main character of the game through various traps and enemies in order to reach the goal and beat the game. However, the obstacles are logically created and make a lot of sense. The game is hard, punishing and gets even more challenging as the players make further progress.  
+Players must control the main characters of the game through various traps and environments in order to reach the goal and beat the game. However, the obstacles are logically created and make a lot of sense. The game is hard, punishing and gets even more challenging as the players make further progress.  
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ Players must control the main character of the game through various traps and en
 
 ### Installing
 
-* FREE DOWNLOAD LINK: [This Is The Maze And Hung Is Extremely Handsome](https://github.com/nkl04/Team7_Gaming)
+* FREE DOWNLOAD LINK: [This Is The Maze And Hung&Hao Is very handsome](https://github.com/nkl04/Team7_Gaming)
 * extraction is needed after downloading the game.
 * after extracting, open TheMaze folder and select The Maze.exe to run the game.
 
@@ -30,7 +30,7 @@ Players must control the main character of the game through various traps and en
 
 Contributors names and contact info:
 * [Tran Xuan Hung Who is still finding true luv(rich)](https://www.facebook.com/profile.php?id=100037656913421)
-* [Nguyen Huy Hao](https://www.facebook.com/nhhao27)
+* [Nguyen Huy Haodz](https://www.facebook.com/nhhao27)
 * [Nguyen Minh Anh](https://www.facebook.com/profile.php?id=100011291052091)
 * [Nguyen Nhat Duong](https://www.facebook.com/profile.php?id=61552396784841)
 * [Nguyen Kim Long](https://www.facebook.com/lac.cu.7712)
