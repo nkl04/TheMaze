@@ -22,28 +22,25 @@ Players must control the main character of the game through various traps and en
 
 ### Installing
 
-* FREE DOWNLOAD LINK: [This Is The Game And Hieu Is Extremely Handsome](https://hieutritue.itch.io/path-to-japsof)
+* FREE DOWNLOAD LINK: [This Is The Maze And Hung Is Extremely Handsome](https://github.com/nkl04/Team7_Gaming)
 * extraction is needed after downloading the game.
-* after extracting, open pathToJapsof folder and select Game Project.exe to run the game.
+* after extracting, open TheMaze folder and select The Maze.exe to run the game.
 
 ## Authors
 
 Contributors names and contact info:
-* [Thai Le Hieu is very handsome and does not have a girlfriend yet](https://www.facebook.com/profile.php?id=100081955779154)
-* [Pham Kim Thoa](https://www.facebook.com/phamkimthoaviviane)
-* [Nguyen Dinh Nghia](https://www.facebook.com/jack.andrea.54)
-* [Nguyen Le Hai Anh (very ugly)](https://www.facebook.com/113han004)
-* [Nguyen Manh Phu](https://www.facebook.com/nguyen.hand.1)
-* [Hoang Phan Quoc Dat](https://www.facebook.com/profile.php?id=100012376170722)
+* [Tran Xuan Hung Who is still finding true luv](https://www.facebook.com/profile.php?id=100037656913421)
+* [Nguyen Huy Hao](https://www.facebook.com/nhhao27)
+* [Nguyen Minh Anh](https://www.facebook.com/profile.php?id=100011291052091)
+* [Nguyen Nhat Duong](https://www.facebook.com/profile.php?id=61552396784841)
+* [Nguyen Kim Long](https://www.facebook.com/lac.cu.7712)
 
 ## Some Random Completely Unrelated people
 
 ### Takecare:
-
-* [Nguyen Le Quynh Trang xau xi](https://www.facebook.com/trang.nguyenquynh.988373)
-* [Tran Duc Ky ech op](https://www.facebook.com/profile.php?id=100029071420245)
-* [Nguyen Quang Khai hung du](https://www.facebook.com/profile.php?id=100081790451971)
+*[Tran Bao Ngoc](https://www.facebook.com/profile.php?id=100010946880692)
+*[Nguyen Anh Duc](https://www.facebook.com/profile.php?id=100033463305478)
+*[Nguyen Le Hai Anh (very ugly)](https://www.facebook.com/113han004)
 
 ### Mentor:
-
-* [Dao Xuan Quy Yeu Nam Dung](https://www.facebook.com/x.quy.203)
+* [Thai Le Hieu is very handsome and does not have a girlfriend yet](https://www.facebook.com/profile.php?id=100081955779154)
