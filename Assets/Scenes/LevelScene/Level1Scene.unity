@@ -20658,6 +20658,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelEntrance
       objectReference: {fileID: 0}
+    - target: {fileID: 465766333468182499, guid: 8033fd71d25c7af4cb8d2756be28f5c1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 465766333468182499, guid: 8033fd71d25c7af4cb8d2756be28f5c1, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5547880829823981182, guid: 8033fd71d25c7af4cb8d2756be28f5c1, type: 3}
       propertyPath: upperPosition
       value: 
@@ -25106,7 +25114,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 1415486161}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 2b1ebf244a173a9498badab4a599a5cd, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
