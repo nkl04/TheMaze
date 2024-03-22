@@ -74,10 +74,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
-        if (canMove)
-        {
-            direction = GameInput.Instance.GetDirectionVector(gameObject.tag);
-        }
+        direction = GameInput.Instance.GetDirectionVector(gameObject.tag);
 
         #region movement && flip
         // //horizontal movement
@@ -137,7 +134,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionExit2D(Collision2D other) {
-        if (other.gameObject.GetComponent<Moveable>() && transform.parent == other.transform)
+        if (other.gameObject.GetComponent<Moveable>())
         {
             transform.SetParent(null);
         }
