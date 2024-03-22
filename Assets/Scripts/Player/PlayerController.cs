@@ -70,7 +70,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
-        direction = GameInput.Instance.GetDirectionVector(gameObject.tag);
+        if (canMove)
+        {
+            direction = GameInput.Instance.GetDirectionVector(gameObject.tag);
+        }
 
         #region movement && flip
         // //horizontal movement
