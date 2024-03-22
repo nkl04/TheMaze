@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionExit2D(Collision2D other) {
-        if (other.gameObject.GetComponent<Moveable>())
+        if (other.gameObject.GetComponent<Moveable>() && transform.parent == other.transform)
         {
             transform.SetParent(null);
         }
