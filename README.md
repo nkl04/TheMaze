@@ -22,7 +22,7 @@ Players must control the main characters of the game through various traps and e
 
 ### Installing
 
-* FREE DOWNLOAD LINK: [This Is The Maze And Hung&Hao Is very handsome](https://github.com/nkl04/Team7_Gaming)
+* FREE DOWNLOAD LINK: [This Is The Maze And Hung&Hao Is very handsome](https://detizei-01.itch.io/the-maze?fbclid=IwAR2KDo86edi4xyvj2LL8iMjQD5OP7uOMDFPYEnyr8d8r6s5AH6-OAf0PaJ0)
 * extraction is needed after downloading the game.
 * after extracting, open TheMaze folder and select The Maze.exe to run the game.
 
