@@ -25,7 +25,11 @@ public class GameInput : MonoBehaviour
     private void Awake() {
         Instance = this;
         playerInputSystem = new PlayerInputSystem();
-        PlayerPrefs.SetString(DEFAULT_PLAYER_PREFS_BINDING,playerInputSystem.SaveBindingOverridesAsJson());
+        if (!PlayerPrefs.HasKey(DEFAULT_PLAYER_PREFS_BINDING))
+        {
+            PlayerPrefs.SetString(DEFAULT_PLAYER_PREFS_BINDING,playerInputSystem.SaveBindingOverridesAsJson());
+            PlayerPrefs.Save();
+        }
         if (PlayerPrefs.HasKey(PLAYER_PREFS_BINDING))
         {
             playerInputSystem.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDING));
@@ -102,6 +106,7 @@ public class GameInput : MonoBehaviour
             playerInputSystem.Player2.Enable();
             action();
             PlayerPrefs.SetString(PLAYER_PREFS_BINDING,playerInputSystem.SaveBindingOverridesAsJson());
+            PlayerPrefs.Save();
         }).Start();
     }
 
@@ -136,6 +141,18 @@ public class GameInput : MonoBehaviour
         return DEFAULT_PLAYER_PREFS_BINDING;
     }
 
+    public void ResetKeyMap()
+    {
+        string defaultBinding = PlayerPrefs.GetString(DEFAULT_PLAYER_PREFS_BINDING);
+    
+        PlayerPrefs.SetString(PLAYER_PREFS_BINDING, defaultBinding);
+        
+        playerInputSystem.LoadBindingOverridesFromJson(defaultBinding);
+        
+        PlayerPrefs.Save();
+
+        Debug.Log("reset keymap");
+    }
     
 
 

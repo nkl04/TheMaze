@@ -86,6 +86,8 @@ public class MapManager : MonoBehaviour
         
         audioManager.PlaySFX(audioManager.death);
         audioManager.StopMusic();
+        Destroy(player1);
+        Destroy(player2);
         //audioManager.PlaySFX(audioManager.lose);
         GameOverManager.Instance.Show();
         Time.timeScale = 0f;

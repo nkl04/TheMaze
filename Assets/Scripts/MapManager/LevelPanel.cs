@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 
 public class LevelPanel : MonoBehaviour
-{
+{   
+    [SerializeField] private Button quitButton;
     [SerializeField] private Button[] levelButtons;
 
     AudioManager audioManager;
@@ -13,6 +14,12 @@ public class LevelPanel : MonoBehaviour
     private void Awake(){
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         int unlockLevel = PlayerPrefs.GetInt("UnlockedLevel",1);
+
+        quitButton.onClick.AddListener(() =>{
+            audioManager.PlaySFX(audioManager.action);
+            gameObject.SetActive(false);
+        });
+
         for (int i = 0; i < levelButtons.Length; i++)
         {
             levelButtons[i].interactable = false;

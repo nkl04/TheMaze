@@ -13,6 +13,10 @@ PrefabInstance:
       value: 0.76168394
       objectReference: {fileID: 0}
     - target: {fileID: 30116945265243089, guid: 1c69b48921411124ca0f90ba48a24643, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2b1ebf244a173a9498badab4a599a5cd, type: 2}
+    - target: {fileID: 30116945265243089, guid: 1c69b48921411124ca0f90ba48a24643, type: 3}
       propertyPath: m_Offset.x
       value: -0.0016314983
       objectReference: {fileID: 0}
@@ -272,6 +276,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4926765075257201085, guid: 1c69b48921411124ca0f90ba48a24643, type: 3}
+      propertyPath: playerCollider2D
+      value: 
+      objectReference: {fileID: 1767986649094032150}
     - target: {fileID: 5150728476647892649, guid: 1c69b48921411124ca0f90ba48a24643, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9998024
@@ -529,6 +537,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c69b48921411124ca0f90ba48a24643, type: 3}
+--- !u!61 &1767986649094032150 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 30116945265243089, guid: 1c69b48921411124ca0f90ba48a24643, type: 3}
+  m_PrefabInstance: {fileID: 1793516008785524935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1934715406826726317 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 160621227621407594, guid: 1c69b48921411124ca0f90ba48a24643, type: 3}
