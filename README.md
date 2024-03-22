@@ -1,7 +1,7 @@
 # Team7_Gaming
 # The Maze
 
-The Maze is a simple yet challenging platformer game made by team 2 of Japanese Software Engineers Club (FPT University).
+The Maze is a simple yet challenging platformer game made by team 7 of Japanese Software Engineers Club (FPT University).
 
 ## Description
 
