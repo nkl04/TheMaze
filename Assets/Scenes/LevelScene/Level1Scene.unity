@@ -26641,6 +26641,10 @@ PrefabInstance:
       propertyPath: pauseButton
       value: 
       objectReference: {fileID: 1076883805}
+    - target: {fileID: 9184483101146188315, guid: a945b0ff6762d424cadd44733cb08abf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29494,7 +29498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8645827318214092843, guid: e531695da2464a94fa5328531075b6a9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8792850040313236413, guid: e531695da2464a94fa5328531075b6a9, type: 3}
       propertyPath: m_AnchorMax.y
