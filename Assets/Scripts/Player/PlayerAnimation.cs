@@ -45,7 +45,8 @@ public class PlayerAnimation : MonoBehaviour
 
     public void Update() 
     {
-        direction = GameInput.Instance.GetDirectionVector(gameObject.tag);
+        
+        direction = playerController.GetDirectionVector();
 
         if (isPressJump)
         {
@@ -61,9 +62,12 @@ public class PlayerAnimation : MonoBehaviour
         {
             isJumping = false;
         } 
+        if (playerController.CanMove)
+        {
+            animator.SetBool(IS_RUNNING, direction.x != 0 && !isJumping);
+            animator.SetBool(IS_JUMPING,isJumping);     
+        }
 
-        animator.SetBool(IS_RUNNING, direction.x != 0 && !isJumping);
-        animator.SetBool(IS_JUMPING,isJumping);
 
         
     }

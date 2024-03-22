@@ -55,6 +55,7 @@ public class Pause : MonoBehaviour
 
                 player1.GetComponent<PlayerController>().CanMove = false;
                 player2.GetComponent<PlayerController>().CanMove = false;
+                
                 isPaused = true;
             }
             else
