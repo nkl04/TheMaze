@@ -37,7 +37,7 @@ Contributors names and contact info:
 
 ### Takecare:
 * [Tran Bao Ngoc](https://www.facebook.com/profile.php?id=100010946880692)
-* [Nguyen Anh Duc](https://www.facebook.com/profile.php?id=100033463305478)
+* [Nguyen Manh Duc](https://www.facebook.com/profile.php?id=100033463305478)
 * [Nguyen Le Hai Anh (very ugly)](https://www.facebook.com/113han004)
 * [Nguyen Quang Khai](https://www.facebook.com/profile.php?id=100081790451971)
 * [Trieu Dinh Quang](https://www.facebook.com/quang27112002)
