@@ -45,6 +45,6 @@ Contributors names and contact info:
 ### Mentor:
 * [Thai Le Hieu is very handsome and does not have a girlfriend yet](https://www.facebook.com/profile.php?id=100081955779154)
 
-## Some Random Completely Unrelated people
+## Some Random Completely Unrelated People
 * [Nguyen Manh Phu](https://www.facebook.com/arthur.105.204)
 
