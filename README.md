@@ -5,7 +5,7 @@ The Maze is a simple yet challenging platformer game made by team 7 of Japanese 
 
 ## Description
 
-Players must control the main characters of the game through various traps and environments in order to reach the goal and beat the game. However, the obstacles are logically created and make a lot of sense. The game is hard, punishing and gets even more challenging as the players make further progress.  
+Players must control the main characters of the game through various traps and environments in order to reach the goal and beat the game using each character's unique abilities. LTH boy with red aura can withstand fire elements, while NLHA boy with blue aura can traverse water safely. Players must strategize and coordinate the movements of both characters to overcome challenges and reach the exit "elevator" in each level. With its colorful graphics, intuitive gameplay, and increasingly complex levels, "The Maze" offers an engaging and challenging gaming experience suitable for players of all ages.   
 
 ## Getting Started
 
