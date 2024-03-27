@@ -22,7 +22,7 @@ Players must control the main characters of the game through various traps and e
 
 ### Installing
 
-* FREE DOWNLOAD LINK: [This Is The Maze And Hung&Hao Is very handsome](https://detizei-01.itch.io/the-maze?fbclid=IwAR2KDo86edi4xyvj2LL8iMjQD5OP7uOMDFPYEnyr8d8r6s5AH6-OAf0PaJ0)
+* FREE DOWNLOAD LINK: [This Is The Maze](https://detizei-01.itch.io/the-maze?fbclid=IwAR2KDo86edi4xyvj2LL8iMjQD5OP7uOMDFPYEnyr8d8r6s5AH6-OAf0PaJ0)
 * extraction is needed after downloading the game.
 * after extracting, open TheMaze folder and select The Maze.exe to run the game.
 
@@ -30,7 +30,7 @@ Players must control the main characters of the game through various traps and e
 
 Contributors names and contact info:
 * [Nguyen Kim Long](https://www.facebook.com/nkl.dr.04) (Leader)
-* [Tran Xuan Hung Who is still finding true luv(rich)](https://www.facebook.com/profile.php?id=100037656913421)
+* [Tran Xuan Hung](https://www.facebook.com/profile.php?id=100037656913421)
 * [Nguyen Huy Haodz](https://www.facebook.com/nhhao27)
 * [Nguyen Minh Anh](https://www.facebook.com/profile.php?id=100011291052091)
 * [Nguyen Nhat Duong](https://www.facebook.com/profile.php?id=61552396784841)
@@ -39,12 +39,12 @@ Contributors names and contact info:
 ### Takecare:
 * [Tran Bao Ngoc](https://www.facebook.com/profile.php?id=100010946880692)
 * [Nguyen Manh Duc](https://www.facebook.com/profile.php?id=100033463305478)
-* [Nguyen Le Hai Anh (very ugly)](https://www.facebook.com/113han004)
+* [Nguyen Le Hai Anh](https://www.facebook.com/113han004)
 * [Nguyen Quang Khai](https://www.facebook.com/profile.php?id=100081790451971)
 * [Trieu Dinh Quang](https://www.facebook.com/quang27112002)
 
 ### Mentor:
-* [Thai Le Hieu is very handsome and does not have a girlfriend yet](https://www.facebook.com/profile.php?id=100081955779154)
+* [Thai Le Hieu](https://www.facebook.com/profile.php?id=100081955779154)
 
 ## Some Random Completely Unrelated People
 * [Nguyen Manh Phu](https://www.facebook.com/arthur.105.204)
