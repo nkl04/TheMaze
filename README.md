@@ -29,11 +29,12 @@ Players must control the main characters of the game through various traps and e
 ## Authors
 
 Contributors names and contact info:
+* [Nguyen Kim Long](https://www.facebook.com/lac.cu.7712)
 * [Tran Xuan Hung Who is still finding true luv(rich)](https://www.facebook.com/profile.php?id=100037656913421)
 * [Nguyen Huy Haodz](https://www.facebook.com/nhhao27)
 * [Nguyen Minh Anh](https://www.facebook.com/profile.php?id=100011291052091)
 * [Nguyen Nhat Duong](https://www.facebook.com/profile.php?id=61552396784841)
-* [Nguyen Kim Long](https://www.facebook.com/lac.cu.7712)
+
 
 ### Takecare:
 * [Tran Bao Ngoc](https://www.facebook.com/profile.php?id=100010946880692)
