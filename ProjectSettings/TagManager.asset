@@ -47,21 +47,24 @@ TagManager:
   - name: Background
     uniqueID: 3642475405
     locked: 0
-  - name: Decoration
+  - name: BackGround Decor 1
     uniqueID: 1153530355
     locked: 0
-  - name: Terrain
+  - name: BackGround Decor 2
     uniqueID: 2667319441
     locked: 0
-  - name: GroundMap
+  - name: Ground 1
     uniqueID: 2652602193
+    locked: 0
+  - name: Ground 2
+    uniqueID: 3801262557
+    locked: 0
+  - name: Ground 3
+    uniqueID: 3391600489
+    locked: 0
+  - name: Instance
+    uniqueID: 152477361
     locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Trap
-    uniqueID: 2055434163
-    locked: 0
-  - name: Player
-    uniqueID: 152477361
     locked: 0
